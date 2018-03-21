@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/.idea/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/.idea/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/code-power.iml" filepath="$PROJECT_DIR$/.idea/code-power.iml" />
     </modules>
   </component>
