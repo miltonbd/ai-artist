@@ -1,10 +1,10 @@
 import numpy as np
 import imageio
+from scipy import misc
 import os
 
 
 ValidImageFormats= {'jpg','jpeg','png','gif'}
-VGG_MEAN = [103.939, 116.779, 123.68]# Mean value of pixels in R G and B channels
 
 
 class DataReader(object):
@@ -39,29 +39,55 @@ class DataReader(object):
 
 
     def nextBatch(self, itr):
+        if self.itr >= self.total_train_count:
+            self.itr = 0
+            self.epoch += 1
+
+        batch_size = np.min([self.batch_size, self.total_train_count-self.itr]) # There may be lower numbe rof values
+        # than batch at the end of epoch.
+
         images_batch = []
         labels_batch = []
-        for index in range(itr * self.batch_size, itr * self.batch_size + self.batch_size ):
-            image_path = self.images[index]
-            label_path = self.labels[index]
+        for _ in range( batch_size ):
+            image_path = self.images[self.itr]
+            label_path = self.labels[self.itr]
 
             image = imageio.imread(image_path)
-
+            image = image[:, :, 0:3]
             label = imageio.imread(label_path)
-
-            R, G , B , A = image
-
-            R = R - VGG_MEAN[0]
-            G = G - VGG_MEAN[1]
-            B = B - VGG_MEAN[2]
-
-            image = np.asarray([R,G,B,A])
-
+            label_h, label_w = label.shape
+            image = misc.imresize(image,[label_h, label_w])
             images_batch.append(image)
             labels_batch.append(label)
 
+        # find the lowest height, width in segmenttaion image and resize the
+        label_min_h = 0
+        label_min_w = 0
 
-        return (images_batch, labels_batch)
+        for i in range(len(labels_batch)):
+            h, w = labels_batch[i].shape
+            if i == 0:
+                label_min_h = h
+                label_min_w = w
+            else:
+                if h < label_min_h and w < label_min_w :
+                    label_min_h = h
+                    label_min_w = w
+
+        #print("Batch label (h,w) is ({},{}) ".format(label_min_h, label_min_w))
+
+        images_final = np.zeros(shape=[batch_size, label_min_h, label_min_w, 3],dtype=np.int)
+        labels_final = np.zeros(shape=[batch_size, label_min_h, label_min_w, 1], dtype=np.int)
+
+        for i in range(batch_size):
+
+            images_final[i] = misc.imresize(images_batch[i],[label_min_h, label_min_w], interp="bilinear")
+            la = misc.imresize(labels_batch[i],[label_min_h, label_min_w], interp="nearest")
+            la = la.reshape((label_min_h, label_min_w, 1))
+            labels_final[i] = la
+
+        return (images_final, labels_final)
+
 
     def shuffle(self):
         pass
