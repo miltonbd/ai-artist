@@ -18,16 +18,18 @@ BATCH_SIZE = 10
 GPU_NUM = 2
 LEARNING_RATE = 1e-5
 LOGS_DIR = "/home/milton/research/code-power-logs/fcnvgg16/"
+TOWER_NAME = 'tower'
+log_device_placement = True
 
 # ..................... Create Data Reader ......................................#
 data_reader = DataReader(image_dir=IMAGE_DIR, label_dir=LABEL_DIR, batch_size=BATCH_SIZE)
 data_reader.loadDataSet()
-ITERATIONS = EPOCHS * data_reader.total_train_count / BATCH_SIZE
+ITERATIONS = EPOCHS * data_reader.total_train_count /(BATCH_SIZE * GPU_NUM)
 
 print("Total Iterations {}".format(ITERATIONS))
 
 
-def tower_loss(scope, images, labels):
+def tower_loss(scope, images, labels, net):
   """Calculate the total loss on a single tower running the CIFAR model.
   Args:
     scope: unique prefix string identifying the CIFAR tower, e.g. 'tower_0'
@@ -38,13 +40,16 @@ def tower_loss(scope, images, labels):
   """
 
   # Build inference Graph.
-  logits = cifar10.inference(images)
+  labels_squeez = tf.squeeze(labels, squeeze_dims=[3])
+  logits = net.prob
+  loss = tf.reduce_sum(
+      (tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels_squeez, logits=logits, name="loss")))
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
-  _ = cifar10.loss(logits, labels)
 
   # Assemble all of the losses for the current tower only.
+  tf.add_to_collection('losses', loss)
   losses = tf.get_collection('losses', scope)
 
   # Calculate the total loss for the current tower.
@@ -55,7 +60,7 @@ def tower_loss(scope, images, labels):
   for l in losses + [total_loss]:
     # Remove 'tower_[0-9]/' from the name in case this is a multi-GPU training
     # session. This helps the clarity of presentation on tensorboard.
-    loss_name = re.sub('%s_[0-9]*/' % cifar10.TOWER_NAME, '', l.op.name)
+    loss_name = re.sub('%s_[0-9]*/' % "tower", '', l.op.name)
     tf.summary.scalar(loss_name, l)
 
   return total_loss
@@ -100,73 +105,64 @@ def average_gradients(tower_grads):
 
 def train():
     tf.reset_default_graph()
-    with tf.Graph().as_default(), tf.device('/cpu:0'):
-
-        #................... placeholders for variables ...............................#
-        images = tf.placeholder(tf.float32, shape= [None,None,None,3], name="input_image")
-        labels = tf.placeholder(tf.int32, shape= [None, None, None, 1], name= "ground_truth")
-        keep_prob = tf.placeholder(tf.float32, name= "dropout")
+    #................... placeholders for variables ...............................#
+    images = tf.placeholder(tf.float32, shape= [None,None,None,3], name="input_image")
+    labels = tf.placeholder(tf.int32, shape= [None, None, None, 1], name= "ground_truth")
+    keep_prob = tf.placeholder(tf.float32, name= "dropout")
 
 
-        #.................. Building net ..............................................#
-        net = FCNVGG16(PRE_TRAIN_MODEL_PATH, num_classes=NUM_CLASSES)
-        net.build(images, keep_prob )
-        labels_squeez = tf.squeeze(labels, squeeze_dims=[3])
-        logits = net.prob
-        loss = tf.reduce_sum((tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels_squeez,logits=logits, name="loss")))
+    #.................. Building net ..............................................#
+    net = FCNVGG16(PRE_TRAIN_MODEL_PATH, num_classes=NUM_CLASSES)
+    net.build(images, keep_prob )
+    labels_squeez = tf.squeeze(labels, squeeze_dims=[3])
+    logits = net.prob
+    loss = tf.reduce_sum((tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels_squeez,logits=logits, name="loss")))
 
-        #.............. create solver for the net .....................................#
-        trainable_vars = tf.trainable_variables()
-        optimizer = tf.train.AdamOptimizer(LEARNING_RATE)
-        grads = optimizer.compute_gradients(loss, trainable_vars)
-        train_op = optimizer.apply_gradients(grads)
+    #.............. create solver for the net .....................................#
+    trainable_vars = tf.trainable_variables()
+    optimizer = tf.train.AdamOptimizer(LEARNING_RATE)
+    grads = optimizer.compute_gradients(loss, trainable_vars)
+    train_op = optimizer.apply_gradients(grads)
 
 
-        #................. creating session ..............................................#
-        sess = tf.Session()
-        saver = tf.train.Saver()
-        sess.run(tf.global_variables_initializer())
-        ckpt = tf.train.get_checkpoint_state(LOGS_DIR)
-        if ckpt and ckpt.model_checkpoint_path:
-            saver.restore(sess,ckpt.model_checkpoint_path)
-            print("Model restored.")
-        start = time.time()
+    #................. creating session ..............................................#
+    sess = tf.Session()
+    saver = tf.train.Saver()
+    sess.run(tf.global_variables_initializer())
+    ckpt = tf.train.get_checkpoint_state(LOGS_DIR)
+    if ckpt and ckpt.model_checkpoint_path:
+        saver.restore(sess,ckpt.model_checkpoint_path)
+        print("Model restored.")
+    start = time.time()
 
-        tower_grads = []
+    for itr in range(30):
+        images_data, labels_data = data_reader.nextBatch()
+        #print(images_data.shape)
+        #print(labels_data.shape)
+        feed_dict = {
+            images: images_data,
+            labels: labels_data,
+            keep_prob: 0.6
+        }
+        sess.run(train_op, feed_dict=feed_dict)
 
-        with tf.variable_scope(tf.get_variable_scope()):
-            for i in xrange(FLAGS.num_gpus):
-                with tf.device('/gpu:%d' % i):
-                    with tf.name_scope('%s_%d' % ("Tower", i)) as scope:
+        if itr % 50 == 0 and itr > 0:
+            print("Saving Model to file in " + LOGS_DIR)
+            saver.save(sess, LOGS_DIR + "model.ckpt", itr)  # Save model
 
-        for itr in range(100):
-            images_data, labels_data = data_reader.nextBatch(itr)
-            #print(images_data.shape)
-            #print(labels_data.shape)
+        if itr % 10==0:
+            # Calculate train loss
             feed_dict = {
                 images: images_data,
                 labels: labels_data,
-                keep_prob: 0.6
+                keep_prob: 1
             }
-            sess.run(train_op, feed_dict=feed_dict)
-
-            if itr % 50 == 0 and itr > 0:
-                print("Saving Model to file in " + LOGS_DIR)
-                saver.save(sess, LOGS_DIR + "model.ckpt", itr)  # Save model
-
-            if itr % 10==0:
-                # Calculate train loss
-                feed_dict = {
-                    images: images_data,
-                    labels: labels_data,
-                    keep_prob: 1
-                }
-                TLoss=sess.run(loss, feed_dict=feed_dict)
-                print("EPOCH="+str(data_reader.epoch)+" Step "+str(itr)+ "  Train Loss="+str(TLoss))
+            TLoss=sess.run(loss, feed_dict=feed_dict)
+            print("EPOCH="+str(data_reader.epoch)+" Step "+str(itr)+ "  Train Loss="+str(TLoss))
 
 
-        elapsed = time.time() - start
-        print("Total elapsed {} ".format(elapsed))
+    elapsed = time.time() - start
+    print("Total elapsed {} ".format(elapsed))
 
 def train_multi_gpu():
   """Train CIFAR-10 for a number of steps."""
@@ -177,37 +173,29 @@ def train_multi_gpu():
         'global_step', [],
         initializer=tf.constant_initializer(0), trainable=False)
 
-    # Calculate the learning rate schedule.
-    num_batches_per_epoch = (cifar10.NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN /
-                             FLAGS.batch_size)
-    decay_steps = int(num_batches_per_epoch * cifar10.NUM_EPOCHS_PER_DECAY)
+    images = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image")
+    labels = tf.placeholder(tf.int32, shape=[None, None, None, 1], name="ground_truth")
+    keep_prob = tf.placeholder(tf.float32, name="dropout")
 
-    # Decay the learning rate exponentially based on the number of steps.
-    lr = tf.train.exponential_decay(cifar10.INITIAL_LEARNING_RATE,
-                                    global_step,
-                                    decay_steps,
-                                    cifar10.LEARNING_RATE_DECAY_FACTOR,
-                                    staircase=True)
+    # .................. Building net ..............................................#
+    net = FCNVGG16(PRE_TRAIN_MODEL_PATH, num_classes=NUM_CLASSES)
+    net.build(images, keep_prob)
 
-    # Create an optimizer that performs gradient descent.
-    opt = tf.train.GradientDescentOptimizer(lr)
+    trainable_vars = tf.trainable_variables()
+    optimizer = tf.train.AdamOptimizer(LEARNING_RATE)
 
-    # Get images and labels for CIFAR-10.
-    images, labels = cifar10.distorted_inputs()
-    batch_queue = tf.contrib.slim.prefetch_queue.prefetch_queue(
-          [images, labels], capacity=2 * FLAGS.num_gpus)
     # Calculate the gradients for each model tower.
     tower_grads = []
     with tf.variable_scope(tf.get_variable_scope()):
-      for i in xrange(FLAGS.num_gpus):
+      for i in range(GPU_NUM):
         with tf.device('/gpu:%d' % i):
-          with tf.name_scope('%s_%d' % (cifar10.TOWER_NAME, i)) as scope:
+          with tf.name_scope('%s_%d' % ("tower", i)) as scope:
             # Dequeues one batch for the GPU
-            image_batch, label_batch = batch_queue.dequeue()
+            images_data, labels_data = data_reader.nextBatch()
             # Calculate the loss for one tower of the CIFAR model. This function
             # constructs the entire CIFAR model but shares the variables across
             # all towers.
-            loss = tower_loss(scope, image_batch, label_batch)
+            loss = tower_loss(scope, images_data, labels_data, net)
 
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
@@ -216,7 +204,7 @@ def train_multi_gpu():
             summaries = tf.get_collection(tf.GraphKeys.SUMMARIES, scope)
 
             # Calculate the gradients for the batch of data on this CIFAR tower.
-            grads = opt.compute_gradients(loss)
+            grads = optimizer.compute_gradients(loss, trainable_vars)
 
             # Keep track of the gradients across all towers.
             tower_grads.append(grads)
@@ -226,7 +214,7 @@ def train_multi_gpu():
     grads = average_gradients(tower_grads)
 
     # Add a summary to track the learning rate.
-    summaries.append(tf.summary.scalar('learning_rate', lr))
+    summaries.append(tf.summary.scalar('learning_rate', LEARNING_RATE))
 
     # Add histograms for gradients.
     for grad, var in grads:
@@ -234,19 +222,15 @@ def train_multi_gpu():
         summaries.append(tf.summary.histogram(var.op.name + '/gradients', grad))
 
     # Apply the gradients to adjust the shared variables.
-    apply_gradient_op = opt.apply_gradients(grads, global_step=global_step)
+    apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
 
     # Add histograms for trainable variables.
     for var in tf.trainable_variables():
       summaries.append(tf.summary.histogram(var.op.name, var))
 
-    # Track the moving averages of all trainable variables.
-    variable_averages = tf.train.ExponentialMovingAverage(
-        cifar10.MOVING_AVERAGE_DECAY, global_step)
-    variables_averages_op = variable_averages.apply(tf.trainable_variables())
 
     # Group all updates to into a single train op.
-    train_op = tf.group(apply_gradient_op, variables_averages_op)
+    train_op = tf.group(apply_gradient_op)
 
     # Create a saver.
     saver = tf.train.Saver(tf.global_variables())
@@ -260,44 +244,37 @@ def train_multi_gpu():
     # Start running operations on the Graph. allow_soft_placement must be set to
     # True to build towers on GPU, as some of the ops do not have GPU
     # implementations.
-    sess = tf.Session(config=tf.ConfigProto(
-        allow_soft_placement=True,
-        log_device_placement=FLAGS.log_device_placement))
+    config = tf.ConfigProto(log_device_placement=log_device_placement, allow_soft_placement=True)
+    sess = tf.Session(config=config)
     sess.run(init)
 
-    # Start the queue runners.
-    tf.train.start_queue_runners(sess=sess)
+    summary_writer = tf.summary.FileWriter(LOGS_DIR, sess.graph)
 
-    summary_writer = tf.summary.FileWriter(FLAGS.train_dir, sess.graph)
+    for itr in range(10):
+        feed_dict = {
+            images: images_data,
+            labels: labels_data,
+            keep_prob: 0.6
+        }
+        print("Iteration {})".format(itr))
+        sess.run(train_op, feed_dict=feed_dict)
 
-    for step in xrange(FLAGS.max_steps):
-      start_time = time.time()
-      _, loss_value = sess.run([train_op, loss])
-      duration = time.time() - start_time
+        if itr % 50 == 0 and itr > 0:
+            print("Saving Model to file in " + LOGS_DIR)
+            saver.save(sess, LOGS_DIR + "model.ckpt", itr)  # Save model
 
-      assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
+        if itr % 10 == 0:
+            # Calculate train loss
+            feed_dict = {
+                images: images_data,
+                labels: labels_data,
+                keep_prob: 1
+            }
+            TLoss = sess.run(loss, feed_dict=feed_dict)
+            print("EPOCH=" + str(data_reader.epoch) + " Step " + str(itr) + "  Train Loss=" + str(TLoss))
 
-      if step % 10 == 0:
-        num_examples_per_step = FLAGS.batch_size * FLAGS.num_gpus
-        examples_per_sec = num_examples_per_step / duration
-        sec_per_batch = duration / FLAGS.num_gpus
-
-        format_str = ('%s: step %d, loss = %.2f (%.1f examples/sec; %.3f '
-                      'sec/batch)')
-        print (format_str % (datetime.now(), step, loss_value,
-                             examples_per_sec, sec_per_batch))
-
-      if step % 100 == 0:
-        summary_str = sess.run(summary_op)
-        summary_writer.add_summary(summary_str, step)
-
-      # Save the model checkpoint periodically.
-      if step % 1000 == 0 or (step + 1) == FLAGS.max_steps:
-        checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
-        saver.save(sess, checkpoint_path, global_step=step)
-
-
-
+#train()
+train_multi_gpu()
 print("Train finished")
 
 

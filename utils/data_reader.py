@@ -38,7 +38,7 @@ class DataReader(object):
 
 
 
-    def nextBatch(self, itr):
+    def nextBatch(self):
         if self.itr >= self.total_train_count:
             self.itr = 0
             self.epoch += 1

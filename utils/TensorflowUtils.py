@@ -56,6 +56,19 @@ def save_image(image, save_dir, name, mean=None):
         image = unprocess_image(image, mean)
     misc.imsave(os.path.join(save_dir, name + ".png"), image)
 
+def _variable_on_cpu(name, shape, initializer):
+  """Helper to create a Variable stored on CPU memory.
+  Args:
+    name: name of the variable
+    shape: list of ints
+    initializer: initializer for Variable
+  Returns:
+    Variable Tensor
+  """
+  with tf.device('/cpu:0'):
+    dtype = tf.float16 if FLAGS.use_fp16 else tf.float32
+    var = tf.get_variable(name, shape, initializer=initializer, dtype=dtype)
+  return var
 
 def get_variable(weights, name):
     init = tf.constant_initializer(weights, dtype=tf.float32)
