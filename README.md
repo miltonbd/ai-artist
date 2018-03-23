@@ -1,5 +1,4 @@
-# code-power 
 
-This repository contains my central repository for all my projects. 
+This repository contains my central repository for all projects mainly computer vision.
 
-Currently I am working on BRain tumour segmentation.
+Currently I am working on Brain tumour segmentation.

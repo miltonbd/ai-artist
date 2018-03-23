@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="segmentation detection directory added.">
-      <change beforePath="" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" afterPath="$PROJECT_DIR$/.idea/code-power.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/segmentation/fcn/train.py" afterPath="$PROJECT_DIR$/segmentation/fcn/train.py" />
-      <change beforePath="$PROJECT_DIR$/tf-tutorials/tf_multi_gpu_cnn.py" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/tf_multi_gpu_cnn.py" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,11 +61,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cifar10_multi_gpu_train.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cifar10_multi_gpu_train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="53" lean-forward="false" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
+            <state relative-caret-position="320">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,16 +109,6 @@
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="op_def_library.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11840">
-              <caret line="608" column="0" lean-forward="false" selection-start-line="608" selection-start-column="0" selection-end-line="608" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -173,6 +168,7 @@
         <option value="$PROJECT_DIR$/segmentation/fcn/fcnvgg16.py" />
         <option value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py" />
         <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -221,6 +217,10 @@
       <pane id="ProjectPane">
         <subPane>
           <expand>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="cifar10" type="462c0819:PsiDirectoryNode" />
@@ -579,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521697523479</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="segmentation capsnet added in git.">
+      <created>1521828875538</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1521828875539</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -615,7 +622,8 @@
     <MESSAGE value="vgg model added." />
     <MESSAGE value="train for fcn vgg16 can be done." />
     <MESSAGE value="multi gpu training tutoril added." />
-    <option name="LAST_COMMIT_MESSAGE" value="multi gpu training tutoril added." />
+    <MESSAGE value="segmentation capsnet added in git." />
+    <option name="LAST_COMMIT_MESSAGE" value="segmentation capsnet added in git." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -710,13 +718,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/IOU.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1057,8 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="53" lean-forward="false" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
+        <state relative-caret-position="320">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1070,6 +1071,14 @@
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
