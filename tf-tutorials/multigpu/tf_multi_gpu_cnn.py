@@ -12,8 +12,6 @@ This tutorial requires your machine to have 2 GPUs
 "/gpu:1": The second GPU of your machine
 '''
 
-
-
 import numpy as np
 import tensorflow as tf
 import datetime

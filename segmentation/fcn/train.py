@@ -14,7 +14,7 @@ PRE_TRAIN_MODEL_PATH = "/home/milton/dataset/trained_models/vgg16.npy"
 
 NUM_CLASSES = 4
 EPOCHS = 5
-BATCH_SIZE = 10
+BATCH_SIZE = 5
 GPU_NUM = 2
 LEARNING_RATE = 1e-5
 LOGS_DIR = "/home/milton/research/code-power-logs/fcnvgg16/"
@@ -29,7 +29,7 @@ ITERATIONS = EPOCHS * data_reader.total_train_count /(BATCH_SIZE * GPU_NUM)
 print("Total Iterations {}".format(ITERATIONS))
 
 
-def tower_loss(scope, images, labels, net):
+def tower_loss(scope, images, labels, net,keep_prob):
   """Calculate the total loss on a single tower running the CIFAR model.
   Args:
     scope: unique prefix string identifying the CIFAR tower, e.g. 'tower_0'
@@ -40,6 +40,7 @@ def tower_loss(scope, images, labels, net):
   """
 
   # Build inference Graph.
+  net.build(images, keep_prob)
   labels_squeez = tf.squeeze(labels, squeeze_dims=[3])
   logits = net.prob
   loss = tf.reduce_sum(
@@ -135,7 +136,7 @@ def train():
         print("Model restored.")
     start = time.time()
 
-    for itr in range(30):
+    for itr in range(5):
         images_data, labels_data = data_reader.nextBatch()
         #print(images_data.shape)
         #print(labels_data.shape)
@@ -179,8 +180,6 @@ def train_multi_gpu():
 
     # .................. Building net ..............................................#
     net = FCNVGG16(PRE_TRAIN_MODEL_PATH, num_classes=NUM_CLASSES)
-    net.build(images, keep_prob)
-
     trainable_vars = tf.trainable_variables()
     optimizer = tf.train.AdamOptimizer(LEARNING_RATE)
 
@@ -195,7 +194,7 @@ def train_multi_gpu():
             # Calculate the loss for one tower of the CIFAR model. This function
             # constructs the entire CIFAR model but shares the variables across
             # all towers.
-            loss = tower_loss(scope, images_data, labels_data, net)
+            loss = tower_loss(scope, images_data, labels_data, net, keep_prob)
 
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
@@ -250,7 +249,7 @@ def train_multi_gpu():
 
     summary_writer = tf.summary.FileWriter(LOGS_DIR, sess.graph)
 
-    for itr in range(10):
+    for itr in range(5):
         feed_dict = {
             images: images_data,
             labels: labels_data,

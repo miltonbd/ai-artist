@@ -5,6 +5,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation" />
+    <orderEntry type="module" module-name="cifar10" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />
