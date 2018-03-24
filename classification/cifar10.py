@@ -5,23 +5,25 @@ import _pickle
 from utils.data_reader_cifar10 import *
 import time
 from classification.vgg16 import Vgg16
-from classification.my_net1 import MyNet1
+from classification.my_net1 import MyCifar10Classifier
 
 epochs = 5
 learning_rate = 1e-4
-batch_size = 10
+batch_size = 200
 num_classes  = 10
 gpu_nums = 2
 data_dir = "/home/milton/dataset/cifar/cifar10" # meta, train, test
 PRE_TRAIN_MODEL_PATH = "/home/milton/dataset/trained_models/vgg16.npy"
 
-
 def tower_loss(scope, images, labels):
-    net = MyNet1()
-    net.inference(images)
+    net = MyCifar10Classifier(10)
+    logits = net.inference(images)
+    net.loss(logits,labels)
+    losses = tf.get_collection('losses', scope)
 
-    return
-
+    # Calculate the total loss for the current tower.
+    total_loss = tf.add_n(losses, name='total_loss')
+    return total_loss
 
 def average_gradients(tower_grads):
     average_grads = []
@@ -37,7 +39,7 @@ def average_gradients(tower_grads):
             grads.append(expanded_g)
 
         # Average over the 'tower' dimension.
-        grad = tf.concat(0, grads)
+        grad = tf.concat(axis=0, values=grads)
         grad = tf.reduce_mean(grad, 0)
 
         # Keep in mind that the Variables are redundant because they are shared
@@ -48,33 +50,31 @@ def average_gradients(tower_grads):
         average_grads.append(grad_and_var)
     return average_grads
 
-
-
-
 def main():
 
     with tf.Graph().as_default(), tf.device('/cpu:0'):
         # load_cifar10_data()
-        data_loader = DataReaderCifar10(data_dir, batch_size)
+        data_loader = DataReaderCifar10( batch_size,epochs,gpu_nums)
         data_loader.loadDataSet()
-        iterations = epochs * data_loader.total_train_count // (batch_size * gpu_nums)
+        iterations = data_loader.iterations
         print("Total iterations needed {}".format(iterations))
         global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
         optimizer = tf.train.GradientDescentOptimizer(learning_rate)
 
-        images = tf.placeholder(tf.float32, shape=[-1, 32, 32, 3])
-        labels = tf.placeholder(tf.float32, shape=[-1, 10])
+        images = tf.placeholder(tf.float32, shape=[batch_size * gpu_nums, 32, 32, 3])
+        labels = tf.placeholder(tf.float32, shape=[batch_size * gpu_nums, ])
 
         tower_grads = []
         for i in range(gpu_nums):
             with tf.device('/gpu:{}'.format(i)):
-                with tf.name_scope("tower_".format(i)) as scope:
-
-                    loss = tower_loss(scope, images, labels)
+                with tf.name_scope("tower_{}".format(i)) as scope:
+                    start = i * batch_size
+                    end = start + batch_size
+                    loss = tower_loss(scope, images[start:end,:,:,:], labels[start:end])
                     # Reuse variables for the next tower.
                     tf.get_variable_scope().reuse_variables()
 
-                    grads = optimizer.apply_gradients(loss)
+                    grads = optimizer.compute_gradients(loss)
 
                     # Keep track of the gradients across all towers.
                     tower_grads.append(grads)
@@ -103,6 +103,29 @@ def main():
             log_device_placement=True))
         sess.run(init)
 
+        for itr in range(50):
+            images_data,labels_data = data_loader.nextBatch()
+            print(labels_data.shape)
+            feed_dict = {
+                images: images_data,
+                labels: labels_data
+            }
+            print("Iteration {})".format(itr))
+            sess.run(train_op, feed_dict=feed_dict)
+            #
+            # if itr % 50 == 0 and itr > 0:
+            #     print("Saving Model to file in " + LOGS_DIR)
+            #     saver.save(sess, LOGS_DIR + "model.ckpt", itr)  # Save model
+            #
+            # if itr % 10 == 0:
+            #     # Calculate train loss
+            #     feed_dict = {
+            #         images: images_data,
+            #         labels: labels_data,
+            #         keep_prob: 1
+            #     }
+            #     TLoss = sess.run(loss, feed_dict=feed_dict)
+            #     print("EPOCH=" + str(data_reader.epoch) + " Step " + str(itr) + "  Train Loss=" + str(TLoss))
 
     return
 

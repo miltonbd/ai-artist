@@ -44,18 +44,20 @@ class DataReaderCifar10(object):
         self.total_train_count = np.minimum(len(self.images), len(self.labels))
         self.iterations = self.epochs * self.total_train_count / (self.batch_size * self.gpu_nums)
         print("Total terations needed {}".format(self.iterations))
+        #print(self.labels[0])
+
 
     def nextBatch(self):
         if self.itr >= self.total_train_count:
             self.itr = 0
             self.epoch += 1
         #print("index in data {}".format(self.itr))
-        batch_size = np.min([self.batch_size, self.total_train_count-self.itr])
+        batch_size = np.min([self.batch_size * self.gpu_nums, self.total_train_count-self.itr])
         # There may be lower number of values
         # than batch at the end of epoch.
 
         images_final = np.zeros(shape=[batch_size, 32, 32, 3],dtype=np.uint8)
-        labels_final = np.zeros(shape=[batch_size, 1], dtype=np.int)
+        labels_final = np.zeros(shape=[batch_size, ], dtype=np.int)
 
 
         for i in range(batch_size):
