@@ -6,14 +6,18 @@ from utils.data_reader_cifar10 import *
 import time
 from classification.vgg16 import Vgg16
 from classification.my_net1 import MyCifar10Classifier
+import sys
 
-epochs = 5
+MOVING_AVERAGE_DECAY = 0.9999
+epochs = 3
 learning_rate = 1e-4
-batch_size = 200
+batch_size = 250
 num_classes  = 10
 gpu_nums = 2
 data_dir = "/home/milton/dataset/cifar/cifar10" # meta, train, test
-PRE_TRAIN_MODEL_PATH = "/home/milton/dataset/trained_models/vgg16.npy"
+pretrain_model_path = "/home/milton/dataset/trained_models/vgg16.npy"
+saved_model_dir = "models"
+saved_model_path = os.path.join(saved_model_dir,"gpu_{}_model.ckpt".format(gpu_nums))
 
 def tower_loss(scope, images, labels):
     net = MyCifar10Classifier(10)
@@ -65,12 +69,14 @@ def main():
         labels = tf.placeholder(tf.float32, shape=[batch_size * gpu_nums, ])
 
         tower_grads = []
+        losses =[]
         for i in range(gpu_nums):
             with tf.device('/gpu:{}'.format(i)):
                 with tf.name_scope("tower_{}".format(i)) as scope:
                     start = i * batch_size
                     end = start + batch_size
                     loss = tower_loss(scope, images[start:end,:,:,:], labels[start:end])
+                    losses.append(loss)
                     # Reuse variables for the next tower.
                     tf.get_variable_scope().reuse_variables()
 
@@ -84,8 +90,13 @@ def main():
         grads = average_gradients(tower_grads)
         apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
 
-        train_op = apply_gradient_op
+        # variable_averages = tf.train.ExponentialMovingAverage(
+        #     MOVING_AVERAGE_DECAY, global_step)
+        # variables_averages_op = variable_averages.apply(tf.trainable_variables())
 
+        # Group all updates to into a single train op.
+        #train_op = tf.group(apply_gradient_op, variables_averages_op)
+        train_op = apply_gradient_op
         saver = tf.train.Saver(tf.all_variables())
         init = tf.initialize_all_variables()
 
@@ -103,15 +114,23 @@ def main():
             log_device_placement=True))
         sess.run(init)
 
-        for itr in range(50):
+        for itr in range(data_loader.iterations):
             images_data,labels_data = data_loader.nextBatch()
-            print(labels_data.shape)
+            #print(labels_data.shape)
             feed_dict = {
                 images: images_data,
                 labels: labels_data
             }
-            print("Iteration {})".format(itr))
-            sess.run(train_op, feed_dict=feed_dict)
+            _, loss_all = sess.run([train_op, losses], feed_dict=feed_dict)
+            msg = "Iteration {}, loss {})".format(itr, loss_all)
+            if itr%20==0:
+                print(msg)
+            #sys.stdout.write(msg + "\r")
+            #sys.stdout.flush()
+
+        saver.save(sess, saved_model_path, global_step=data_loader.itr)
+        print("Model Saved In {}".format(saved_model_path))
+
             #
             # if itr % 50 == 0 and itr > 0:
             #     print("Saving Model to file in " + LOGS_DIR)
@@ -126,7 +145,8 @@ def main():
             #     }
             #     TLoss = sess.run(loss, feed_dict=feed_dict)
             #     print("EPOCH=" + str(data_reader.epoch) + " Step " + str(itr) + "  Train Loss=" + str(TLoss))
-
+        end = time.time()
+        print("Time elapsed {}".format(end - start))
     return
 
 
