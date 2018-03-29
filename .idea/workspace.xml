@@ -2,17 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="segmentation detection directory added.">
-      <change beforePath="" afterPath="$PROJECT_DIR$/classification/cifar10_single_gpu.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pytorch/pytorch1.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/classification/skin/data_loader.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/classification/skin/models/simplenet.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/classification/skin/predict.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/classification/skin/train.py" />
       <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" afterPath="$PROJECT_DIR$/.idea/code-power.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/classification/cifar10.py" afterPath="$PROJECT_DIR$/classification/cifar10_multigpu.py" />
-      <change beforePath="$PROJECT_DIR$/classification/cifar10_eval.py" afterPath="$PROJECT_DIR$/classification/cifar10_eval.py" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/papers/059cf70270136a312e9e5a0d3f5b1ad8fca6.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/papers/1703.04364.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/papers/1703.05235.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/papers/1710.05006.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/papers/a64f3cb40c799ba32b1b675e8307257f3e36.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pytorch/pytorch1.py" afterPath="$PROJECT_DIR$/pytorch-tutorials/pytorch1.py" />
       <change beforePath="$PROJECT_DIR$/tf-tutorials/imagenet_classes.py" afterPath="$PROJECT_DIR$/tf-tutorials/imagenet_classes.py" />
-      <change beforePath="$PROJECT_DIR$/utils/data_reader_cifar10.py" afterPath="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,8 +30,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+            <state relative-caret-position="140">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -47,11 +51,75 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pytorch1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pytorch/pytorch1.py">
+      <file leaf-file-name="pytorch1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pytorch-tutorials/pytorch1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="20">
               <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2260">
+              <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="predict.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/predict.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simplenet.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classification/skin/models/simplenet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-100">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_loader.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="1" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,7 +158,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -127,12 +194,15 @@
         <option value="$PROJECT_DIR$/classification/cifar10_single_gpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10_eval.py" />
         <option value="$PROJECT_DIR$/pytorch/pytorch1.py" />
+        <option value="$PROJECT_DIR$/classification/skin/data_loader.py" />
+        <option value="$PROJECT_DIR$/classification/skin/train.py" />
+        <option value="$PROJECT_DIR$/classification/skin/models/simplenet.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1973" />
-    <option name="y" value="34" />
+    <option name="x" value="1966" />
+    <option name="y" value="21" />
     <option name="width" value="1867" />
     <option name="height" value="1056" />
   </component>
@@ -172,12 +242,23 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="pytorch-tutorials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="tf-tutorials" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
@@ -192,23 +273,24 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/classification/skin/models" />
+      <recent name="$PROJECT_DIR$/classification/skin" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/tf-tutorials" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tf-tutorials/multigpu" />
       <recent name="$PROJECT_DIR$/segmentation/fcn" />
       <recent name="$PROJECT_DIR$/segmentation/fcn1" />
       <recent name="$PROJECT_DIR$/brain-tumour-segmentation" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/utils" />
-      <recent name="$PROJECT_DIR$/tf-tutorials" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -223,7 +305,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.cifar10">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -296,24 +378,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="cifar10_train" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="cifar10" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_train.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="cnn1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -328,6 +392,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="code-power" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf-tutorials/cnn/cnn1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pytorch-cifar" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -458,18 +540,18 @@
       <item index="0" class="java.lang.String" itemvalue="Jupyter Notebook.code-power" />
       <item index="1" class="java.lang.String" itemvalue="Python.Unnamed" />
       <item index="2" class="java.lang.String" itemvalue="Python.cifar10" />
-      <item index="3" class="java.lang.String" itemvalue="Python.cifar10_train" />
-      <item index="4" class="java.lang.String" itemvalue="Python.my_net1" />
-      <item index="5" class="java.lang.String" itemvalue="Python.cnn1" />
-      <item index="6" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.my_net1" />
+      <item index="4" class="java.lang.String" itemvalue="Python.cnn1" />
+      <item index="5" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
+      <item index="6" class="java.lang.String" itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.cifar10" />
-        <item index="1" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.cnn1" />
-        <item index="3" class="java.lang.String" itemvalue="Python.my_net1" />
-        <item index="4" class="java.lang.String" itemvalue="Python.cifar10_train" />
+        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.cifar10" />
+        <item index="2" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.cnn1" />
+        <item index="4" class="java.lang.String" itemvalue="Python.my_net1" />
       </list>
     </recent_temporary>
   </component>
@@ -585,29 +667,43 @@
       <option name="project" value="LOCAL" />
       <updated>1521921893284</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="pytorch added.">
+      <created>1522295096272</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1522295096272</updated>
+    </task>
+    <task id="LOCAL-00016" summary="segmentation detection directory added.">
+      <created>1522296585562</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1522296585562</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1973" y="34" width="1867" height="1056" extended-state="0" />
+    <frame x="1966" y="21" width="1867" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17728977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17728977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959016" sideWeight="0.31226566" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35759494" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991803" sideWeight="0.4916979" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35759494" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39873418" sideWeight="0.6877343" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -637,7 +733,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added aspycharm project." />
     <MESSAGE value="brain tumour project added." />
-    <MESSAGE value="segmentation detection directory added." />
     <MESSAGE value="capsnet added for segmentation." />
     <MESSAGE value="vgg model added." />
     <MESSAGE value="train for fcn vgg16 can be done." />
@@ -648,7 +743,9 @@
     <MESSAGE value="cifar10 images loaded properly." />
     <MESSAGE value="train run using multi gpus." />
     <MESSAGE value="evaluation class added for cifar 10 classification." />
-    <option name="LAST_COMMIT_MESSAGE" value="evaluation class added for cifar 10 classification." />
+    <MESSAGE value="pytorch added." />
+    <MESSAGE value="segmentation detection directory added." />
+    <option name="LAST_COMMIT_MESSAGE" value="segmentation detection directory added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -758,35 +855,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TensorflowUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1760">
-          <caret line="106" column="52" lean-forward="false" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/activations.py" />
-    <entry file="file:///usr/lib/python3.5/pkgutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="284" column="8" lean-forward="false" selection-start-line="284" selection-start-column="8" selection-end-line="284" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/imageio/core/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="201" column="27" lean-forward="false" selection-start-line="201" selection-start-column="27" selection-end-line="201" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Evaluate_Net_IOU.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tf-tutorials/tf1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -984,13 +1052,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="106" column="28" lean-forward="false" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/nn_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="907">
@@ -1087,16 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
@@ -1107,10 +1158,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pytorch/pytorch1.py">
+    <entry file="file://$PROJECT_DIR$/pytorch-tutorials/pytorch1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2260">
+          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/models/simplenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -860,7 +860,7 @@ tile roof
 toaster
 tobacco shop, tobacconist shop, tobacconist
 toilet seat
-pytorch
+pytorch-tutorials
 totem pole
 tow truck, tow car, wrecker
 toyshop
