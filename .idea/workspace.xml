@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="segmentation detection directory added.">
-      <change beforePath="" afterPath="$PROJECT_DIR$/classification/cifar10_eval.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/classification/cifar10_single_gpu.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pytorch/pytorch1.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" afterPath="$PROJECT_DIR$/.idea/code-power.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/classification/cifar10.py" afterPath="$PROJECT_DIR$/classification/cifar10.py" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10.py" afterPath="$PROJECT_DIR$/classification/cifar10_multigpu.py" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10_eval.py" afterPath="$PROJECT_DIR$/classification/cifar10_eval.py" />
+      <change beforePath="$PROJECT_DIR$/tf-tutorials/imagenet_classes.py" afterPath="$PROJECT_DIR$/tf-tutorials/imagenet_classes.py" />
       <change beforePath="$PROJECT_DIR$/utils/data_reader_cifar10.py" afterPath="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" />
     </list>
@@ -15,146 +21,38 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="cifar10_multi_gpu_train.py" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="304">
-                    <caret line="195" column="22" lean-forward="false" selection-start-line="195" selection-start-column="16" selection-end-line="195" selection-end-column="22" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="cifar10.py" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="864">
-                    <caret line="367" column="38" lean-forward="false" selection-start-line="367" selection-start-column="38" selection-end-line="367" selection-end-column="38" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="cifar10_eval.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_eval.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="87">
-                    <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="42" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="cifar10_input.py" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_input.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="315">
-                    <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#1390#2237#1" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/fcn/train.py">
+        <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4100">
-              <caret line="259" column="0" lean-forward="false" selection-start-line="251" selection-start-column="3" selection-end-line="273" selection-end-column="0" />
-              <folding>
-                <element signature="e#1011#1376#1" expanded="false" />
-                <element signature="e#2499#3826#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cifar10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/cifar10.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cifar10_eval.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/classification/cifar10_eval.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Multi-GPU Tutorial.ipynb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/Multi-GPU Tutorial.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base_classifier.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_net1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TensorflowUtils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-201">
-              <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="59" column="74" lean-forward="false" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
+            <state relative-caret-position="60">
+              <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="740">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pytorch1.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pytorch/pytorch1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -225,13 +123,16 @@
         <option value="$PROJECT_DIR$/classification/my_net1.py" />
         <option value="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
         <option value="$PROJECT_DIR$/classification/cifar10.py" />
+        <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10_single_gpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10_eval.py" />
+        <option value="$PROJECT_DIR$/pytorch/pytorch1.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1973" />
-    <option name="y" value="28" />
+    <option name="y" value="34" />
     <option name="width" value="1867" />
     <option name="height" value="1056" />
   </component>
@@ -280,28 +181,12 @@
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="tensorflow-cifar-10" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="segmentation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="segmentation" type="462c0819:PsiDirectoryNode" />
-              <item name="fcn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cifar10" type="462c0819:PsiDirectoryNode" />
+              <item name="tensorflow-cifar-10" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -338,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.cifar10_eval (1)">
+  <component name="RunManager" selected="Python.cifar10">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -387,7 +272,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="code-power" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/cifar10.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/cifar10_multigpu.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -580,8 +465,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.cifar10" />
+        <item index="0" class="java.lang.String" itemvalue="Python.cifar10" />
+        <item index="1" class="java.lang.String" itemvalue="Python.cifar10_eval (1)" />
         <item index="2" class="java.lang.String" itemvalue="Python.cnn1" />
         <item index="3" class="java.lang.String" itemvalue="Python.my_net1" />
         <item index="4" class="java.lang.String" itemvalue="Python.cifar10_train" />
@@ -693,29 +578,36 @@
       <option name="project" value="LOCAL" />
       <updated>1521914155630</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="evaluation class added for cifar 10 classification.">
+      <created>1521921893284</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1521921893284</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1973" y="28" width="1867" height="1056" extended-state="0" />
+    <frame x="1973" y="34" width="1867" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17728977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17728977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959016" sideWeight="0.31226566" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35759494" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991803" sideWeight="0.4916979" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35759494" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39873418" sideWeight="0.6877343" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39873418" sideWeight="0.6877343" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -755,7 +647,8 @@
     <MESSAGE value="tensorflow multi gpu training avergae_gradients added." />
     <MESSAGE value="cifar10 images loaded properly." />
     <MESSAGE value="train run using multi gpus." />
-    <option name="LAST_COMMIT_MESSAGE" value="train run using multi gpus." />
+    <MESSAGE value="evaluation class added for cifar 10 classification." />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation class added for cifar 10 classification." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -865,42 +758,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/fcn1/__init__.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/lib/format.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="653" column="0" lean-forward="false" selection-start-line="653" selection-start-column="0" selection-end-line="653" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/capsnet/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/lib/npyio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="433" column="0" lean-forward="false" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="1250" column="0" lean-forward="false" selection-start-line="1250" selection-start-column="0" selection-end-line="1250" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TensorflowUtils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1760">
@@ -1033,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
           <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1048,14 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42480">
           <caret line="2158" column="0" lean-forward="false" selection-start-line="2158" selection-start-column="0" selection-end-line="2158" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="448" column="0" lean-forward="false" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1063,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
           <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11060">
           <caret line="566" column="44" lean-forward="false" selection-start-line="566" selection-start-column="33" selection-end-line="566" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1079,9 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2220">
           <caret line="114" column="37" lean-forward="false" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,9 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1106,9 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="127" column="37" lean-forward="true" selection-start-line="127" selection-start-column="37" selection-end-line="127" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,9 +953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1381">
           <caret line="506" column="4" lean-forward="false" selection-start-line="506" selection-start-column="4" selection-end-line="506" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1139,42 +972,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="360">
           <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1220">
+          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="106" column="28" lean-forward="false" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/nn_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="1802" column="4" lean-forward="false" selection-start-line="1802" selection-start-column="4" selection-end-line="1802" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="1840">
           <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <element signature="e#1390#2237#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="195" column="22" lean-forward="false" selection-start-line="195" selection-start-column="16" selection-end-line="195" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
+        <state relative-caret-position="907">
           <caret line="367" column="38" lean-forward="false" selection-start-line="367" selection-start-column="38" selection-end-line="367" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_eval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="127" column="28" lean-forward="false" selection-start-line="127" selection-start-column="28" selection-end-line="127" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="64" lean-forward="false" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="757">
+          <caret line="339" column="31" lean-forward="false" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2111">
+          <caret line="143" column="42" lean-forward="false" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/fcn/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4100">
-          <caret line="259" column="0" lean-forward="false" selection-start-line="251" selection-start-column="3" selection-end-line="273" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="31" column="53" lean-forward="false" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
           <folding>
             <element signature="e#1011#1376#1" expanded="false" />
             <element signature="e#2499#3826#0" expanded="false" />
@@ -1182,67 +1066,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/nn_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="2280" column="4" lean-forward="false" selection-start-line="2280" selection-start-column="4" selection-end-line="2280" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="851">
+          <caret line="97" column="28" lean-forward="false" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+    <entry file="file://$PROJECT_DIR$/classification/cifar10_eval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="59" column="74" lean-forward="false" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
+        <state relative-caret-position="211">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10_single_gpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/cifar10.py">
+    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="740">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_eval.py">
+    <entry file="file://$PROJECT_DIR$/pytorch/pytorch1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="42" />
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/cifar10_eval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -7,6 +7,8 @@ import time
 from classification.vgg16 import Vgg16
 from classification.my_net1 import MyCifar10Classifier
 import sys
+import imageio
+from sklearn.metrics import confusion_matrix
 
 
 model1 = "models/gpu_1_model.ckpt"
@@ -25,11 +27,11 @@ with tf.Graph().as_default() as g:
     # inference model.
     net = MyCifar10Classifier(10)
     logits = net.inference(images)
+    prob = tf.nn.softmax(logits)
     top_k_op = tf.nn.in_top_k(logits, labels, 1)
     saver = tf.train.Saver()
 
     # Calculate predictions.
-    top_k_op = tf.nn.in_top_k(logits, labels, 1)
     with tf.Session() as sess:
         ckpt = tf.train.get_checkpoint_state(saved_model_dir)
         if ckpt and ckpt.model_checkpoint_path:
@@ -44,15 +46,16 @@ with tf.Graph().as_default() as g:
             total_true = 0
             for itr in range(data_loader.iterations_test):
                 images_batch, labels_batch = data_loader.testBatch()
-                top_k = sess.run(top_k_op,feed_dict={
+
+                predict = sess.run(prob,feed_dict={
                     images:images_batch,
                     labels:labels_batch
                 })
-                batch_true = sum(top_k)
-                total_true = total_true + batch_true
+                print("for iteration {}".format(itr))
+                print(predict[0,8])
+                print(np.argmax(predict, axis=1))
 
-                print(total_true)
-            print("correct "+str(total_true))
+
         else:
             print('No checkpoint file found')
 

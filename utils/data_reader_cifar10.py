@@ -86,6 +86,7 @@ class DataReaderCifar10(object):
             images_final[i] = np.reshape(img,[32,32,3])
             labels_final[i] = self.labels[self.itr]
             self.itr+=1
+        images_final = images_final/255
         return (images_final, labels_final)
 
     def testBatch(self):
@@ -102,6 +103,7 @@ class DataReaderCifar10(object):
             images_final[i] = np.reshape(img, [32, 32, 3])
             labels_final[i] = self.labels_test[self.itr]
             self.itr += 1
+        images_final = images_final/255
         return (images_final, labels_final)
 
 

@@ -7,6 +7,7 @@ import time
 from classification.vgg16 import Vgg16
 from classification.my_net1 import MyCifar10Classifier
 import sys
+from keras.utils.np_utils import to_categorical
 
 MOVING_AVERAGE_DECAY = 0.9999
 epochs = 3
@@ -90,9 +91,9 @@ def main():
         grads = average_gradients(tower_grads)
         apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
 
-        # variable_averages = tf.train.ExponentialMovingAverage(
+        #variable_averages = tf.train.ExponentialMovingAverage(
         #     MOVING_AVERAGE_DECAY, global_step)
-        # variables_averages_op = variable_averages.apply(tf.trainable_variables())
+        #variables_averages_op = variable_averages.apply(tf.trainable_variables())
 
         # Group all updates to into a single train op.
         #train_op = tf.group(apply_gradient_op, variables_averages_op)
@@ -116,7 +117,8 @@ def main():
 
         for itr in range(data_loader.iterations):
             images_data,labels_data = data_loader.nextBatch()
-            #print(labels_data.shape)
+            #categorical_labels = to_categorical(labels_data, num_classes=10)
+            #print(labels_data)
             feed_dict = {
                 images: images_data,
                 labels: labels_data
