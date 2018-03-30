@@ -1,10 +1,10 @@
 import tensorflow as tf
 
-def SimpleNet():
-    _IMAGE_SIZE = 32
-    _IMAGE_CHANNELS = 3
-    _NUM_CLASSES = 10
-    _RESHAPE_SIZE = 4*4*128
+_IMAGE_SIZE = 224
+_IMAGE_CHANNELS = 3
+_NUM_CLASSES = 2
+
+def model():
 
     with tf.name_scope('data'):
         x = tf.placeholder(tf.float32, shape=[None, _IMAGE_SIZE * _IMAGE_SIZE * _IMAGE_CHANNELS], name='Input')
@@ -80,7 +80,7 @@ def SimpleNet():
     pool3 = tf.nn.max_pool(norm3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='SAME', name='pool3')
 
     with tf.variable_scope('fully_connected1') as scope:
-        reshape = tf.reshape(pool3, [-1, _RESHAPE_SIZE])
+        reshape = tf.layers.flatten(pool3)
         dim = reshape.get_shape()[1].value
         weights = variable_with_weight_decay('weights', shape=[dim, 384], stddev=0.04, wd=0.004)
         biases = variable_on_cpu('biases', [384], tf.constant_initializer(0.1))

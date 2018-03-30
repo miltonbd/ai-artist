@@ -2,22 +2,23 @@ import numpy as np
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from time import time
+from classification.skin import data_loader
+from classification.skin.models import simplenet
 
-from include.data import get_data_set
-from include.model import model
+loader = data_loader.DataReaderISIC2017(128,10,2)
+loader.loadDataSet()
 
+train_x, train_y, train_l = loader.getDataForClassificationMelanoma()
+#test_x, test_y, test_l = get_data_set("test")
 
-train_x, train_y, train_l = get_data_set()
-test_x, test_y, test_l = get_data_set("test")
+x, y, output, global_step, y_pred_cls = simplenet.model()
 
-x, y, output, global_step, y_pred_cls = model()
-
-_IMG_SIZE = 32
+_IMG_SIZE = 224
 _NUM_CHANNELS = 3
-_BATCH_SIZE = 128
-_CLASS_SIZE = 10
+_BATCH_SIZE = 50
+_CLASS_SIZE = 2
 _ITERATION = 10000
-_SAVE_PATH = "./tensorboard/cifar-10/"
+_SAVE_PATH = "./tensorboard/isic/"
 
 
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
@@ -63,18 +64,18 @@ def train(num_iterations):
             msg = "Global Step: {0:>6}, accuracy: {1:>6.1%}, loss = {2:.2f} ({3:.1f} examples/sec, {4:.2f} sec/batch)"
             print(msg.format(i_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
 
-        if (i_global % 100 == 0) or (i == num_iterations - 1):
-            data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
-            acc = predict_test()
-
-            summary = tf.Summary(value=[
-                tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
-            ])
-            train_writer.add_summary(data_merged, global_1)
-            train_writer.add_summary(summary, global_1)
-
-            saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
-            print("Saved checkpoint.")
+        # if (i_global % 100 == 0) or (i == num_iterations - 1):
+        #     data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
+        #     acc = predict_test()
+        #
+        #     summary = tf.Summary(value=[
+        #         tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
+        #     ])
+        #     train_writer.add_summary(data_merged, global_1)
+        #     train_writer.add_summary(summary, global_1)
+        #
+        #     saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
+        #     print("Saved checkpoint.")
 
 
 def predict_test(show_confusion_matrix=False):
