@@ -8,7 +8,7 @@ from classification.skin.models import simplenet
 loader = data_loader.DataReaderISIC2017(128,10,2)
 loader.loadDataSet()
 
-train_x, train_y, train_l = loader.getDataForClassificationMelanoma()
+train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
 #test_x, test_y, test_l = get_data_set("test")
 
 x, y, output, global_step, y_pred_cls = simplenet.model()

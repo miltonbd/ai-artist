@@ -10,10 +10,8 @@ class DataReaderISIC2017(object):
     data_dir = "/home/milton/dataset/cifar/cifar10" # contains data_batch_{1..5}
     """
     def __init__(self, batch_size, epochs, gpu_nums):
-        self.data_dir =  "/home/milton/dataset/skin/classification_224"
-        self.melanomas_dir = os.path.join(self.data_dir,'melanomas')
-        self.seborrheic_keratosis_dir = os.path.join(self.data_dir,'seborrheic_keratosis')
-        self.nevus_dir = os.path.join(self.data_dir,'nevus')
+        self.data_dir =  "/home/milton/dataset/skin/"
+
         self.batch_size = batch_size
         self.epoch = 0
         self.itr = 0
@@ -23,51 +21,99 @@ class DataReaderISIC2017(object):
 
         # cifar is smaller dataset which can be hold in ram, for bigger dataset the dataset should be loaded from storage while
         # building next batch.
-        self.images = []
-        self.labels = []
+        self.images_train = []
+        self.labels_train = []
+        self.images_valid = []
+        self.labels_valid = []
         self.images_test = []
         self.labels_test = []
         return
 
-    def loadDataSet(self):
-        #load for classification Task 1: melanona vs seb or nevus
+    def getMelanoma(self, images_dir):
+        melanomas_dir = os.path.join(self.data_dir, images_dir, 'melanomas')
+        seborrheic_keratosis_dir = os.path.join(self.data_dir, images_dir, 'seborrheic_keratosis')
+        nevus_dir = os.path.join(self.data_dir, images_dir, 'nevus')
+
         melanomas = np.array([])
-        for name in os.listdir(self.melanomas_dir):
-            path = os.path.join(self.melanomas_dir, name)
+        for name in os.listdir(melanomas_dir):
+            path = os.path.join(melanomas_dir, name)
             melanomas = np.append(melanomas, path)
         nonmelanomas = np.array([])
 
-        for name in os.listdir(self.seborrheic_keratosis_dir):
-            path = os.path.join(self.seborrheic_keratosis_dir,name)
+        for name in os.listdir(seborrheic_keratosis_dir):
+            path = os.path.join(seborrheic_keratosis_dir, name)
             nonmelanomas = np.append(nonmelanomas, path)
 
-        for name in os.listdir(self.nevus_dir):
-            path = os.path.join(self.nevus_dir,name)
+        for name in os.listdir(nevus_dir):
+            path = os.path.join(nevus_dir, name)
             nonmelanomas = np.append(nonmelanomas, path)
 
-        self.melanomas = melanomas
-        self.nonmelanomas = nonmelanomas
+        print("{} melanomas {}".format(images_dir, len(melanomas)))
+        print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
 
-        seborrheic_keratosis=np.array([])
+        return (melanomas, nonmelanomas)
 
-        for name in os.listdir(self.seborrheic_keratosis_dir):
-            path = os.path.join(self.seborrheic_keratosis_dir, name)
+    def getSeborrheic(self, images_dir):
+        melanomas_dir = os.path.join(self.data_dir, images_dir, 'melanomas')
+        seborrheic_keratosis_dir = os.path.join(self.data_dir, images_dir, 'seborrheic_keratosis')
+        nevus_dir = os.path.join(self.data_dir, images_dir, 'nevus')
+
+        seborrheic_keratosis = np.array([])
+
+        for name in os.listdir(seborrheic_keratosis_dir):
+            path = os.path.join(seborrheic_keratosis_dir, name)
             seborrheic_keratosis = np.append(seborrheic_keratosis, path)
 
-        nonseborrheic_keratosis=np.array([])
-        for name in os.listdir(self.melanomas_dir):
-            path = os.path.join(self.melanomas_dir, name)
+        nonseborrheic_keratosis = np.array([])
+        for name in os.listdir(melanomas_dir):
+            path = os.path.join(melanomas_dir, name)
             nonseborrheic_keratosis = np.append(nonseborrheic_keratosis, path)
 
-        for name in os.listdir(self.nevus_dir):
-            path = os.path.join(self.nevus_dir,name)
+        for name in os.listdir(nevus_dir):
+            path = os.path.join(nevus_dir, name)
             nonseborrheic_keratosis = np.append(nonseborrheic_keratosis, path)
 
-        self.seborrheic_keratosis = seborrheic_keratosis
-        self.nonseborrheic_keratosis = nonseborrheic_keratosis
+        print("{} Seborrheic {}".format(images_dir, len(seborrheic_keratosis)))
+        print("{} NonSeborrheic {}".format(images_dir, len(nonseborrheic_keratosis)))
 
-    def getDataForClassificationMelanoma(self):
-        train_paths = np.concatenate((self.melanomas , self.nonmelanomas), axis=0)
+        return (seborrheic_keratosis, nonseborrheic_keratosis)
+
+    def loadDataSet(self):
+
+        #load for classification Task 1: melanona vs seb or nevus
+
+        self.melanomas_train, self.nonmelanomas_train = self.getMelanoma('classification_train_224')
+        self.seborrheic_keratosis_train, self.nonseborrheic_keratosis_train = self.getSeborrheic('classification_train_224')
+
+        # loading validation
+
+        self.melanomas_valid, self.nonmelanomas_valid = self.getMelanoma('classification_valid_224')
+        self.seborrheic_keratosis_valid, self.nonseborrheic_keratosis_valid = self.getSeborrheic(
+            'classification_valid_224')
+
+        # loading test
+        self.melanomas_test, self.nonmelanomas_test = self.getMelanoma('classification_test_224')
+        self.seborrheic_keratosis_test, self.nonseborrheic_keratosis_test = self.getSeborrheic('classification_test_224')
+
+    def getValidationDataForClassificationMelanoma(self):
+        train_paths = np.concatenate((self.melanomas_valid, self.nonmelanomas_valid), axis=0)
+        train_x = []
+        for train_path in train_paths:
+            X = imageio.imread(train_path).reshape(224 * 224 * 3) / 255
+            train_x.append(X)
+        train_y = np.zeros(shape=[len(train_x), 2], dtype=np.float32)
+        train_y[0:len(self.melanomas), 0] = 1
+        train_y[len(self.melanomas):, 1] = 1
+        labels = ['Melanoma', 'Non Melanoma']
+        print(len(train_x))
+        print(len(train_y))
+        train_x = np.asarray(train_x)
+        print(train_x.shape)
+        return train_x, train_y, labels
+
+
+    def getTrainDataForClassificationMelanoma(self):
+        train_paths = np.concatenate((self.melanomas_train , self.nonmelanomas_train), axis=0)
         train_x = []
         for train_path in train_paths:
             X = imageio.imread(train_path).reshape(224 * 224 * 3)/255
@@ -76,6 +122,22 @@ class DataReaderISIC2017(object):
         train_y[0:len(self.melanomas),0]=1
         train_y[len(self.melanomas):,1]=1
         labels=['Melanoma','Non Melanoma']
+        print(len(train_x))
+        print(len(train_y))
+        train_x = np.asarray(train_x)
+        print(train_x.shape)
+        return train_x, train_y, labels
+
+    def getTestDataForClassificationMelanoma(self):
+        train_paths = np.concatenate((self.melanomas_test, self.nonmelanomas_test), axis=0)
+        train_x = []
+        for train_path in train_paths:
+            X = imageio.imread(train_path).reshape(224 * 224 * 3) / 255
+            train_x.append(X)
+        train_y = np.zeros(shape=[len(train_x), 2], dtype=np.float32)
+        train_y[0:len(self.melanomas), 0] = 1
+        train_y[len(self.melanomas):, 1] = 1
+        labels = ['Melanoma', 'Non Melanoma']
         print(len(train_x))
         print(len(train_y))
         train_x = np.asarray(train_x)
@@ -127,8 +189,6 @@ class DataReaderISIC2017(object):
             self.itr += 1
         images_final = images_final/255
         return (images_final, labels_final)
-
-
 
     def shuffle(self):
         pass

@@ -1,10 +1,11 @@
 import numpy as np
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
-
-from include.data import get_data_set
+from classification.skin import data_loader
 from include.model import model
 
+loader = data_loader.DataReaderISIC2017(128,10,2)
+loader.loadDataSet()
 test_x, test_y, test_l = get_data_set("test", cifar=10)
 x, y, output, global_step, y_pred_cls = model()
 
