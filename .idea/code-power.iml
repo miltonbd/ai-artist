@@ -4,13 +4,12 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation" />
     <orderEntry type="module" module-name="cifar10" />
     <orderEntry type="module" module-name="cifar10" />
     <orderEntry type="module" module-name="tensorflow-cifar-10" />
-    <orderEntry type="module" module-name="pytorch-cifar" />
     <orderEntry type="module" module-name="isic-2017-segmentation" />
     <orderEntry type="module" module-name="isbi2017-part3" />
+    <orderEntry type="module" module-name="Augmentor" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

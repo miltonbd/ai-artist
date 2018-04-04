@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Augmentor" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../research-projects/classification/isbi2017-part3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10" vcs="Git" />

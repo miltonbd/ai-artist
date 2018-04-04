@@ -64,7 +64,7 @@ class DataReaderCifar10(object):
         #print(self.labels[0])
 
 
-    def nextBatch(self):
+    def nextBatchTrain(self):
         if self.itr >= self.total_train_count:
             self.itr = 0
             self.epoch += 1

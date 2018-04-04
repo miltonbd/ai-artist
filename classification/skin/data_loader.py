@@ -3,6 +3,7 @@ import imageio
 from scipy import misc
 import os
 import _pickle
+import math
 
 
 class DataReaderISIC2017(object):
@@ -27,7 +28,12 @@ class DataReaderISIC2017(object):
         self.labels_valid = []
         self.images_test = []
         self.labels_test = []
+
         return
+
+    def initIterationsCount(self):
+        self.iterations = int( math.ceil(self.total_train_count / (self.batch_size * self.gpu_nums)))
+
 
     def getMelanoma(self, images_dir):
         melanomas_dir = os.path.join(self.data_dir, images_dir, 'melanomas')
@@ -85,6 +91,9 @@ class DataReaderISIC2017(object):
         self.melanomas_train, self.nonmelanomas_train = self.getMelanoma('classification_train_224')
         self.seborrheic_keratosis_train, self.nonseborrheic_keratosis_train = self.getSeborrheic('classification_train_224')
 
+        #self.total_train_count = np.minimum(len(self.images), len(self.labels))
+        #self.iterations = int(self.epochs * self.total_train_count / (self.batch_size * self.gpu_nums))
+
         # loading validation
 
         self.melanomas_valid, self.nonmelanomas_valid = self.getMelanoma('classification_valid_224')
@@ -102,13 +111,14 @@ class DataReaderISIC2017(object):
             X = imageio.imread(train_path).reshape(224 * 224 * 3) / 255
             train_x.append(X)
         train_y = np.zeros(shape=[len(train_x), 2], dtype=np.float32)
-        train_y[0:len(self.melanomas), 0] = 1
-        train_y[len(self.melanomas):, 1] = 1
+        train_y[0:len(self.melanomas_valid), 0] = 1
+        train_y[len(self.nonmelanomas_valid):, 1] = 1
         labels = ['Melanoma', 'Non Melanoma']
         #print(len(train_x))
         #print(len(train_y))
         train_x = np.asarray(train_x)
         #print(train_x.shape)
+        self.initIterationsCount()
         return train_x, train_y, labels
 
 
@@ -122,10 +132,12 @@ class DataReaderISIC2017(object):
         train_y[0:len(self.melanomas_train),0]=1
         train_y[len(self.melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
-        print(len(train_x))
-        print(len(train_y))
+        print("Total train items for melanona {}".format(len(train_x)))
         train_x = np.asarray(train_x)
-        print(train_x.shape)
+        #print(train_x.shape)
+        self.total_train_count = len(train_x)
+        self.initIterationsCount()
+
         return train_x, train_y, labels
 
     def getTestDataForClassificationMelanoma(self):
@@ -142,6 +154,7 @@ class DataReaderISIC2017(object):
         #print(len(test_y))
         test_x = np.asarray(test_x)
         #print(test_x.shape)
+        self.initIterationsCount()
         return test_x, test_y, labels
 
     def getDataForClassificationSeborrheicKeratosis(self):

@@ -33,8 +33,8 @@ if __name__ == '__main__':
     cm = metrics.confusion_matrix(y_true, y_pred)
     print(cm)
 
-    #auc = metrics.roc_auc_score(y_true, y_pred)
-    #print(auc)
+    auc = metrics.roc_auc_score(y_true, y_pred)
+    print(auc)
 
     #f1_score = metrics.f1_score(y_true, y_pred)
 
