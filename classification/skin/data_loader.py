@@ -48,8 +48,8 @@ class DataReaderISIC2017(object):
             path = os.path.join(nevus_dir, name)
             nonmelanomas = np.append(nonmelanomas, path)
 
-        print("{} melanomas {}".format(images_dir, len(melanomas)))
-        print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
+        #print("{} melanomas {}".format(images_dir, len(melanomas)))
+        #print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
 
         return (melanomas, nonmelanomas)
 
@@ -73,8 +73,8 @@ class DataReaderISIC2017(object):
             path = os.path.join(nevus_dir, name)
             nonseborrheic_keratosis = np.append(nonseborrheic_keratosis, path)
 
-        print("{} Seborrheic {}".format(images_dir, len(seborrheic_keratosis)))
-        print("{} NonSeborrheic {}".format(images_dir, len(nonseborrheic_keratosis)))
+        #print("{} Seborrheic {}".format(images_dir, len(seborrheic_keratosis)))
+        #print("{} NonSeborrheic {}".format(images_dir, len(nonseborrheic_keratosis)))
 
         return (seborrheic_keratosis, nonseborrheic_keratosis)
 
@@ -105,10 +105,10 @@ class DataReaderISIC2017(object):
         train_y[0:len(self.melanomas), 0] = 1
         train_y[len(self.melanomas):, 1] = 1
         labels = ['Melanoma', 'Non Melanoma']
-        print(len(train_x))
-        print(len(train_y))
+        #print(len(train_x))
+        #print(len(train_y))
         train_x = np.asarray(train_x)
-        print(train_x.shape)
+        #print(train_x.shape)
         return train_x, train_y, labels
 
 
@@ -119,8 +119,8 @@ class DataReaderISIC2017(object):
             X = imageio.imread(train_path).reshape(224 * 224 * 3)/255
             train_x.append(X)
         train_y = np.zeros(shape=[len(train_x),2],dtype=np.float32)
-        train_y[0:len(self.melanomas),0]=1
-        train_y[len(self.melanomas):,1]=1
+        train_y[0:len(self.melanomas_train),0]=1
+        train_y[len(self.melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
         print(len(train_x))
         print(len(train_y))
@@ -129,20 +129,20 @@ class DataReaderISIC2017(object):
         return train_x, train_y, labels
 
     def getTestDataForClassificationMelanoma(self):
-        train_paths = np.concatenate((self.melanomas_test, self.nonmelanomas_test), axis=0)
-        train_x = []
-        for train_path in train_paths:
-            X = imageio.imread(train_path).reshape(224 * 224 * 3) / 255
-            train_x.append(X)
-        train_y = np.zeros(shape=[len(train_x), 2], dtype=np.float32)
-        train_y[0:len(self.melanomas), 0] = 1
-        train_y[len(self.melanomas):, 1] = 1
+        test_paths = np.concatenate((self.melanomas_test, self.nonmelanomas_test), axis=0)
+        test_x = []
+        for test_path in test_paths:
+            X = imageio.imread(test_path).reshape(224 * 224 * 3) / 255
+            test_x.append(X)
+        test_y = np.zeros(shape=[len(test_x), 2], dtype=np.float32)
+        test_y[0:len(self.melanomas_test), 0] = 1
+        test_y[len(self.melanomas_test):, 1] = 1
         labels = ['Melanoma', 'Non Melanoma']
-        print(len(train_x))
-        print(len(train_y))
-        train_x = np.asarray(train_x)
-        print(train_x.shape)
-        return train_x, train_y, labels
+        #print(len(test_x))
+        #print(len(test_y))
+        test_x = np.asarray(test_x)
+        #print(test_x.shape)
+        return test_x, test_y, labels
 
     def getDataForClassificationSeborrheicKeratosis(self):
         return (self.seborrheic_keratosis, self.nonseborrheic_keratosis,['Seborrheic Keratosis','Non Seborrheic Keratosis'])
@@ -196,5 +196,7 @@ class DataReaderISIC2017(object):
 
 
 if __name__ == '__main__':
-    data_reader = DataReaderISIC2017(100,10,2)
-    data_reader.loadDataSet()
+    #data_reader = DataReaderISIC2017(100,10,2)
+    #data_reader.loadDataSet()
+    import tensorflow as tf
+    print(tf.VERSION)

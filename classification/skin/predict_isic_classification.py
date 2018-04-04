@@ -2,21 +2,25 @@ import numpy as np
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from classification.skin import data_loader
-from include.model import model
+from classification.skin.models import simplenet
 
 loader = data_loader.DataReaderISIC2017(128,10,2)
 loader.loadDataSet()
-test_x, test_y, test_l = get_data_set("test", cifar=10)
-x, y, output, global_step, y_pred_cls = model()
+test_x, test_y, test_l = loader.getTestDataForClassificationMelanoma()
+x, y, output, global_step, y_pred_cls = simplenet.model()
 
-_IMG_SIZE = 32
+_IMG_SIZE = 224
 _NUM_CHANNELS = 3
-_BATCH_SIZE = 128
-_CLASS_SIZE = 10
-_SAVE_PATH = "./tensorboard/cifar-10/"
+_BATCH_SIZE = 64
+_CLASS_SIZE = 2
+_ITERATION = 10000
+
+_SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/cifar-10/"
 
 saver = tf.train.Saver()
 sess = tf.Session()
+
+# http://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/
 
 try:
     print("Trying to restore last checkpoint ...")
@@ -26,7 +30,6 @@ try:
 except:
     print("Failed to restore checkpoint. Initializing variables instead.")
     sess.run(tf.global_variables_initializer())
-
 
 i = 0
 predicted_class = np.zeros(shape=len(test_x), dtype=np.int)

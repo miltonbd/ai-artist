@@ -5,7 +5,13 @@ from time import time
 from classification.skin import data_loader
 from classification.skin.models import simplenet
 
-loader = data_loader.DataReaderISIC2017(128,10,2)
+_IMG_SIZE = 224
+_NUM_CHANNELS = 3
+_BATCH_SIZE = 64
+_CLASS_SIZE = 2
+_ITERATION = 10000
+
+loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,10,2)
 loader.loadDataSet()
 
 train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
@@ -13,12 +19,8 @@ train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
 
 x, y, output, global_step, y_pred_cls = simplenet.model()
 
-_IMG_SIZE = 224
-_NUM_CHANNELS = 3
-_BATCH_SIZE = 50
-_CLASS_SIZE = 2
-_ITERATION = 10000
-_SAVE_PATH = "./tensorboard/isic/"
+
+_SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/cifar-10/"
 
 
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
@@ -64,18 +66,18 @@ def train(num_iterations):
             msg = "Global Step: {0:>6}, accuracy: {1:>6.1%}, loss = {2:.2f} ({3:.1f} examples/sec, {4:.2f} sec/batch)"
             print(msg.format(i_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
 
-        # if (i_global % 100 == 0) or (i == num_iterations - 1):
-        #     data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
-        #     acc = predict_test()
-        #
-        #     summary = tf.Summary(value=[
-        #         tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
-        #     ])
-        #     train_writer.add_summary(data_merged, global_1)
-        #     train_writer.add_summary(summary, global_1)
-        #
-        #     saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
-        #     print("Saved checkpoint.")
+        if (i_global % 50 == 0) or (i == num_iterations - 1):
+            data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
+            #acc = predict_test()
+
+            # summary = tf.Summary(value=[
+            #     tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
+            # ])
+            # train_writer.add_summary(data_merged, global_1)
+            # train_writer.add_summary(summary, global_1)
+
+            saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
+            print("Saved checkpoint.")
 
 
 def predict_test(show_confusion_matrix=False):
