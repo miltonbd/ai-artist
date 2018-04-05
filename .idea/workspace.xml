@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="train saved files can be loaded in predict for leison classification.">
-      <change beforePath="" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu1.py" />
       <change beforePath="" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/data_loader.py" afterPath="$PROJECT_DIR$/classification/skin/data_loader.py" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/train_isic_classification.py" afterPath="$PROJECT_DIR$/classification/skin/train_isic_classification.py" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" afterPath="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" />
       <change beforePath="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" />
@@ -29,7 +25,7 @@
             <file leaf-file-name="data_loader.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="300">
+                  <state relative-caret-position="907">
                     <caret line="121" column="3" lean-forward="false" selection-start-line="121" selection-start-column="3" selection-end-line="121" selection-end-column="3" />
                     <folding>
                       <element signature="e#0#18#0" expanded="true" />
@@ -52,14 +48,34 @@
         </state>
       </content>
     </window>
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="multi_gpu_cnn.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="1265">
+                    <caret line="271" column="76" lean-forward="false" selection-start-line="271" selection-start-column="75" selection-end-line="271" selection-end-column="81" />
+                    <folding>
+                      <element signature="e#0#23#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data_loader.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data_loader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="139" column="25" lean-forward="true" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="30" />
+            <state relative-caret-position="680">
+              <caret line="34" column="98" lean-forward="false" selection-start-line="34" selection-start-column="90" selection-end-line="34" selection-end-column="98" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -67,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_isic_classification.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="train_isic_classification.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="64" column="9" lean-forward="false" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+            <state relative-caret-position="375">
+              <caret line="27" column="49" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="66" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -82,8 +98,8 @@
       <file leaf-file-name="train_isic_classification_multi_gpu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="771">
-              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+            <state relative-caret-position="4860">
+              <caret line="249" column="17" lean-forward="false" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -91,24 +107,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+      <file leaf-file-name="simplenet.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/models/simplenet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
-              <caret line="53" column="51" lean-forward="false" selection-start-line="52" selection-start-column="6" selection-end-line="54" selection-end-column="103" />
+            <state relative-caret-position="739">
+              <caret line="104" column="40" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="predict_isic_classification.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/skin/predict_isic_classification.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -116,41 +120,31 @@
       <file leaf-file-name="cifar10_multigpu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="86" column="30" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tf_multi_gpu_cnn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/tf_multi_gpu_cnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-948">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multigpu1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multi_gpu_cnn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="39" />
+            <state relative-caret-position="300">
+              <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_net1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vgg16.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/vgg16.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,9 +178,14 @@
       <find>add_to_collection('losses'</find>
       <find>moving</find>
       <find>decay</find>
-      <find>y_pred_cls</find>
       <find>path</find>
+      <find>none</find>
+      <find>print</find>
+      <find>ni</find>
       <find>init</find>
+      <find>global_step</find>
+      <find>sess</find>
+      <find>y_pred_cls</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" />
         <option value="$PROJECT_DIR$/segmentation/capsnet/train.py" />
         <option value="$PROJECT_DIR$/segmentation/fcn/fcn.py" />
         <option value="$PROJECT_DIR$/segmentation/fcn/__init__.py" />
@@ -231,7 +229,6 @@
         <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" />
         <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" />
         <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train_isic_classification.py" />
-        <option value="$PROJECT_DIR$/classification/skin/models/simplenet.py" />
         <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" />
         <option value="$PROJECT_DIR$/numpy/numpy1.py" />
         <option value="$PROJECT_DIR$/metrics.py" />
@@ -242,18 +239,20 @@
         <option value="$PROJECT_DIR$/classification/metrics.py" />
         <option value="$PROJECT_DIR$/classification/skin/predict_isic_classification.py" />
         <option value="$PROJECT_DIR$/classification/skin/data_loader.py" />
-        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
-        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu1.py" />
-        <option value="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" />
         <option value="$PROJECT_DIR$/classification/skin/train_isic_classification.py" />
+        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu1.py" />
+        <option value="$PROJECT_DIR$/classification/skin/models/simplenet.py" />
+        <option value="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10_multigpu.py" />
+        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1992" />
-    <option name="y" value="47" />
-    <option name="width" value="1848" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="44" />
+    <option name="y" value="-4" />
+    <option name="width" value="1843" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -290,36 +289,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="tf-tutorials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="tf-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="multigpu" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="tensorflow-cifar-10" type="462c0819:PsiDirectoryNode" />
@@ -333,6 +305,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -367,7 +340,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train_isic_classification">
+  <component name="RunManager" selected="Python.multi_gpu_cnn">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -404,6 +377,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="cifar10_multigpu" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="code-power" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/cifar10_multigpu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="data_loader" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -422,37 +413,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="metrics" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="multi_gpu_cnn" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tf-tutorials/multigpu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="code-power" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/metrics.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="predict (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification/skin" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="code-power" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/predict_isic_classification.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -583,19 +556,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.Unnamed" />
-      <item index="1" class="java.lang.String" itemvalue="Python.predict (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.train_isic_classification" />
-      <item index="3" class="java.lang.String" itemvalue="Python.train_isic_classification_multi_gpu" />
-      <item index="4" class="java.lang.String" itemvalue="Python.metrics" />
-      <item index="5" class="java.lang.String" itemvalue="Python.data_loader" />
+      <item index="1" class="java.lang.String" itemvalue="Python.train_isic_classification" />
+      <item index="2" class="java.lang.String" itemvalue="Python.train_isic_classification_multi_gpu" />
+      <item index="3" class="java.lang.String" itemvalue="Python.data_loader" />
+      <item index="4" class="java.lang.String" itemvalue="Python.cifar10_multigpu" />
+      <item index="5" class="java.lang.String" itemvalue="Python.multi_gpu_cnn" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.train_isic_classification" />
+        <item index="0" class="java.lang.String" itemvalue="Python.multi_gpu_cnn" />
         <item index="1" class="java.lang.String" itemvalue="Python.train_isic_classification_multi_gpu" />
-        <item index="2" class="java.lang.String" itemvalue="Python.data_loader" />
-        <item index="3" class="java.lang.String" itemvalue="Python.metrics" />
-        <item index="4" class="java.lang.String" itemvalue="Python.predict (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.cifar10_multigpu" />
+        <item index="3" class="java.lang.String" itemvalue="Python.train_isic_classification" />
+        <item index="4" class="java.lang.String" itemvalue="Python.data_loader" />
       </list>
     </recent_temporary>
   </component>
@@ -760,16 +733,30 @@
       <option name="project" value="LOCAL" />
       <updated>1522879398481</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="skin leison classification now uses epochs and iterations and random shuffle.">
+      <created>1522902270009</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1522902270009</updated>
+    </task>
+    <task id="LOCAL-00023" summary="multi gpu cnn training loss can be obtained.">
+      <created>1522914263691</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1522914263691</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1992" y="47" width="1848" height="1056" extended-state="0" />
+    <frame x="44" y="-4" width="1869" height="1092" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17911255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17728977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959016" sideWeight="0.31226566" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35759494" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34733605" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991803" sideWeight="0.4916979" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -829,7 +816,9 @@
     <MESSAGE value="valid and test data can be loaded for skin leison" />
     <MESSAGE value="train saved files can be loaded in predict for leison classification." />
     <MESSAGE value="epochs added for training." />
-    <option name="LAST_COMMIT_MESSAGE" value="epochs added for training." />
+    <MESSAGE value="skin leison classification now uses epochs and iterations and random shuffle." />
+    <MESSAGE value="multi gpu cnn training loss can be obtained." />
+    <option name="LAST_COMMIT_MESSAGE" value="multi gpu cnn training loss can be obtained." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -894,7 +883,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="41" />
+      <option name="time" value="44" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -948,13 +937,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train_multi_gpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1181,33 +1163,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/models/simplenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/metrics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="33" column="13" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="33" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/sklearn/metrics/classification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="1134" column="0" lean-forward="false" selection-start-line="1134" selection-start-column="0" selection-end-line="1134" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1215,7 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="851">
           <caret line="2419" column="0" lean-forward="false" selection-start-line="2419" selection-start-column="0" selection-end-line="2419" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1223,7 +1181,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="38" column="16" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="44" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,42 +1198,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="851">
           <caret line="53" column="51" lean-forward="false" selection-start-line="52" selection-start-column="6" selection-end-line="54" selection-end-column="103" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/optimizer.py">
+    <entry file="file://$PROJECT_DIR$/classification/vgg16.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="354" column="6" lean-forward="false" selection-start-line="354" selection-start-column="6" selection-end-line="354" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/tf_multi_gpu_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-948">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1284,8 +1212,14 @@
     <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding />
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="448" column="18" lean-forward="false" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1293,6 +1227,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4860">
+          <caret line="249" column="17" lean-forward="false" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1301,28 +1242,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="86" column="30" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
+    <entry file="file://$PROJECT_DIR$/classification/metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="139" column="25" lean-forward="true" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="30" />
+        <state relative-caret-position="640">
+          <caret line="33" column="13" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/tf_multi_gpu_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/models/simplenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="739">
+          <caret line="104" column="40" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="49" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="66" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification.py">
+    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="64" column="9" lean-forward="false" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        <state relative-caret-position="680">
+          <caret line="34" column="98" lean-forward="false" selection-start-line="34" selection-start-column="90" selection-end-line="34" selection-end-column="98" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="271" column="76" lean-forward="false" selection-start-line="271" selection-start-column="75" selection-end-line="271" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

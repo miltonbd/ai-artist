@@ -5,6 +5,7 @@ import math
 from classification.skin import data_loader
 import time
 import random
+from sklearn import metrics
 
 _IMAGE_SIZE = 224
 _IMAGE_CHANNELS = 3
@@ -117,12 +118,60 @@ def average_gradients(tower_grads):
         average_grads.append(grad_and_var)
     return average_grads
 
+def predict_valid(show_confusion_matrix=False):
+    '''
+        Make prediction for all images in test_x
+    '''
+    valid_x, valid_y, valid_l = loader.getValidationDataForClassificationMelanoma()
+    i = 0
+    y_pred = np.zeros(shape=len(valid_x), dtype=np.int)
+    output, y_pred_cls = core_model(images[start:end, :], labels[start:end, :], _NUM_CLASSES)
+
+    while i < len(valid_x):
+        j = min(i + _BATCH_SIZE , len(valid_x))
+        batch_xs = valid_x[i:j, :]
+        batch_ys = valid_y[i:j, :]
+        y_pred[i:j] = sess.run(y_pred_cls, feed_dict={x: batch_xs, y: batch_ys})
+        i = j
+
+    correct = (np.argmax(valid_y, axis=1) == y_pred)
+    acc = correct.mean() * 100
+    correct_numbers = correct.sum()
+    print("Accuracy on Valid-Set: {0:.2f}% ({1} / {2})".format(acc, correct_numbers, len(valid_x)))
+
+    y_true = np.argmax(valid_y, axis=1)
+    cm = metrics.confusion_matrix(y_true=y_true, y_pred=y_pred)
+    for i in range(_NUM_CLASSES):
+        class_name = "({}) {}".format(i, valid_l[i])
+        print(cm[i, :], class_name)
+    class_numbers = [" ({0})".format(i) for i in range(_NUM_CLASSES)]
+    print("".join(class_numbers))
+
+    auc = metrics.roc_auc_score(y_true, y_pred)
+    print("Auc on Valid Set: {}".format(auc))
+
+    f1_score = metrics.f1_score(y_true, y_pred)
+
+    print("F1 score:  {}".format(f1_score))
+
+    average_precision = metrics.average_precision_score(y_true, y_pred)
+
+    print("average precsion on valid: {}".format(average_precision))
+
+    FP = cm.sum(axis=0) - np.diag(cm)
+    FN = cm.sum(axis=1) - np.diag(cm)
+    TP = np.diag(cm)
+    TN = cm.sum() - (FP + FN + TP)
+
+    return
+
+
 
 
 tf.reset_default_graph()
 
 with tf.Graph().as_default(), tf.device('/cpu:0'):
-    loader = data_loader.DataReaderISIC2017(_BATCH_SIZE, _EPOCHS, 1)
+    loader = data_loader.DataReaderISIC2017(_BATCH_SIZE, _EPOCHS, gpu_nums)
     train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
     num_iterations = loader.iterations
     print("Iterations {}".format(num_iterations))
@@ -136,12 +185,14 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
 
     tower_grads = []
     losses = []
+    y_pred_classes = []
+
     for i in range(gpu_nums):
         with tf.device('/gpu:{}'.format(i)):
             with tf.name_scope("tower_{}".format(i)) as scope:
                 start = i * _BATCH_SIZE
                 end = start + _BATCH_SIZE
-                output, y_pred_cls = core_model(images[start:end,:],labels[start:end,:], _NUM_CLASSES)
+                output, y_pred_class = core_model(images[start:end,:],labels[start:end,:], _NUM_CLASSES)
                 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels[start:end,:]))
                 #losses = tf.get_collection('losses', scope)
 
@@ -154,11 +205,13 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
                 grads = optimizer.compute_gradients(loss)
                 # Keep track of the gradients across all towers.
                 tower_grads.append(grads)
+                y_pred_classes.append(y_pred_class)
 
     # We must calculate the mean of each gradient. Note that this is the
     # synchronization point across all towers.
     grads = average_gradients(tower_grads)
     apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
+    predict_out=tf.stack(y_pred_classes, axis=0)
 
     # variable_averages = tf.train.ExponentialMovingAverage(
     #     MOVING_AVERAGE_DECAY, global_step)
@@ -167,7 +220,6 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
     # Group all updates to into a single train op.
     # train_op = tf.group(apply_gradient_op, variables_averages_op)
     train_op = apply_gradient_op
-
 
     # Start running operations on the Graph. allow_soft_placement must be set to
     # True to build towers on GPU, as some of the ops do not have GPU
@@ -205,11 +257,11 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
         # this mehod is suitable when we load all training data in memory at once.
         for i in range(num_iterations):
             #print(num_iterations+_BATCH_SIZE)
-            print(loader.total_train_count)
+            #print(loader.total_train_count)
             startIndex = _BATCH_SIZE * i * gpu_nums
             endIndex = min(startIndex + _BATCH_SIZE * gpu_nums, total_count )
 
-            #print("start, end: {}, {}".format(startIndex, endIndex))
+            print("epoch:{}, iteration:{}, start:{}, end:{} ".format(epoch, i, startIndex, endIndex))
 
             batch_xs = train_x[startIndex:endIndex,:]
             batch_ys = train_y[startIndex:endIndex,:]
@@ -217,15 +269,15 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
             #print(batch_ys)
 
             start_time = time.time()
-            step_global, loss = sess.run([global_step, losses], feed_dict={images: batch_xs, labels: batch_ys})
+            step_global_out, loss_out, y_pred_out = sess.run([global_step, losses, y_pred_classes], feed_dict={images: batch_xs, labels: batch_ys})
             steps =  + i
 
-            if (step_global % 10 == 0) or (i == _EPOCHS * total_count - 1):
-                print("loss: {}".format(loss))
-            #     _loss, batch_acc = sess.run([loss,], feed_dict={x: batch_xs, y: batch_ys})
-            #     duration = time.time() - start_time
-            #     msg = "Epoch: {0:}, Global Step: {1:>6}, accuracy: {2:>6.1%}, loss = {3:.2f} ({4:.1f} examples/sec, {5:.2f} sec/batch)"
-            #     print(msg.format(epoch,step_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
+            if (step_global % 100 == 0) or (i == _EPOCHS * total_count - 1):
+                print("epoch: {}, iteration: {}, loss: {}".format(epoch, i, loss_out))
+                # _loss, batch_acc = sess.run([loss,], feed_dict={x: batch_xs, y: batch_ys})
+                # duration = time.time() - start_time
+                # msg = "Epoch: {0:}, Global Step: {1:>6}, accuracy: {2:>6.1%}, loss = {3:.2f} ({4:.1f} examples/sec, {5:.2f} sec/batch)"
+                # print(msg.format(epoch,step_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
 
             #
             # if (step_global % 100 == 0) or (i == _EPOCHS * total_count  - 1):
