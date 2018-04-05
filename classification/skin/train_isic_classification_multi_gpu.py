@@ -1,144 +1,37 @@
 import numpy as np
 import tensorflow as tf
-from sklearn.metrics import confusion_matrix
+from sklearn import metrics
 from time import time
 from classification.skin import data_loader
 from classification.skin.models import simplenet
-
-gpu_nums=2
-TOWER_NAME="tower"
-
-def tower_loss(scope, images, labels):
-  """Calculate the total loss on a single tower running the CIFAR model.
-
-  Args:
-    scope: unique prefix string identifying the CIFAR tower, e.g. 'tower_0'
-    images: Images. 4D tensor of shape [batch_size, height, width, 3].
-    labels: Labels. 1D tensor of shape [batch_size].
-
-  Returns:
-     Tensor of shape [] containing the total loss for a batch of data
-  """
-
-  # Build inference Graph.
-  #logits = cifar10.inference(images)
-
-  # Build the portion of the Graph calculating the losses. Note that we will
-  # assemble the total_loss using a custom function below.
-  #_ = cifar10.loss(logits, labels)
-
-  # Assemble all of the losses for the current tower only.
-  losses = tf.get_collection('losses', scope)
-
-  # Calculate the total loss for the current tower.
-  total_loss = tf.add_n(losses, name='total_loss')
-
-  # Attach a scalar summary to all individual losses and the total loss; do the
-  # same for the averaged version of the losses.
-  for l in losses + [total_loss]:
-    # Remove 'tower_[0-9]/' from the name in case this is a multi-GPU training
-    # session. This helps the clarity of presentation on tensorboard.
-    # loss_name = re.sub('%s_[0-9]*/' % cifar10.TOWER_NAME, '', l.op.name)
-    # tf.summary.scalar(loss_name, l)
-
-  return total_loss
-
-
-def average_gradients(tower_grads):
-  """Calculate the average gradient for each shared variable across all towers.
-
-  Note that this function provides a synchronization point across all towers.
-
-  Args:
-    tower_grads: List of lists of (gradient, variable) tuples. The outer list
-      is over individual gradients. The inner list is over the gradient
-      calculation for each tower.
-  Returns:
-     List of pairs of (gradient, variable) where the gradient has been averaged
-     across all towers.
-  """
-  average_grads = []
-  for grad_and_vars in zip(*tower_grads):
-    # Note that each grad_and_vars looks like the following:
-    #   ((grad0_gpu0, var0_gpu0), ... , (grad0_gpuN, var0_gpuN))
-    grads = []
-    for g, _ in grad_and_vars:
-      # Add 0 dimension to the gradients to represent the tower.
-      expanded_g = tf.expand_dims(g, 0)
-
-      # Append on a 'tower' dimension which we will average over below.
-      grads.append(expanded_g)
-
-    # Average over the 'tower' dimension.
-    grad = tf.concat(axis=0, values=grads)
-    grad = tf.reduce_mean(grad, 0)
-
-    # Keep in mind that the Variables are redundant because they are shared
-    # across towers. So .. we will just return the first tower's pointer to
-    # the Variable.
-    v = grad_and_vars[0][1]
-    grad_and_var = (grad, v)
-    average_grads.append(grad_and_var)
-  return average_grads
-
-import numpy as np
-import tensorflow as tf
-from sklearn.metrics import confusion_matrix
-from time import time
-from classification.skin import data_loader
-from classification.skin.models import simplenet
+import math
 
 _IMG_SIZE = 224
 _NUM_CHANNELS = 3
 _BATCH_SIZE = 100
 _CLASS_SIZE = 2
-_ITERATION = 10000
-_SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/cifar-10/"
+_EPOCHS = 500
+_ITERATIONS = 100000
+loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,_EPOCHS,1)
+#loader.loadDataSet()
 
-
-loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,10,2)
-loader.loadDataSet()
-
-train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
 #test_x, test_y, test_l = get_data_set("test")
 
 x, y, output, global_step, y_pred_cls = simplenet.model()
 
+_SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/isic-2017-classification/"
+
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
-optimizer = tf.train.RMSPropOptimizer(learning_rate=1e-3)
+optimizer = tf.train.RMSPropOptimizer(learning_rate=1e-3).minimize(loss, global_step=global_step)
 
 correct_prediction = tf.equal(y_pred_cls, tf.argmax(y, axis=1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 tf.summary.scalar("Accuracy/train", accuracy)
 
-
 merged = tf.summary.merge_all()
-tower_grads = []
-        losses =[]
-        for i in range(gpu_nums):
-            with tf.device('/gpu:{}'.format(i)):
-                with tf.name_scope("tower_{}".format(i)) as scope:
-                    start = i * _BATCH_SIZE
-                    end = start + _BATCH_SIZE
-                    loss = tower_loss(scope, x[start:end,:,:,:], y[start:end,:])
-                    losses.append(loss)
-                    # Reuse variables for the next tower.
-                    tf.get_variable_scope().reuse_variables()
-
-                    grads = optimizer.compute_gradients(loss)
-
-                    # Keep track of the gradients across all towers.
-                    tower_grads.append(grads)
-
-        # We must calculate the mean of each gradient. Note that this is the
-        # synchronization point across all towers.
-        grads = average_gradients(tower_grads)
-        apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
-
 saver = tf.train.Saver()
 sess = tf.Session()
 train_writer = tf.summary.FileWriter(_SAVE_PATH, sess.graph)
-
 
 try:
     print("Trying to restore last checkpoint ...")
@@ -149,69 +42,152 @@ except:
     print("Failed to restore checkpoint. Initializing variables instead.")
     sess.run(tf.global_variables_initializer())
 
-def train(num_iterations):
+
+def train():
     '''
         Train CNN
     '''
-    for i in range(num_iterations):
-        randidx = np.random.randint(len(train_x), size=_BATCH_SIZE)
-        batch_xs = train_x[randidx]
-        batch_ys = train_y[randidx]
+    train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
 
-        start_time = time()
-        i_global, _ = sess.run([global_step, optimizer], feed_dict={x: batch_xs, y: batch_ys})
-        duration = time() - start_time
+    num_iterations = loader.iterations
+    print("Iterations {}".format(num_iterations))
+    total_count = loader.total_train_count
+    step_global = sess.run(global_step)
+    step_local = int(math.ceil(_EPOCHS * total_count / _BATCH_SIZE))
+    epoch_done = int(math.ceil(step_global/(_BATCH_SIZE )))
 
-        if (i_global % 10 == 0) or (i == num_iterations - 1):
-            _loss, batch_acc = sess.run([loss, accuracy], feed_dict={x: batch_xs, y: batch_ys})
-            msg = "Global Step: {0:>6}, accuracy: {1:>6.1%}, loss = {2:.2f} ({3:.1f} examples/sec, {4:.2f} sec/batch)"
-            print(msg.format(i_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
+    print("global:{}, local: {}, epochs done {}".format(step_global, step_local, epoch_done))
+    if step_local < step_global:
+        print("Training steps completed: global: {}, local: {}".format(step_global, step_local))
+        return
+    for epoch in range(epoch_done,_EPOCHS ):
+        shuffle_order = np.random.shuffle(np.arange(train_x.shape[0]))
 
-        if (i_global % 500 == 0) or (i == num_iterations - 1):
-            data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
-            #acc = predict_test()
+        #print("iterations {}".format(num_iterations))
+        train_x = train_x[shuffle_order].reshape(total_count, -1)
+        train_y = train_y[shuffle_order].reshape(total_count, -1)
 
-            # summary = tf.Summary(value=[
-            #     tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
-            # ])
-            # train_writer.add_summary(data_merged, global_1)
-            # train_writer.add_summary(summary, global_1)
+        for i in range(num_iterations):
+            #print(num_iterations+_BATCH_SIZE)
+            #print(loader.total_train_count)
+            endIndex = min(num_iterations + _BATCH_SIZE, total_count )
+            batch_xs = train_x[num_iterations:endIndex,:]
+            batch_ys = train_y[num_iterations:endIndex,:]
 
-            saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
-            print("Saved checkpoint.")
+            start_time = time()
+            step_global, _ = sess.run([global_step, optimizer], feed_dict={x: batch_xs, y: batch_ys})
+            duration = time() - start_time
+            steps =  + i
+
+            if (step_global % 10 == 0) or (i == _EPOCHS * total_count - 1):
+                _loss, batch_acc = sess.run([loss, accuracy], feed_dict={x: batch_xs, y: batch_ys})
+                msg = "Epoch: {0:}, Global Step: {1:>6}, accuracy: {2:>6.1%}, loss = {3:.2f} ({4:.1f} examples/sec, {5:.2f} sec/batch)"
+                print(msg.format(epoch,step_global, batch_acc, _loss, _BATCH_SIZE / duration, duration))
+
+            if (step_global % 100 == 0) or (i == _EPOCHS * total_count  - 1):
+                data_merged, global_1 = sess.run([merged, global_step], feed_dict={x: batch_xs, y: batch_ys})
+                #acc = predict_test()
+
+                # summary = tf.Summary(value=[
+                #     tf.Summary.Value(tag="Accuracy/test", simple_value=acc),
+                # ])
+                # train_writer.add_summary(data_merged, global_1)
+                # train_writer.add_summary(summary, global_1)
+
+                saver.save(sess, save_path=_SAVE_PATH, global_step=global_step)
+                print("Saved checkpoint.")
+                predict_valid()
 
 
-def predict_test(show_confusion_matrix=False):
+
+def predict_valid(show_confusion_matrix=False):
     '''
         Make prediction for all images in test_x
     '''
+    valid_x, valid_y, valid_l = loader.getValidationDataForClassificationMelanoma()
     i = 0
-    predicted_class = np.zeros(shape=len(test_x), dtype=np.int)
-    while i < len(test_x):
-        j = min(i + _BATCH_SIZE, len(test_x))
-        batch_xs = test_x[i:j, :]
-        batch_ys = test_y[i:j, :]
-        predicted_class[i:j] = sess.run(y_pred_cls, feed_dict={x: batch_xs, y: batch_ys})
+    y_pred = np.zeros(shape=len(valid_x), dtype=np.int)
+    while i < len(valid_x):
+        j = min(i + _BATCH_SIZE, len(valid_x))
+        batch_xs = valid_x[i:j, :]
+        batch_ys = valid_y[i:j, :]
+        y_pred[i:j] = sess.run(y_pred_cls, feed_dict={x: batch_xs, y: batch_ys})
         i = j
 
-    correct = (np.argmax(test_y, axis=1) == predicted_class)
-    acc = correct.mean()*100
+    correct = (np.argmax(valid_y, axis=1) == y_pred)
+    acc = correct.mean() * 100
+    tf.summary.scalar("valid accuracy", acc)
     correct_numbers = correct.sum()
-    print("Accuracy on Test-Set: {0:.2f}% ({1} / {2})".format(acc, correct_numbers, len(test_x)))
+    print("Accuracy on Valid-Set: {0:.2f}% ({1} / {2})".format(acc, correct_numbers, len(valid_x)))
 
-    if show_confusion_matrix is True:
-        cm = confusion_matrix(y_true=np.argmax(test_y, axis=1), y_pred=predicted_class)
-        for i in range(_CLASS_SIZE):
-            class_name = "({}) {}".format(i, test_l[i])
-            print(cm[i, :], class_name)
-        class_numbers = [" ({0})".format(i) for i in range(_CLASS_SIZE)]
-        print("".join(class_numbers))
+    y_true = np.argmax(valid_y, axis=1)
+    cm = metrics.confusion_matrix(y_true=y_true, y_pred=y_pred)
+    for i in range(_CLASS_SIZE):
+        class_name = "({}) {}".format(i, valid_l[i])
+        print(cm[i, :], class_name)
+    class_numbers = [" ({0})".format(i) for i in range(_CLASS_SIZE)]
+    print("".join(class_numbers))
 
-    return acc
+    auc = metrics.roc_auc_score(y_true, y_pred)
+    tf.summary.scalar("valid auc", auc)
+    print("Auc on Valid Set: {}".format(auc))
+
+    f1_score = metrics.f1_score(y_true, y_pred)
+
+    print("F1 score:  {}".format(f1_score))
+
+    average_precision = metrics.average_precision_score(y_true, y_pred)
+
+    print("average precsion on valid: {}".format(average_precision))
+
+    FP = cm.sum(axis=0) - np.diag(cm)
+    FN = cm.sum(axis=1) - np.diag(cm)
+    TP = np.diag(cm)
+    TN = cm.sum() - (FP + FN + TP)
+
+    return
 
 
-if _ITERATION != 0:
-    train(_ITERATION)
+if __name__ == '__main__':
+    train()
+    sess.close()
 
 
-sess.close()
+
+gpu_nums=2
+TOWER_NAME="tower"
+
+def tower_loss(scope, images, labels):
+    net = MyCifar10Classifier(10)
+    logits = net.inference(images)
+    net.loss(logits,labels)
+    losses = tf.get_collection('losses', scope)
+
+    # Calculate the total loss for the current tower.
+    total_loss = tf.add_n(losses, name='total_loss')
+    return total_loss
+
+def average_gradients(tower_grads):
+    average_grads = []
+    for grad_and_vars in zip(*tower_grads):
+        # Note that each grad_and_vars looks like the following:
+        #   ((grad0_gpu0, var0_gpu0), ... , (grad0_gpuN, var0_gpuN))
+        grads = []
+        for g, _ in grad_and_vars:
+            # Add 0 dimension to the gradients to represent the tower.
+            expanded_g = tf.expand_dims(g, 0)
+
+            # Append on a 'tower' dimension which we will average over below.
+            grads.append(expanded_g)
+
+        # Average over the 'tower' dimension.
+        grad = tf.concat(axis=0, values=grads)
+        grad = tf.reduce_mean(grad, 0)
+
+        # Keep in mind that the Variables are redundant because they are shared
+        # across towers. So .. we will just return the first tower's pointer to
+        # the Variable.
+        v = grad_and_vars[0][1]
+        grad_and_var = (grad, v)
+        average_grads.append(grad_and_var)
+    return average_grads

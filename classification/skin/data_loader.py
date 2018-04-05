@@ -105,14 +105,15 @@ class DataReaderISIC2017(object):
         self.seborrheic_keratosis_test, self.nonseborrheic_keratosis_test = self.getSeborrheic('classification_test_224')
 
     def getValidationDataForClassificationMelanoma(self):
-        train_paths = np.concatenate((self.melanomas_valid, self.nonmelanomas_valid), axis=0)
+        melanomas_valid, nonmelanomas_valid = self.getMelanoma('classification_valid_224')
+        train_paths = np.concatenate((melanomas_valid, nonmelanomas_valid), axis=0)
         train_x = []
         for train_path in train_paths:
             X = imageio.imread(train_path).reshape(224 * 224 * 3) / 255
             train_x.append(X)
         train_y = np.zeros(shape=[len(train_x), 2], dtype=np.float32)
-        train_y[0:len(self.melanomas_valid), 0] = 1
-        train_y[len(self.nonmelanomas_valid):, 1] = 1
+        train_y[0:len(melanomas_valid), 0] = 1
+        train_y[len(nonmelanomas_valid):, 1] = 1
         labels = ['Melanoma', 'Non Melanoma']
         #print(len(train_x))
         #print(len(train_y))
@@ -123,14 +124,15 @@ class DataReaderISIC2017(object):
 
 
     def getTrainDataForClassificationMelanoma(self):
-        train_paths = np.concatenate((self.melanomas_train , self.nonmelanomas_train), axis=0)
+        melanomas_train, nonmelanomas_train = self.getMelanoma('classification_train_224')
+        train_paths = np.concatenate((melanomas_train , nonmelanomas_train), axis=0)
         train_x = []
         for train_path in train_paths:
             X = imageio.imread(train_path).reshape(224 * 224 * 3)/255
             train_x.append(X)
         train_y = np.zeros(shape=[len(train_x),2],dtype=np.float32)
-        train_y[0:len(self.melanomas_train),0]=1
-        train_y[len(self.melanomas_train):,1]=1
+        train_y[0:len(melanomas_train),0]=1
+        train_y[len(melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
         print("Total train items for melanona {}".format(len(train_x)))
         train_x = np.asarray(train_x)
