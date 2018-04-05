@@ -4,11 +4,11 @@ _IMAGE_SIZE = 224
 _IMAGE_CHANNELS = 3
 _NUM_CLASSES = 2
 
-def model():
+def model(batch_size):
 
     with tf.name_scope('data'):
-        x = tf.placeholder(tf.float32, shape=[None, _IMAGE_SIZE * _IMAGE_SIZE * _IMAGE_CHANNELS], name='Input')
-        y = tf.placeholder(tf.float32, shape=[None, _NUM_CLASSES], name='Output')
+        x = tf.placeholder(tf.float32, shape=[batch_size, _IMAGE_SIZE * _IMAGE_SIZE * _IMAGE_CHANNELS], name='Input')
+        y = tf.placeholder(tf.float32, shape=[batch_size, _NUM_CLASSES], name='Output')
         x_image = tf.reshape(x, [-1, _IMAGE_SIZE, _IMAGE_SIZE, _IMAGE_CHANNELS], name='images')
 
     def variable_with_weight_decay(name, shape, stddev, wd):

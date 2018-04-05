@@ -12,51 +12,129 @@ _BATCH_SIZE = 100
 _CLASS_SIZE = 2
 _EPOCHS = 500
 _ITERATIONS = 100000
-loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,_EPOCHS,1)
+learning_rate = 1e-4
+gpu_nums=1
+loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,_EPOCHS,2)
 #loader.loadDataSet()
 
 #test_x, test_y, test_l = get_data_set("test")
 
-x, y, output, global_step, y_pred_cls = simplenet.model()
+
 
 _SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/isic-2017-classification/"
 
-loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
-optimizer = tf.train.RMSPropOptimizer(learning_rate=1e-3).minimize(loss, global_step=global_step)
+#loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
+#optimizer = tf.train.RMSPropOptimizer(learning_rate=1e-3).minimize(loss, global_step=global_step)
 
-correct_prediction = tf.equal(y_pred_cls, tf.argmax(y, axis=1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-tf.summary.scalar("Accuracy/train", accuracy)
+#correct_prediction = tf.equal(y_pred_cls, tf.argmax(y, axis=1))
+#accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+#tf.summary.scalar("Accuracy/train", accuracy)
 
-merged = tf.summary.merge_all()
-saver = tf.train.Saver()
-sess = tf.Session()
-train_writer = tf.summary.FileWriter(_SAVE_PATH, sess.graph)
+#merged = tf.summary.merge_all()
 
-try:
-    print("Trying to restore last checkpoint ...")
-    last_chk_path = tf.train.latest_checkpoint(checkpoint_dir=_SAVE_PATH)
-    saver.restore(sess, save_path=last_chk_path)
-    print("Restored checkpoint from:", last_chk_path)
-except:
-    print("Failed to restore checkpoint. Initializing variables instead.")
-    sess.run(tf.global_variables_initializer())
 
 
 def train():
     '''
         Train CNN
     '''
-    train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
 
-    num_iterations = loader.iterations
-    print("Iterations {}".format(num_iterations))
-    total_count = loader.total_train_count
-    step_global = sess.run(global_step)
-    step_local = int(math.ceil(_EPOCHS * total_count / _BATCH_SIZE))
-    epoch_done = int(math.ceil(step_global/(_BATCH_SIZE )))
+    with tf.Graph().as_default(), tf.device('/cpu:0'):
+        # load_cifar10_data()
+        global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
+        train_x, train_y, train_l = loader.getTrainDataForClassificationMelanoma()
+        num_iterations = loader.iterations
+        print("Iterations {}".format(num_iterations))
+        total_count = loader.total_train_count
+        step_local = int(math.ceil(_EPOCHS * total_count / _BATCH_SIZE))
 
-    print("global:{}, local: {}, epochs done {}".format(step_global, step_local, epoch_done))
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+
+        images = tf.placeholder(tf.float32, shape=[_BATCH_SIZE * gpu_nums, 224, 224, 3])
+        labels = tf.placeholder(tf.float32, shape=[_BATCH_SIZE * gpu_nums, 2 ])
+
+        tower_grads = []
+        losses = []
+        for i in range(gpu_nums):
+            with tf.device('/gpu:{}'.format(i)):
+                with tf.name_scope("tower_{}".format(i)) as scope:
+                    start = i * _BATCH_SIZE
+                    end = start + _BATCH_SIZE
+                    loss = tower_loss(scope, images[start:end, :, :, :], labels[start:end])
+                    losses.append(loss)
+                    # Reuse variables for the next tower.
+                    tf.get_variable_scope().reuse_variables()
+
+                    grads = optimizer.compute_gradients(loss)
+
+                    # Keep track of the gradients across all towers.
+                    tower_grads.append(grads)
+
+
+        # We must calculate the mean of each gradient. Note that this is the
+        # synchronization point across all towers.
+        grads = average_gradients(tower_grads)
+        apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
+
+        # variable_averages = tf.train.ExponentialMovingAverage(
+        #     MOVING_AVERAGE_DECAY, global_step)
+        # variables_averages_op = variable_averages.apply(tf.trainable_variables())
+
+        # Group all updates to into a single train op.
+        # train_op = tf.group(apply_gradient_op, variables_averages_op)
+        train_op = apply_gradient_op
+        saver = tf.train.Saver(tf.all_variables())
+        init = tf.initialize_all_variables()
+
+        # Start running operations on the Graph. allow_soft_placement must be set to
+        # True to build towers on GPU, as some of the ops do not have GPU
+        # implementations.
+
+        start = time.time()
+
+        # saver = tf.train.Saver(tf.all_variables())
+
+        init = tf.initialize_all_variables()
+        saver = tf.train.Saver()
+        sess = tf.Session(config=tf.ConfigProto(
+            allow_soft_placement=True,
+            log_device_placement=True))
+        train_writer = tf.summary.FileWriter(_SAVE_PATH, sess.graph)
+
+        try:
+            print("Trying to restore last checkpoint ...")
+            last_chk_path = tf.train.latest_checkpoint(checkpoint_dir=_SAVE_PATH)
+            saver.restore(sess, save_path=last_chk_path)
+            print("Restored checkpoint from:", last_chk_path)
+        except:
+            print("Failed to restore checkpoint. Initializing variables instead.")
+            sess.run(tf.global_variables_initializer())
+        print("itr")
+
+        step_global = sess.run(global_step)
+        epoch_done = int(math.ceil(step_global / (_BATCH_SIZE)))
+        print("global:{}, local: {}, epochs done {}".format(step_global, step_local, epoch_done))
+
+        for itr in range(data_loader.iterations):
+            print("itr {}".format(itr))
+            images_data, labels_data = data_loader.nextBatch()
+            # categorical_labels = to_categorical(labels_data, num_classes=10)
+            # print(labels_data)
+            feed_dict = {
+                images: images_data,
+                labels: labels_data
+            }
+            _, loss_all = sess.run([train_op, losses], feed_dict=feed_dict)
+            msg = "Iteration {}, loss {})".format(itr, loss_all)
+            if itr % 20 == 0:
+                print(msg)
+            # sys.stdout.write(msg + "\r")
+            # sys.stdout.flush()
+
+        #saver.save(sess, saved_model_path, global_step=data_loader.itr)
+        #print("Model Saved In {}".format(saved_model_path))
+
+
     if step_local < step_global:
         print("Training steps completed: global: {}, local: {}".format(step_global, step_local))
         return
@@ -148,19 +226,9 @@ def predict_valid(show_confusion_matrix=False):
     return
 
 
-if __name__ == '__main__':
-    train()
-    sess.close()
-
-
-
-gpu_nums=2
-TOWER_NAME="tower"
-
 def tower_loss(scope, images, labels):
-    net = MyCifar10Classifier(10)
-    logits = net.inference(images)
-    net.loss(logits,labels)
+    x, y, output, global_step, y_pred_cls = simplenet.model(batch_size=_BATCH_SIZE)
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y))
     losses = tf.get_collection('losses', scope)
 
     # Calculate the total loss for the current tower.
@@ -179,6 +247,7 @@ def average_gradients(tower_grads):
 
             # Append on a 'tower' dimension which we will average over below.
             grads.append(expanded_g)
+            print("")
 
         # Average over the 'tower' dimension.
         grad = tf.concat(axis=0, values=grads)
@@ -191,3 +260,8 @@ def average_gradients(tower_grads):
         grad_and_var = (grad, v)
         average_grads.append(grad_and_var)
     return average_grads
+
+
+if __name__ == '__main__':
+    train()
+    sess.close()

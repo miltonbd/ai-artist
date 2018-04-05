@@ -8,6 +8,7 @@ from classification.vgg16 import Vgg16
 from classification.my_net1 import MyCifar10Classifier
 import sys
 from keras.utils.np_utils import to_categorical
+import utils.TensorflowUtils
 
 MOVING_AVERAGE_DECAY = 0.9999
 epochs = 3
@@ -119,6 +120,7 @@ def main():
             images_data,labels_data = data_loader.nextBatch()
             #categorical_labels = to_categorical(labels_data, num_classes=10)
             #print(labels_data)
+            print("images_data: {}, labels: {}".format(images_data.shape, labels_data.shape))
             feed_dict = {
                 images: images_data,
                 labels: labels_data
