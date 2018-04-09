@@ -45,7 +45,7 @@ with tf.Graph().as_default() as g:
             data_loader.loadDataSet()
             total_true = 0
             for itr in range(data_loader.iterations_test):
-                images_batch, labels_batch = data_loader.testBatch()
+                images_batch, labels_batch = data_loader.nextTestBatch()
 
                 predict = sess.run(prob,feed_dict={
                     images:images_batch,

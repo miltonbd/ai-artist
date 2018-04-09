@@ -18,7 +18,7 @@ loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,_EPOCHS,1)
 
 #test_x, test_y, test_l = get_data_set("test")
 
-x, y, output, global_step, y_pred_cls = simplenet.model()
+x, y, output, global_step, y_pred_cls = simplenet.model(_BATCH_SIZE)
 
 _SAVE_PATH = "/home/milton/research/code-power/classification/skin/tensorboard/isic-2017-classification/"
 

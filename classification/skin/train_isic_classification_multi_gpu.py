@@ -10,8 +10,7 @@ _IMG_SIZE = 224
 _NUM_CHANNELS = 3
 _BATCH_SIZE = 100
 _CLASS_SIZE = 2
-_EPOCHS = 500
-_ITERATIONS = 100000
+_EPOCHS = 1000
 learning_rate = 1e-4
 gpu_nums=1
 loader = data_loader.DataReaderISIC2017(_BATCH_SIZE,_EPOCHS,2)
@@ -153,7 +152,7 @@ def train():
             batch_ys = train_y[num_iterations:endIndex,:]
 
             start_time = time()
-            step_global, _ = sess.run([global_step, optimizer], feed_dict={x: batch_xs, y: batch_ys})
+            step_global, _ = sess.run([global_step, train_op], feed_dict={x: batch_xs, y: batch_ys})
             duration = time() - start_time
             steps =  + i
 
