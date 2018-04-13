@@ -35,7 +35,6 @@ tf.summary.FileWriterCache.clear()
 
 # construction phase
 
-
 def model(input_images):
     x_images = tf.reshape(input_images,[-1,image_height,image_width,image_channels])
     with tf.name_scope("hidden"):
