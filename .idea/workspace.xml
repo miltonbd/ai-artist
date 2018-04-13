@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="queue runner works">
-      <change beforePath="" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" />
       <change beforePath="" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" />
@@ -34,10 +34,12 @@
       <file leaf-file-name="pipeline_cifar10.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="78" column="70" lean-forward="false" selection-start-line="78" selection-start-column="70" selection-end-line="78" selection-end-column="70" />
+            <state relative-caret-position="265">
+              <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#914#3603#0" expanded="false" />
+                <element signature="e#4109#4492#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,8 +48,8 @@
       <file leaf-file-name="cifar10_multigpu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-680">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="300">
+              <caret line="79" column="37" lean-forward="false" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -56,8 +58,8 @@
       <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="39" column="49" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="49" />
+            <state relative-caret-position="300">
+              <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,7 +88,7 @@
       <file leaf-file-name="queue_code_pascal_2012.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code_pascal_2012.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1040">
+            <state relative-caret-position="1220">
               <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="40" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -98,8 +100,8 @@
       <file leaf-file-name="queue_code.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="10" />
+            <state relative-caret-position="440">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="62" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -108,7 +110,7 @@
       <file leaf-file-name="cifar10_runner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/cifar10_runner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="-2101">
               <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="17" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -129,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add_to_collection('losses'</find>
       <find>moving</find>
       <find>decay</find>
       <find>path</find>
@@ -159,6 +160,7 @@
       <find>read_data</find>
       <find>add_queue_runner</find>
       <find>add_</find>
+      <find>int32</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -758,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523601902914</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="cifar10 loader added.">
+      <created>1523649422723</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1523649422723</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -832,7 +841,8 @@
     <MESSAGE value="multi gpu train sucessful." />
     <MESSAGE value="multigpu mnist and cifar10 added." />
     <MESSAGE value="queue runner works for pipeline_pascal_2012.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="queue runner works for pipeline_pascal_2012.py" />
+    <MESSAGE value="cifar10 loader added." />
+    <option name="LAST_COMMIT_MESSAGE" value="cifar10 loader added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1251,24 +1261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code_pascal_2012.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1040">
-          <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/cifar10_single_gpu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1277,36 +1269,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="39" column="49" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/core/numerictypes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="844" column="0" lean-forward="false" selection-start-line="844" selection-start-column="0" selection-end-line="844" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/cifar10_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1329,12 +1295,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py">
+    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="78" column="70" lean-forward="false" selection-start-line="78" selection-start-column="70" selection-end-line="78" selection-end-column="70" />
+        <state relative-caret-position="300">
+          <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/cifar10_runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2101">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="17" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code_pascal_2012.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1220">
+          <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="62" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10_multigpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="79" column="37" lean-forward="false" selection-start-line="79" selection-start-column="27" selection-end-line="79" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#914#3603#0" expanded="false" />
+            <element signature="e#4109#4492#0" expanded="false" />
           </folding>
         </state>
       </provider>
