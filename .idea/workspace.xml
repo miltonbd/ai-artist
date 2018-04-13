@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="queue runner works">
+      <change beforePath="" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" />
       <change beforePath="" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" />
@@ -31,16 +31,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pipeline_cifar10.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipeline_cifar10.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+            <state relative-caret-position="405">
+              <caret line="214" column="37" lean-forward="true" selection-start-line="214" selection-start-column="37" selection-end-line="214" selection-end-column="37" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
                 <element signature="e#914#3603#0" expanded="false" />
                 <element signature="e#4109#4492#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipeline_cifar10_multigpu.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="379">
+              <caret line="222" column="0" lean-forward="true" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+              <folding>
+                <element signature="e#925#3614#0" expanded="false" />
+                <element signature="e#3682#4065#0" expanded="false" />
+                <element signature="e#4118#4501#0" expanded="false" />
+                <element signature="e#4544#5478#0" expanded="false" />
+                <element signature="e#5552#6093#0" expanded="false" />
+                <element signature="e#6141#6537#0" expanded="false" />
+                <element signature="e#6579#6888#0" expanded="false" />
+                <element signature="e#6930#7591#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multi_gpu_cnn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="116" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,26 +89,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ops.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9860">
-              <caret line="527" column="0" lean-forward="false" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17360">
-              <caret line="888" column="0" lean-forward="false" selection-start-line="888" selection-start-column="0" selection-end-line="888" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -169,7 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classification/cifar10_single_gpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10_eval.py" />
         <option value="$PROJECT_DIR$/pytorch/pytorch1.py" />
         <option value="$PROJECT_DIR$/classification/skin/train.py" />
@@ -220,6 +228,7 @@
         <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/queue_code_pascal_2012.py" />
         <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_pascal_2012.py" />
         <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" />
+        <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" />
       </list>
     </option>
   </component>
@@ -332,7 +341,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pipeline_cifar10">
+  <component name="RunManager" selected="Python.pipeline_cifar10_multigpu">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -405,6 +414,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="pipeline_cifar10_multigpu" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tf-tutorials/queue_threading" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="code-power" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="pipeline_pascal_2012" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -436,24 +463,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="code-power" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf-tutorials/queue_threading/simple_queue_runner.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="tf_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tf-tutorials/queue_threading" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="code-power" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf-tutorials/queue_threading/tf_pipeline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -549,18 +558,18 @@
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Python.cifar10_runner" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tf_pipeline" />
-      <item index="3" class="java.lang.String" itemvalue="Python.pipeline_pascal_2012" />
-      <item index="4" class="java.lang.String" itemvalue="Python.simple_queue_runner" />
-      <item index="5" class="java.lang.String" itemvalue="Python.pipeline_cifar10" />
+      <item index="2" class="java.lang.String" itemvalue="Python.pipeline_pascal_2012" />
+      <item index="3" class="java.lang.String" itemvalue="Python.simple_queue_runner" />
+      <item index="4" class="java.lang.String" itemvalue="Python.pipeline_cifar10" />
+      <item index="5" class="java.lang.String" itemvalue="Python.pipeline_cifar10_multigpu" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.pipeline_cifar10" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pipeline_pascal_2012" />
-        <item index="2" class="java.lang.String" itemvalue="Python.simple_queue_runner" />
-        <item index="3" class="java.lang.String" itemvalue="Python.cifar10_runner" />
-        <item index="4" class="java.lang.String" itemvalue="Python.tf_pipeline" />
+        <item index="0" class="java.lang.String" itemvalue="Python.pipeline_cifar10_multigpu" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pipeline_cifar10" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pipeline_pascal_2012" />
+        <item index="3" class="java.lang.String" itemvalue="Python.simple_queue_runner" />
+        <item index="4" class="java.lang.String" itemvalue="Python.cifar10_runner" />
       </list>
     </recent_temporary>
   </component>
@@ -767,7 +776,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523649422723</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="cifar10 training works for single gpu and same model fro train and test.">
+      <created>1523654235748</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1523654235748</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -817,7 +833,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added aspycharm project." />
     <MESSAGE value="brain tumour project added." />
     <MESSAGE value="capsnet added for segmentation." />
     <MESSAGE value="vgg model added." />
@@ -842,7 +857,8 @@
     <MESSAGE value="multigpu mnist and cifar10 added." />
     <MESSAGE value="queue runner works for pipeline_pascal_2012.py" />
     <MESSAGE value="cifar10 loader added." />
-    <option name="LAST_COMMIT_MESSAGE" value="cifar10 loader added." />
+    <MESSAGE value="cifar10 training works for single gpu and same model fro train and test." />
+    <option name="LAST_COMMIT_MESSAGE" value="cifar10 training works for single gpu and same model fro train and test." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -902,6 +918,11 @@
           <line>73</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -913,7 +934,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="52" />
+      <option name="time" value="53" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -967,13 +988,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="448" column="18" lean-forward="false" selection-start-line="448" selection-start-column="4" selection-end-line="448" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/skin/predict_isic_classification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1140,24 +1154,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cifar10_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/nn_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="1702" column="4" lean-forward="false" selection-start-line="1702" selection-start-column="4" selection-end-line="1702" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="246" column="63" lean-forward="false" selection-start-line="246" selection-start-column="63" selection-end-line="246" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -1341,12 +1341,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+        <state relative-caret-position="405">
+          <caret line="214" column="37" lean-forward="true" selection-start-line="214" selection-start-column="37" selection-end-line="214" selection-end-column="37" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#914#3603#0" expanded="false" />
             <element signature="e#4109#4492#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cifar10_v2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multi_gpu_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="116" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="222" column="0" lean-forward="true" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+          <folding>
+            <element signature="e#925#3614#0" expanded="false" />
+            <element signature="e#3682#4065#0" expanded="false" />
+            <element signature="e#4118#4501#0" expanded="false" />
+            <element signature="e#4544#5478#0" expanded="false" />
+            <element signature="e#5552#6093#0" expanded="false" />
+            <element signature="e#6141#6537#0" expanded="false" />
+            <element signature="e#6579#6888#0" expanded="false" />
+            <element signature="e#6930#7591#0" expanded="false" />
           </folding>
         </state>
       </provider>
