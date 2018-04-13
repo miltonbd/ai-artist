@@ -14,12 +14,12 @@ import _pickle
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")
 test_dir = os.path.join(data_dir, "test")
+num_gpus=2
 image_height = 32
 image_width = 32
 num_channels = 3
 num_classes=10
-batch_size = 128
-num_gpus=2
+batch_size = 128 * num_gpus
 num_threads=8 # keep 4 for 2 gpus
 
 voc_class_labels = ['aeroplane','bicycle', 'bird', 'boat',
@@ -289,59 +289,118 @@ def core_model(input_img, y):
     tf.summary.histogram('Fully connected layers/output', softmax_linear)
 
 
-    #y_pred_cls = tf.argmax(softmax_linear, axis=1)
+    y_pred_cls = tf.argmax(softmax_linear, axis=1)
 
-    return  softmax_linear
-
-
-is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
-
-#random.shuffle(all_filepath_labels)
-train_filepaths, all_train_labels = get_train_files_cifar_10_classification()
-float_image, train_label = process_batch(inti_queue(train_filepaths, all_train_labels))
-batch_data_train, batch_label_train = make_queue(float_image, train_label)
-
-test_filepaths, all_test_labels = get_train_files_cifar_10_classification()
-float_image, train_label = process_batch(inti_queue(test_filepaths, all_test_labels))
-batch_data_test, batch_label_test = make_queue(float_image, train_label)
-
-batch_data, batch_label = tf.cond(is_training,
-                     lambda:(batch_data_train, batch_label_train),
-                     lambda:(batch_data_test, batch_label_test))
-
-z=core_model(batch_data,batch_label)
+    return  softmax_linear, y_pred_cls
 
 
-losses = tf.nn.sigmoid_cross_entropy_with_logits(None, tf.cast(batch_label_train, tf.float32), z)
-loss_op = tf.reduce_mean(losses)
 
-y_pred = tf.cast(z > 0, tf.float32)
-accuracy = tf.reduce_mean(tf.cast(tf.equal(y_pred, batch_label_test), tf.float32))
-accuracy = tf.Print(accuracy, data=[accuracy], message="accuracy:")
+tf.reset_default_graph()
 
-# We add the training op ...
-adam = tf.train.AdamOptimizer(1e-4)
-train_op = adam.minimize(loss_op, name="train_op")
-
-print("input pipeline ready")
-start = time.time()
-with tf.Session() as sess:
+with  tf.device('/cpu:0'):
     # initialize the variables
+
+    sess = tf.Session(config=tf.ConfigProto(
+        allow_soft_placement=True,
+        log_device_placement=True))
+    sess.as_default()
+    # initialize the queue threads to start to shovel data
+
+    is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
+
+    #random.shuffle(all_filepath_labels)
+    train_filepaths, all_train_labels = get_train_files_cifar_10_classification()
+    float_image, train_label = process_batch(inti_queue(train_filepaths, all_train_labels))
+    batch_data_train, batch_label_train = make_queue(float_image, train_label)
+
+    test_filepaths, all_test_labels = get_train_files_cifar_10_classification()
+    float_image, train_label = process_batch(inti_queue(test_filepaths, all_test_labels))
+    batch_data_test, batch_label_test = make_queue(float_image, train_label)
+
+    batch_data, batch_label = tf.cond(is_training,
+                         lambda:(batch_data_train, batch_label_train),
+                         lambda:(batch_data_test, batch_label_test))
+
+    global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
+
+    optimizer = tf.train.GradientDescentOptimizer(1e-2)
+    features_split = tf.split(batch_data, num_gpus, axis=0)
+    labels_split = tf.split(batch_label, num_gpus, axis=0)
+
+    tower_grads = []
+    losses = []
+    y_pred_classes = []
+
+    for i in range(num_gpus):
+        with tf.device('/gpu:{}'.format(i)):
+            with tf.name_scope("tower_{}".format(i)) as scope:
+
+                output, y_pred_class = core_model(features_split[i], labels_split[i])
+                # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
+                # # losses = tf.get_collection('losses', scope)
+                #
+                # # Calculate the total loss for the current tower.
+                # # loss = tf.add_n(losses, name='total_loss')
+                tf.losses.softmax_cross_entropy(labels_split[i], output)
+                update_ops = tf.get_collection(
+                    tf.GraphKeys.UPDATE_OPS, scope)
+                updates_op = tf.group(*update_ops)
+                with tf.control_dependencies([updates_op]):
+                    losses = tf.get_collection(tf.GraphKeys.LOSSES, scope)
+                    total_loss = tf.add_n(losses, name='total_loss')
+                    losses.append(total_loss)
+                    # Reuse variables for the next tower.
+                    tf.get_variable_scope().reuse_variables()
+
+                    grads = optimizer.compute_gradients(total_loss)
+                    # Keep track of the gradients across all towers.
+                    tower_grads.append(grads)
+                    y_pred_classes.append(y_pred_class)
+
+    # We must calculate the mean of each gradient. Note that this is the
+    # synchronization point across all towers.
+    grads = average_gradients(tower_grads)
+    apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
+
+    losses_mean = tf.reduce_mean(losses)
+
+
+    y_pred_classes_op=tf.reshape(tf.stack(y_pred_classes, axis=0),[-1])
+    correct_prediction = tf.equal(y_pred_classes_op, tf.argmax(batch_label, axis=1))
+    batch_accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+
     sess.run(tf.global_variables_initializer())
 
-    # initialize the queue threads to start to shovel data
+    print("input pipeline ready")
+    start = time.time()
+
     coord = tf.train.Coordinator()
-    threads = tf.train.start_queue_runners(coord=coord)
+    threads = tf.train.start_queue_runners(coord=coord,sess=sess)
 
     print ("from the train set:")
-    for i in range(2000):
-        _, loss, logit_out = sess.run([train_op, loss_op,y_pred],feed_dict={is_training:True})
-        #print(logit_out[0])
-        # We regularly check the loss
-        if i % 50 == 0:
-            print('iter:%d - loss:%f' % (i, loss))
-            print("Accuracy: {}".format(sess.run(accuracy, feed_dict={is_training:False})))
-        #print(feed_batch_label[0])
+    total_train_items = len(all_train_labels)
+    batches_per_epoch = total_train_items//batch_size
+    print("Total:{}, batch size: {}, batches per epoch: {}".format(total_train_items, batch_size, batches_per_epoch))
+    try:
+        for epoch in range(1):
+            for step in range(batches_per_epoch):
+                if coord.should_stop():
+                    break
+
+                _, loss_out = sess.run([apply_gradient_op,losses_mean],feed_dict={is_training:True})
+                #print(logit_out[0])
+                # We regularly check the loss
+                if step % 10 == 0:
+                    print('epoch:{}, step:{} - loss:{}'.format(epoch, step, loss_out))
+                    #print("Accuracy: {}".format(sess.run(batch_accuracy, feed_dict={is_training:False})))
+                #print(feed_batch_label[0])
+
+    except:
+        coord.request_stop()
+    finally:
+        coord.request_stop()
+        coord.join(threads)
     coord.request_stop()
     coord.join(threads)
     sess.close()
