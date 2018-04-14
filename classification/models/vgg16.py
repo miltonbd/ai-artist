@@ -7,11 +7,12 @@ VGG_MEAN = [103.939, 116.779, 123.68]# Mean value of pixels in R G and B channel
 
 class Vgg16(object):
 
-    def __init__(self, vgg_npy_path = None, num_classes=21):
+    def __init__(self, num_classes=21):
         self.num_classes = num_classes
-        if os.path.exists(vgg_npy_path):
-            self.data_dict = np.load(vgg_npy_path, encoding='latin1').item()
-            print("Pretrained model loaded from {}".format(vgg_npy_path))
+        self.vgg_npy_path="/home/milton/dataset/trained_models/vgg16.npy"
+        if os.path.exists(self.vgg_npy_path):
+            self.data_dict = np.load(self.vgg_npy_path, encoding='latin1').item()
+            print("Pretrained model loaded from {}".format(self.vgg_npy_path))
 
         return
 

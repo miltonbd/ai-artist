@@ -6,7 +6,109 @@ import _pickle
 from keras.utils import to_categorical
 
 
+data_dir = "/home/milton/dataset/cifar/cifar10"
+tran_dir = os.path.join(data_dir, "train")
+test_dir = os.path.join(data_dir, "test")
 ValidImageFormats= {'jpg','jpeg','png','gif'}
+
+
+cifar10_class_labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+
+
+def cifar10_save():
+
+    # batch_file = os.path.join(data_dir,"batches.meta")
+    # with open(batch_file, mode='rb') as f:
+    #     classes=_pickle.load(f, encoding="bytes")
+    #     class_names=classes[b'label_names']
+    #     for i in range(10):
+    #         class_names[i] = class_names[i].decode('utf-8')
+    #     print(class_names)
+    for class_name in cifar10_class_labels:
+        class_dir = os.path.join(tran_dir, class_name)
+        if not os.path.exists(class_dir):
+            os.mkdir(class_dir)
+        class_dir = os.path.join(test_dir, class_name)
+        if not os.path.exists(class_dir):
+            os.mkdir(class_dir)
+
+    images=[]
+    labels=[]
+    for i in np.arange(1, 6):
+        train_file = os.path.join(data_dir, 'data_batch_{}'.format(i))
+        #print(train_file)
+        with open(train_file, mode='rb') as f:
+            data_dict = _pickle.load(f, encoding="bytes")
+            labels_batch = data_dict[b'labels']
+            data_batch = data_dict[b'data']
+            for j in range(len(labels_batch)):
+                images.append(data_batch[j])
+                labels.append(labels_batch[j])
+
+    for i in range(len(images)):
+        img_flat = images[i]
+        img_R = img_flat[0:1024].reshape((32, 32))
+        img_G = img_flat[1024:2048].reshape((32, 32))
+        img_B = img_flat[2048:3072].reshape((32, 32))
+        img = np.dstack((img_R, img_G, img_B))
+        #images_final = np.reshape(img, [32 * 32 * 3])
+        images_final = img.astype(np.uint8)
+        label_index = labels[i]
+        label = cifar10_class_labels[label_index]
+        file_path = os.path.join(tran_dir,label,"{}.jpg".format(i+1))
+        imageio.imwrite(file_path, images_final)
+        #print(label)
+
+    test_images=[]
+    test_labels=[]
+    test_file = os.path.join(data_dir, 'test_batch')
+    with open(test_file, mode='rb') as f:
+        data_dict = _pickle.load(f, encoding="bytes")
+        labels_batch = data_dict[b'labels']
+        data_batch = data_dict[b'data']
+        for j in range(len(labels_batch)):
+            test_images.append(data_batch[j])
+            test_labels.append(labels_batch[j])
+    for i in range(len(test_images)):
+        img_flat = test_images[i]
+        img_R = img_flat[0:1024].reshape((32, 32))
+        img_G = img_flat[1024:2048].reshape((32, 32))
+        img_B = img_flat[2048:3072].reshape((32, 32))
+        img = np.dstack((img_R, img_G, img_B))
+        #images_final = np.reshape(img, [32 * 32 * 3])
+        images_final = img.astype(np.uint8)
+        label_index = labels[i]
+        label = cifar10_class_labels[label_index]
+        file_path = os.path.join(test_dir,label,"{}.jpg".format(i+1))
+        imageio.imwrite(file_path, images_final)
+
+
+#cifar10_save()
+
+
+def get_test_files_cifar_10_classification():
+   train_files=[]
+   train_labels=[]
+   for class_name in cifar10_class_labels:
+       class_dir = os.path.join(test_dir, class_name)
+       for file_name in os.listdir(class_dir):
+           file_path = os.path.join(class_dir, file_name)
+           train_files.append(file_path)
+           train_labels.append(cifar10_class_labels.index(class_name))
+   return train_files, train_labels
+
+
+def get_train_files_cifar_10_classification():
+   train_files=[]
+   train_labels=[]
+   for class_name in cifar10_class_labels:
+       class_dir = os.path.join(tran_dir, class_name)
+       for file_name in os.listdir(class_dir):
+           file_path = os.path.join(class_dir, file_name)
+           train_files.append(file_path)
+           train_labels.append(cifar10_class_labels.index(class_name))
+   return train_files, train_labels
+
 
 class DataReaderCifar10(object):
     """

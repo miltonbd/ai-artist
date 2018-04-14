@@ -8,6 +8,9 @@ import numpy as np
 from sklearn import metrics
 from utils.data_reader_cifar10 import DataReaderCifar10
 import utils.TensorflowUtils as tfutils  # place all utitilies funvtions here
+from classification.models import vgg16
+from utils.data_reader_cifar10 import *
+from utils.queue_runner_utils import QueueRunnerHelper
 
 # Train
 step_num = 10001
