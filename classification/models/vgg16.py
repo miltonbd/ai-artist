@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import tensorflow as tf
-import TensorflowUtils as utils
+import  utils.TensorflowUtils as utils
 
 VGG_MEAN = [103.939, 116.779, 123.68]# Mean value of pixels in R G and B channels
 

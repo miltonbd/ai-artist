@@ -1,15 +1,6 @@
 import tensorflow as tf
-import numpy as np
-import os
-import _pickle
 from utils.data_reader_cifar10 import *
-import time
-from classification.vgg16 import Vgg16
 from classification.my_net1 import MyCifar10Classifier
-import sys
-import imageio
-from sklearn.metrics import confusion_matrix
-
 
 model1 = "models/gpu_1_model.ckpt"
 model2 = "models/gpu_2_model.ckpt"

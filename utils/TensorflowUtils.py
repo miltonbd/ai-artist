@@ -135,7 +135,9 @@ def conv2d_strided(x, W, b):# Simple strided convolution for transpose convoluti
     return tf.nn.bias_add(conv, b)
 
 
-def conv2d_transpose_strided(x, W, b, output_shape=None, stride = 2): # Use traspose convolution with stride of 2 to increase image size to output shape if output shape is none double input image shape
+def conv2d_transpose_strided(x, W, b, output_shape=None, stride = 2):
+    # Use traspose convolution with stride of 2 to increase image size to output shape
+    # if output shape is none double input image shape
     # print x.get_shape()
     # print W.get_shape()
     if output_shape is None:

@@ -10,6 +10,7 @@ import random
 import os
 import time
 import _pickle
+from classification.models import vgg16
 
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")
@@ -19,8 +20,10 @@ image_height = 32
 image_width = 32
 num_channels = 3
 num_classes=10
-batch_size = 128 * num_gpus
+batch_size_train = 100 * num_gpus
+batch_size_test = 100 * num_gpus
 num_threads=8 # keep 4 for 2 gpus
+epochs=100
 
 voc_class_labels = ['aeroplane','bicycle', 'bird', 'boat',
                     'bottle', 'bus', 'car', 'cat', 'chair', 'cow',
@@ -160,7 +163,7 @@ def process_batch(train_input_queue):
     train_label = tf.reshape(train_label_one_hot, [num_classes, ])
     return float_image, train_label
 
-def make_queue(float_image, train_label):
+def make_queue(float_image, train_label, batch_size):
     q = tf.FIFOQueue(capacity=5 * batch_size, dtypes=[tf.float32, tf.float32],
                      shapes=[(image_height, image_width, 3), (num_classes,)])
     enqueue_op = q.enqueue([float_image, train_label])
@@ -267,7 +270,7 @@ def core_model(input_img, y):
     pool3 = tf.nn.max_pool(norm3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='SAME', name='pool3')
 
     with tf.variable_scope('fully_connected1') as scope:
-        reshape = tf.layers.flatten(pool3)
+        reshape = tf.layers.flatten(tf.nn.dropout(pool3,keep_prob=0.5))
         dim = reshape.get_shape()[1].value
         weights = variable_with_weight_decay('weights', shape=[dim, 384], stddev=0.04, wd=0.004)
         biases = variable_on_cpu('biases', [384], tf.constant_initializer(0.1))
@@ -289,7 +292,8 @@ def core_model(input_img, y):
     tf.summary.histogram('Fully connected layers/output', softmax_linear)
 
 
-    y_pred_cls = tf.argmax(softmax_linear, axis=1)
+    y_pred_cls = tf.argmax(tf.nn.softmax(softmax_linear), axis=1)
+    tf.get_variable_scope().reuse_variables()
 
     return  softmax_linear, y_pred_cls
 
@@ -302,7 +306,7 @@ with  tf.device('/cpu:0'):
 
     sess = tf.Session(config=tf.ConfigProto(
         allow_soft_placement=True,
-        log_device_placement=True))
+        log_device_placement=False))
     sess.as_default()
     # initialize the queue threads to start to shovel data
 
@@ -311,11 +315,11 @@ with  tf.device('/cpu:0'):
     #random.shuffle(all_filepath_labels)
     train_filepaths, all_train_labels = get_train_files_cifar_10_classification()
     float_image, train_label = process_batch(inti_queue(train_filepaths, all_train_labels))
-    batch_data_train, batch_label_train = make_queue(float_image, train_label)
+    batch_data_train, batch_label_train = make_queue(float_image, train_label,batch_size_train)
 
-    test_filepaths, all_test_labels = get_train_files_cifar_10_classification()
+    test_filepaths, all_test_labels = get_test_files_cifar_10_classification()
     float_image, train_label = process_batch(inti_queue(test_filepaths, all_test_labels))
-    batch_data_test, batch_label_test = make_queue(float_image, train_label)
+    batch_data_test, batch_label_test = make_queue(float_image, train_label, batch_size_test)
 
     batch_data, batch_label = tf.cond(is_training,
                          lambda:(batch_data_train, batch_label_train),
@@ -330,18 +334,20 @@ with  tf.device('/cpu:0'):
     tower_grads = []
     losses = []
     y_pred_classes = []
+    vgg=vgg16.Vgg16(vgg_npy_path="/home/milton/dataset/trained_models/vgg16.npy",num_classes=10)
 
     for i in range(num_gpus):
         with tf.device('/gpu:{}'.format(i)):
             with tf.name_scope("tower_{}".format(i)) as scope:
-
-                output, y_pred_class = core_model(features_split[i], labels_split[i])
+                #output, y_pred_class = core_model(features_split[i], labels_split[i])
+                x_input=tf.reshape(features_split[i],[-1,32,32,3])
+                logits=vgg.build(x_input,keep_prob=0.6)
                 # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
                 # # losses = tf.get_collection('losses', scope)
                 #
                 # # Calculate the total loss for the current tower.
                 # # loss = tf.add_n(losses, name='total_loss')
-                tf.losses.softmax_cross_entropy(labels_split[i], output)
+                tf.losses.softmax_cross_entropy(labels_split[i], tf.reshape(logits,[100,10]))
                 update_ops = tf.get_collection(
                     tf.GraphKeys.UPDATE_OPS, scope)
                 updates_op = tf.group(*update_ops)
@@ -355,21 +361,31 @@ with  tf.device('/cpu:0'):
                     grads = optimizer.compute_gradients(total_loss)
                     # Keep track of the gradients across all towers.
                     tower_grads.append(grads)
-                    y_pred_classes.append(y_pred_class)
+                    soft_max = tf.nn.softmax(logits=logits)
+                    predict = tf.argmax(soft_max, axis=1)
+                    y_pred_classes.append(predict)
 
     # We must calculate the mean of each gradient. Note that this is the
     # synchronization point across all towers.
-    grads = average_gradients(tower_grads)
-    apply_gradient_op = optimizer.apply_gradients(grads, global_step=global_step)
+    avg_grads = average_gradients(tower_grads)
+    apply_gradient_op = optimizer.apply_gradients(avg_grads, global_step=global_step)
 
     losses_mean = tf.reduce_mean(losses)
 
 
-    y_pred_classes_op=tf.reshape(tf.stack(y_pred_classes, axis=0),[-1])
-    correct_prediction = tf.equal(y_pred_classes_op, tf.argmax(batch_label, axis=1))
-    batch_accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    y_pred_classes_op_batch=tf.reshape(tf.stack(y_pred_classes, axis=0), [-1])
+    correct_prediction_batch = tf.cast(tf.equal(y_pred_classes_op_batch, tf.argmax(batch_label, axis=1)), tf.float32)
+    batch_accuracy = tf.reduce_mean(correct_prediction_batch)
 
+    print ("from the train set:")
+    total_train_items = len(all_train_labels)
+    total_test_items = len(test_filepaths)
+    batches_per_epoch_train = total_train_items//(num_gpus*batch_size_train)
+    batches_per_epoch_test = total_test_items//(batch_size_test) # todo use multi gpu for testing.
 
+    print("Total Train:{}, batch size: {}, batches per epoch: {}".format(total_train_items, batch_size_train, batches_per_epoch_train))
+    print("Total Test:{}, batch size: {}, batches per epoch: {}".format(total_test_items, batch_size_test,
+                                                                        batches_per_epoch_test))
     sess.run(tf.global_variables_initializer())
 
     print("input pipeline ready")
@@ -378,25 +394,32 @@ with  tf.device('/cpu:0'):
     coord = tf.train.Coordinator()
     threads = tf.train.start_queue_runners(coord=coord,sess=sess)
 
-    print ("from the train set:")
-    total_train_items = len(all_train_labels)
-    batches_per_epoch = total_train_items//batch_size
-    print("Total:{}, batch size: {}, batches per epoch: {}".format(total_train_items, batch_size, batches_per_epoch))
+    test_classes=[]
+    for test_index in range(batches_per_epoch_test):
+        test_classes.append(correct_prediction_batch)
+
+    test_classes_op=tf.stack(test_classes, axis=0)
+    correct_prediction_test = tf.reshape(test_classes,[-1])
+    test_accuracy = tf.reduce_mean(correct_prediction_test)
+
     try:
-        for epoch in range(1):
-            for step in range(batches_per_epoch):
+        for epoch in range(100):
+            for step in range(batches_per_epoch_train):
                 if coord.should_stop():
                     break
-
-                _, loss_out = sess.run([apply_gradient_op,losses_mean],feed_dict={is_training:True})
+                _, loss_out, batch_accuracy_out = sess.run([apply_gradient_op,losses_mean, batch_accuracy],feed_dict={is_training:True})
                 #print(logit_out[0])
                 # We regularly check the loss
-                if step % 10 == 0:
-                    print('epoch:{}, step:{} - loss:{}'.format(epoch, step, loss_out))
-                    #print("Accuracy: {}".format(sess.run(batch_accuracy, feed_dict={is_training:False})))
+                # if step % 50 == 0:
+                #     print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,batch_accuracy_out))
                 #print(feed_batch_label[0])
 
-    except:
+
+            prediction_test_out, = sess.run([test_accuracy],feed_dict={is_training: False})
+            print("Test Accuracy: {}".format(prediction_test_out))
+
+    except Exception as e:
+        print(e)
         coord.request_stop()
     finally:
         coord.request_stop()
