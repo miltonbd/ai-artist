@@ -14,6 +14,14 @@ ValidImageFormats= {'jpg','jpeg','png','gif'}
 
 cifar10_class_labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
+def create_cifar10_class_dir():
+    for class_name in cifar10_class_labels:
+        class_dir = os.path.join(tran_dir, class_name)
+        if not os.path.exists(class_dir):
+            os.mkdir(class_dir)
+        class_dir = os.path.join(test_dir, class_name)
+        if not os.path.exists(class_dir):
+            os.mkdir(class_dir)
 
 def cifar10_save():
 
@@ -24,13 +32,7 @@ def cifar10_save():
     #     for i in range(10):
     #         class_names[i] = class_names[i].decode('utf-8')
     #     print(class_names)
-    for class_name in cifar10_class_labels:
-        class_dir = os.path.join(tran_dir, class_name)
-        if not os.path.exists(class_dir):
-            os.mkdir(class_dir)
-        class_dir = os.path.join(test_dir, class_name)
-        if not os.path.exists(class_dir):
-            os.mkdir(class_dir)
+
 
     images=[]
     labels=[]
@@ -59,6 +61,8 @@ def cifar10_save():
         imageio.imwrite(file_path, images_final)
         #print(label)
 
+def cifar10_save_test():
+
     test_images=[]
     test_labels=[]
     test_file = os.path.join(data_dir, 'test_batch')
@@ -77,7 +81,7 @@ def cifar10_save():
         img = np.dstack((img_R, img_G, img_B))
         #images_final = np.reshape(img, [32 * 32 * 3])
         images_final = img.astype(np.uint8)
-        label_index = labels[i]
+        label_index = test_labels[i]
         label = cifar10_class_labels[label_index]
         file_path = os.path.join(test_dir,label,"{}.jpg".format(i+1))
         imageio.imwrite(file_path, images_final)
@@ -87,15 +91,16 @@ def cifar10_save():
 
 
 def get_test_files_cifar_10_classification():
-   train_files=[]
-   train_labels=[]
+   files=[]
+   labels=[]
    for class_name in cifar10_class_labels:
        class_dir = os.path.join(test_dir, class_name)
        for file_name in os.listdir(class_dir):
            file_path = os.path.join(class_dir, file_name)
-           train_files.append(file_path)
-           train_labels.append(cifar10_class_labels.index(class_name))
-   return train_files, train_labels
+           files.append(file_path)
+           labels.append(cifar10_class_labels.index(class_name))
+   print("path:{}, label:{}".format(files[0],labels[0]))
+   return files, labels
 
 
 def get_train_files_cifar_10_classification():
@@ -214,3 +219,8 @@ class DataReaderCifar10(object):
     def shuffle(self):
         pass
 
+
+
+if __name__ == '__main__':
+    create_cifar10_class_dir()
+    cifar10_save_test()

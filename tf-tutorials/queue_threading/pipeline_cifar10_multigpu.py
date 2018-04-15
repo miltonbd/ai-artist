@@ -23,8 +23,13 @@ image_height = 32
 image_width = 32
 num_channels = 3
 num_classes=10
-batch_size_train = 100 * num_gpus
-batch_size_test = 100 * num_gpus
+batch_size_train_per_gpu = 100
+batch_size_test_per_gpu = 100
+learning_rate = 1e-2
+
+batch_size_train = batch_size_train_per_gpu * num_gpus
+batch_size_test = batch_size_test_per_gpu * num_gpus
+
 num_threads=8 # keep 4 for 2 gpus
 epochs=100
 
@@ -192,12 +197,12 @@ with  tf.device('/cpu:0'):
 
     queue_helper = QueueRunnerHelper(image_height, image_width, num_classes, num_threads)
 
-    float_image, train_label = queue_helper.process_batch(queue_helper.init_queue(train_filepaths, all_train_labels))
-    batch_data_train, batch_label_train = queue_helper.make_queue(float_image, train_label, batch_size_train)
+    train_float_image, train_label = queue_helper.process_batch(queue_helper.init_queue(train_filepaths, all_train_labels))
+    batch_data_train, batch_label_train = queue_helper.make_queue(train_float_image, train_label, batch_size_train)
 
     test_filepaths, all_test_labels = get_train_files_cifar_10_classification()
-    float_image, train_label = queue_helper.process_batch(queue_helper.init_queue(test_filepaths, all_test_labels))
-    batch_data_test, batch_label_test = queue_helper.make_queue(float_image, train_label, batch_size_test)
+    test_float_image, test_label = queue_helper.process_batch(queue_helper.init_queue(test_filepaths, all_test_labels))
+    batch_data_test, batch_label_test = queue_helper.make_queue(test_float_image, test_label, batch_size_test)
 
     batch_data, batch_label = tf.cond(is_training,
                          lambda:(batch_data_train, batch_label_train),
@@ -209,29 +214,29 @@ with  tf.device('/cpu:0'):
 
     logits =  tf.reshape(model.conv8, [-1, num_classes])
 
-    global_step = tf.get_variable('global_step', [], initializer=tf.constant_initializer(0), trainable=False)
-
-    optimizer = tf.train.GradientDescentOptimizer(1e-2)
+    optimizer = tf.train.AdamOptimizer()
     features_split = tf.split(batch_data, num_gpus, axis=0)
     labels_split = tf.split(batch_label, num_gpus, axis=0)
 
     tower_grads = []
     losses = []
     y_pred_classes = []
-    vgg=vgg16.Vgg16(num_classes=10)
+    vgg=vgg16.Vgg16(num_classes=num_classes)
 
     for i in range(num_gpus):
         with tf.device('/gpu:{}'.format(i)):
             with tf.name_scope("tower_{}".format(i)) as scope:
                 #logits, y_pred_class = core_model(features_split[i], labels_split[i])
                 x_input=tf.reshape(features_split[i],[-1,32,32,3])
-                vgg.build(x_input,0.5)
+                model.build(features_split[i], 0.5)
+                logits = tf.reshape(model.conv8, [-1, num_classes])
                 # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
                 # # losses = tf.get_collection('losses', scope)
                 #
                 # # Calculate the total loss for the current tower.
                 # # loss = tf.add_n(losses, name='total_loss')
-                tf.losses.softmax_cross_entropy(labels_split[i], tf.reshape(logits,[100,10]))
+                #print(logits.get_shape())
+                tf.losses.softmax_cross_entropy(None,labels_split[i], logits)
                 update_ops = tf.get_collection(
                     tf.GraphKeys.UPDATE_OPS, scope)
                 updates_op = tf.group(*update_ops)
@@ -265,7 +270,7 @@ with  tf.device('/cpu:0'):
     total_train_items = len(all_train_labels)
     total_test_items = len(test_filepaths)
     batches_per_epoch_train = total_train_items//(num_gpus*batch_size_train)
-    batches_per_epoch_test = total_test_items//(batch_size_test) # todo use multi gpu for testing.
+    batches_per_epoch_test = total_test_items//(num_gpus*batch_size_test) # todo use multi gpu for testing.
 
     print("Total Train:{}, batch size: {}, batches per epoch: {}".format(total_train_items, batch_size_train, batches_per_epoch_train))
     print("Total Test:{}, batch size: {}, batches per epoch: {}".format(total_test_items, batch_size_test,
