@@ -7,6 +7,6 @@ class MyCifar10Classifier(BaseClassifier):
 
 
 if __name__ == '__main__':
-    params={}
+    params={'batch_size_train_per_gpu':5}
     classifier=MyCifar10Classifier(params)
     classifier.train()

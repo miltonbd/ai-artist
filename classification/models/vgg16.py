@@ -16,9 +16,10 @@ class Vgg16(object):
 
         return
 
-    def build(self, rgb, keep_prob):
+    def build(self, rgb, keep_prob, isSegmentation=False):
         self.SumWeights = tf.constant(0.0, name="SumFiltersWeights") #Sum of weights of all filters for weight decay loss
 
+        #tf.get_variable_scope().reuse_variables()
 
         print("build model started")
         # rgb_scaled = rgb * 255.0
@@ -78,6 +79,10 @@ class Vgg16(object):
                                    name="W8")  # Basically the output num of classes imply the output is already the prediction this is flexible can be change however in multinet class number of 2 give good results
         b8 = utils.bias_variable([self.num_classes], name="b8")
         self.conv8 = utils.conv2d_basic(self.relu_dropout7, W8, b8)
+        #tf.get_variable_scope().reuse_variables()
+
+        if not isSegmentation:
+            return
         # annotation_pred1 = tf.argmax(conv8, dimension=3, name="prediction1")
         # -------------------------------------Build Decoder --------------------------------------------------------------------------------------------------
         # now to upscale to actual image size
@@ -154,17 +159,21 @@ class Vgg16(object):
 
 
     def get_conv_filter(self, name):
-        var = tf.Variable(self.data_dict[name][0], name="filter_" + name)
+        #var = tf.Variable(self.data_dict[name][0], name="filter_" + name)
+        var = tf.get_variable(name="filter_" + name, initializer=self.data_dict[name][0] )
         self.SumWeights += tf.nn.l2_loss(var)
         return var
 
 
     def get_bias(self, name):
-        return tf.Variable(self.data_dict[name][1], name="biases_" + name)
+        with tf.device('/cpu:0'):
+            return tf.get_variable(name="biases_" + name, initializer=self.data_dict[name][1])
+        #return tf.Variable(self.data_dict[name][1], name="biases_" + name)
 
 
     def get_fc_weight(self, name):
-        return tf.Variable(self.data_dict[name][0], name="weights_" + name)
+        return tf.get_variable(name="weights_" + name, initializer= self.data_dict[name][0])
+        #return tf.Variable(self.data_dict[name][0], name="weights_" + name)
 
 
 

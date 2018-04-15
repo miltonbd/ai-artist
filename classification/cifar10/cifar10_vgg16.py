@@ -6,7 +6,24 @@ from utils.data_reader_cifar10 import *
 from utils.queue_runner_utils import QueueRunnerHelper
 from sklearn import metrics
 
-
+data_dir = "/home/milton/dataset/cifar/cifar10"
+tran_dir = os.path.join(data_dir, "train")
+test_dir = os.path.join(data_dir, "test")
+num_gpus = 1
+image_height = 32
+image_width = 32
+num_channels = 3
+num_classes = 10
+batch_size_train_per_gpu = 200
+batch_size_test_per_gpu = 200
+batch_size_train = batch_size_train_per_gpu * num_gpus
+batch_size_test = batch_size_test_per_gpu * num_gpus
+num_threads = 2  # keep 4 for 2 gpus
+learning_rate = 1e-3
+epochs = 100
+all_train_data = get_train_files_cifar_10_classification()
+all_test_data = get_test_files_cifar_10_classification()
+dropout = 0.5
 #random.shuffle(all_filepath_labels)
 train_filepaths, all_train_labels = get_train_files_cifar_10_classification()
 test_filepaths, all_test_labels = get_test_files_cifar_10_classification()

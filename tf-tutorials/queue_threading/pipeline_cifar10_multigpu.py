@@ -236,7 +236,7 @@ with  tf.device('/cpu:0'):
                 # # Calculate the total loss for the current tower.
                 # # loss = tf.add_n(losses, name='total_loss')
                 #print(logits.get_shape())
-                tf.losses.softmax_cross_entropy(None,labels_split[i], logits)
+                tf.losses.softmax_cross_entropy(labels_split[i], logits)
                 update_ops = tf.get_collection(
                     tf.GraphKeys.UPDATE_OPS, scope)
                 updates_op = tf.group(*update_ops)
