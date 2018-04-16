@@ -34,8 +34,6 @@ import tensorflow as tf
 
 tf.summary.FileWriterCache.clear()
 # Import data
-
-
 # construction phase
 
 def model(input_images):
@@ -50,9 +48,6 @@ def model(input_images):
             y_historgram = tf.summary.histogram("activation",logits)
             tf.summary.image("images",x_images, 1)
         return  logits
-
-
-
 
 def predict_valid(show_confusion_matrix=False):
     '''

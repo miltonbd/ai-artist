@@ -27,12 +27,12 @@ class BaseClassifier:
         self.image_width = 32 if not 'image_width' in params else params['image_width']
         self.num_channels = 3
         self.num_classes = 10 if not 'num_classes' in params else params['num_classes']
-        self.batch_size_train_per_gpu = 5 if not 'batch_size_train_per_gpu' in params else params['batch_size_train_per_gpu']
-        self.batch_size_test_per_gpu = 5 if not 'batch_size_test_per_gpu' in params else params['batch_size_test_per_gpu']
+        self.batch_size_train_per_gpu = 100 if not 'batch_size_train_per_gpu' in params else params['batch_size_train_per_gpu']
+        self.batch_size_test_per_gpu = 100 if not 'batch_size_test_per_gpu' in params else params['batch_size_test_per_gpu']
         self.batch_size_train = self.batch_size_train_per_gpu * self.num_gpus
         self.batch_size_test = self.batch_size_test_per_gpu * self.num_gpus
         self.num_threads = 2  # keep 4 for 2 gpus
-        self.learning_rate = 1e-3 if not 'learning_rate' in params else params['learning_rate']
+        self.learning_rate = 0.01 if not 'learning_rate' in params else params['learning_rate']
         self.epochs = 100 if not 'epochs' in params else params['epochs']
         self.all_train_data = get_train_files_cifar_10_classification() if train_items == None else train_items
         self.all_test_data = get_test_files_cifar_10_classification() if test_items == None else test_items
@@ -127,8 +127,8 @@ class BaseClassifier:
             avg_grads = average_gradients(tower_grads)
             apply_gradient_op = optimizer.apply_gradients(avg_grads, global_step=global_step)
 
-            y_pred_classes=tf.reshape(tf.stack(tower_losses, axis=0), [-1])
-            loss_op = tf.reduce_mean(y_pred_classes)
+            batch_loss=tf.reshape(tf.stack(tower_losses, axis=0), [-1])
+            loss_op = tf.reduce_mean(batch_loss)
 
             # model.build(batch_data, self.dropout)
             # logits = tf.reshape(model.conv8, [-1, self.num_classes])
@@ -137,10 +137,11 @@ class BaseClassifier:
             # losses = tf.nn.sigmoid_cross_entropy_with_logits(None, tf.cast(batch_label, tf.float32), logits)
             # loss_op = tf.reduce_mean(losses)
 
-            y_pred_classes_op_batch = tf.reshape(tf.stack(y_pred_classes, axis=0), [-1])
-            correct_prediction_batch  = tf.equal(y_pred_classes_op_batch, tf.argmax(labels_split[i], axis=1))
+            y_pred_classes_op_batch = tf.reshape(tf.stack(tower_y_pred_classes, axis=0), [-1])
+            labels_armax_batch =tf.argmax(batch_label, axis=1)
+            correct_prediction_batch  = tf.equal(y_pred_classes_op_batch, labels_armax_batch )
 
-            batch_accuracy = tf.reduce_mean(correct_prediction_batch)
+            batch_accuracy = tf.reduce_mean(tf.cast(correct_prediction_batch, tf.float32))
             # accuracy = tf.Print(accuracy, data=[accuracy], message="accuracy:")
 
             # We add the training op ...
@@ -151,8 +152,8 @@ class BaseClassifier:
                 test_classes.append(correct_prediction_batch)
 
             test_classes_op = tf.stack(test_classes, axis=0)
-            correct_prediction_test = tf.reshape(test_classes, [-1])
-            test_accuracy = tf.reduce_mean(correct_prediction_test)
+            correct_prediction_test = tf.reshape(test_classes_op, [-1])
+            test_accuracy = tf.reduce_mean(tf.cast(correct_prediction_test, tf.float32))
 
             print("input pipeline ready")
             start = time.time()
@@ -172,16 +173,16 @@ class BaseClassifier:
                  for step in range(batches_per_epoch_train):
                      if coord.should_stop():
                          break
-                     batch_accuracy_out = sess.run([y_pred_classes_op_batch],
+                     _,loss_out, batch_accuracy_out = sess.run([train_op,loss_op,batch_accuracy],
                                                                 feed_dict={is_training: True})
 
                      if step % 50 == 0:
-                         print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(1, 1, 1,
+                         print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,
                                                                                        batch_accuracy_out))
 
                  # for test_index in range(batches_per_epoch_test):
                  # test_classes.append(correct_prediction_batch)
-                 prediction_test_out, = sess.run([batch_accuracy], feed_dict={is_training: False})
+                 prediction_test_out, = sess.run([test_accuracy], feed_dict={is_training: False})
                  print("Test Accuracy: {}".format(prediction_test_out))
 
             except Exception as e:
