@@ -8,6 +8,7 @@ from utils.data_reader_cifar10 import *
 from utils.queue_runner_utils import QueueRunnerHelper
 from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
+from classification.models.simplenetmultigpu import model as multiGpuModel
 
 
 """
@@ -89,8 +90,11 @@ class BaseClassifier:
                      with tf.name_scope("tower_{}".format(i)) as scope:
                          # logits, y_pred_class = core_model(features_split[i], labels_split[i])
                          x_input = tf.reshape(features_split[i], [-1, self.image_height, self.image_width, 3])
-                         model.build(x_input, self.dropout)
-                         logits_per_gpu = tf.reshape(model.conv8, [-1, self.num_classes])
+                         logits_per_gpu = multiGpuModel(features_split[i],
+                                                        self.image_height, self.image_width, 3,
+                                                self.num_classes)
+
+                         #logits_per_gpu = tf.reshape(model.conv8, [-1, self.num_classes])
                          # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
                          # # losses = tf.get_collection('losses', scope)
                          #
@@ -134,8 +138,8 @@ class BaseClassifier:
             # loss_op = tf.reduce_mean(losses)
 
             y_pred_classes_op_batch = tf.reshape(tf.stack(y_pred_classes, axis=0), [-1])
-            correct_prediction_batch = tf.cast(
-            tf.equal(tf.argmax(y_pred_classes_op_batch, axis=1), tf.argmax(batch_label, axis=1)), tf.float32)
+            correct_prediction_batch  = tf.equal(y_pred_classes_op_batch, tf.argmax(labels_split[i], axis=1))
+
             batch_accuracy = tf.reduce_mean(correct_prediction_batch)
             # accuracy = tf.Print(accuracy, data=[accuracy], message="accuracy:")
 

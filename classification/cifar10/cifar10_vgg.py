@@ -5,7 +5,9 @@ from classification.models import vgg16
 from utils.data_reader_cifar10 import *
 from utils.queue_runner_utils import QueueRunnerHelper
 from sklearn import metrics
+from classification.models.simplenetmultigpu import model as multiGpuModel
 
+print("pid {}".format(os.getpid()))
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")
 test_dir = os.path.join(data_dir, "test")
@@ -14,8 +16,8 @@ image_height = 32
 image_width = 32
 num_channels = 3
 num_classes = 10
-batch_size_train_per_gpu = 200
-batch_size_test_per_gpu = 200
+batch_size_train_per_gpu = 250
+batch_size_test_per_gpu = 250
 batch_size_train = batch_size_train_per_gpu * num_gpus
 batch_size_test = batch_size_test_per_gpu * num_gpus
 num_threads = 2  # keep 4 for 2 gpus
@@ -51,15 +53,15 @@ batch_data_test, batch_label_test = queue_helper.make_queue(test_float_image, te
 batch_data, batch_label = tf.cond(is_training,
                      lambda:(batch_data_train, batch_label_train),
                      lambda:(batch_data_test, batch_label_test))
-
 model=vgg16.Vgg16(num_classes=num_classes)
-model.build(batch_data,0.5)
-logits=tf.reshape(model.conv8 ,[-1,num_classes])
-#print(logits.get_shape())
-#logits=tf.Print(logits,[logits.get_shape()])
-losses = tf.nn.sigmoid_cross_entropy_with_logits (None, tf.cast(batch_label, tf.float32), logits)
-loss_op = tf.reduce_mean(losses)
+with tf.device('/gpu:1'):
+    model.build(batch_data,0.5)
+    logits=model.logits
+    #print(logits.get_shape())
+    #logits=tf.Print(logits,[logits.get_shape()])
+    losses = tf.nn.sigmoid_cross_entropy_with_logits (None, tf.cast(batch_label, tf.float32), logits)
 
+loss_op = tf.reduce_mean(losses)
 y_pred_classes_op_batch = tf.nn.softmax(logits)
 correct_prediction_batch = tf.cast(tf.equal(tf.argmax(y_pred_classes_op_batch,axis=1), tf.argmax(batch_label, axis=1)), tf.float32)
 batch_accuracy = tf.reduce_mean(correct_prediction_batch)
@@ -80,44 +82,43 @@ test_accuracy = tf.reduce_mean(correct_prediction_test)
 
 print("input pipeline ready")
 start = time.time()
-with  tf.device('/cpu:0'):
-    # initialize the variables
-    global_step = tf.get_variable(
-        'global_step', [],
-        initializer=tf.constant_initializer(0), trainable=False)
-    sess=tf.Session()
-    # initialize the variables
-    sess.run(tf.global_variables_initializer())
 
-    print("input pipeline ready")
-    start = time.time()
+# initialize the variables
+global_step = tf.get_variable(
+    'global_step', [],
+    initializer=tf.constant_initializer(0), trainable=False)
+sess=tf.Session()
+# initialize the variables
+sess.run(tf.global_variables_initializer())
 
-    coord = tf.train.Coordinator()
-    threads = tf.train.start_queue_runners(coord=coord,sess=sess)
+print("input pipeline ready")
+start = time.time()
 
+coord = tf.train.Coordinator()
+threads = tf.train.start_queue_runners(coord=coord,sess=sess)
 
-    try:
-        for epoch in range(100):
-            for step in range(batches_per_epoch_train):
-                if coord.should_stop():
-                    break
-                _, loss_out, batch_accuracy_out = sess.run([train_op,loss_op, batch_accuracy],feed_dict={is_training:True})
+try:
+    for epoch in range(100):
+        for step in range(batches_per_epoch_train):
+            if coord.should_stop():
+                break
+            _, loss_out, batch_accuracy_out = sess.run([train_op,loss_op, batch_accuracy],feed_dict={is_training:True})
 
-                if step % 50 == 0:
-                    print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,batch_accuracy_out))
+            if step % 50 == 0:
+                print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,batch_accuracy_out))
 
-            #for test_index in range(batches_per_epoch_test):
-                #test_classes.append(correct_prediction_batch)
-            prediction_test_out, = sess.run([batch_accuracy],feed_dict={is_training: False})
-            print("Test Accuracy: {}".format(prediction_test_out))
+        #for test_index in range(batches_per_epoch_test):
+            #test_classes.append(correct_prediction_batch)
+        prediction_test_out, = sess.run([batch_accuracy],feed_dict={is_training: False})
+        print("Test Accuracy: {}".format(prediction_test_out))
 
-    except Exception as e:
-        print(e)
-        coord.request_stop()
-    finally:
-        coord.request_stop()
-        coord.join(threads)
+except Exception as e:
+    print(e)
+    coord.request_stop()
+finally:
     coord.request_stop()
     coord.join(threads)
-    sess.close()
-    print("Time Taken {}".format(time.time()-start))
+coord.request_stop()
+coord.join(threads)
+sess.close()
+print("Time Taken {}".format(time.time()-start))

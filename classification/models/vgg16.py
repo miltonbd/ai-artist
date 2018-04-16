@@ -79,6 +79,7 @@ class Vgg16(object):
                                    name="W8")  # Basically the output num of classes imply the output is already the prediction this is flexible can be change however in multinet class number of 2 give good results
         b8 = utils.bias_variable([self.num_classes], name="b8")
         self.conv8 = utils.conv2d_basic(self.relu_dropout7, W8, b8)
+        self.logits = tf.reshape(self.conv8, [-1, self.num_classes])
         #tf.get_variable_scope().reuse_variables()
 
         if not isSegmentation:
