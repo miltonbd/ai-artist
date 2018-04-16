@@ -65,7 +65,7 @@ class Vgg16(object):
         self.relu6 = tf.nn.relu(self.conv6, name="relu6")
         # if FLAGS.debug: utils.add_activation_summary(relu6)
         self.relu_dropout6 = tf.nn.dropout(self.relu6,
-                                           keep_prob=keep_prob)  # Apply dropout for traning need to be added only for training
+                                           keep_prob=.6)  # Apply dropout for traning need to be added only for training
 
         W7 = utils.weight_variable([1, 1, 4096, 4096], name="W7")  # 1X1 Convloution
         b7 = utils.bias_variable([4096], name="b7")

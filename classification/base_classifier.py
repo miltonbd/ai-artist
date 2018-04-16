@@ -8,7 +8,7 @@ from utils.data_reader_cifar10 import *
 from utils.queue_runner_utils import QueueRunnerHelper
 from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
-from classification.models.simplenetmultigpu import model as multiGpuModel
+from classification.models.simplenetmultigpu import SimpleModel
 
 
 """
@@ -18,7 +18,7 @@ This class is base class for all classifier. All new classifier must extend and 
 class BaseClassifier:
     __metaclass__ = ABCMeta
 
-    def __init__(self, params, train_items=None, test_items=None, valid_items=None):
+    def __init__(self, params, train_items=None, test_items=None, valid_items=None, model=None):
         self.data_dir = "/home/milton/dataset/cifar/cifar10" if not 'data_dir' in params else params['data_dir']
         self.tran_dir = os.path.join(self.data_dir, "train")
         self.test_dir = os.path.join(self.data_dir, "test")
@@ -37,6 +37,9 @@ class BaseClassifier:
         self.all_train_data = get_train_files_cifar_10_classification() if train_items == None else train_items
         self.all_test_data = get_test_files_cifar_10_classification() if test_items == None else test_items
         self.dropout=0.5  if not 'droput' in params else params['droput']
+        self.optimizer= 'adagrad'
+        self.model = SimpleModel(self.image_height,self.image_width,self.num_channels,self.num_classes) \
+            if not 'model' in params else params['model']
 
     def train(self):
         tf.reset_default_graph()
@@ -75,8 +78,7 @@ class BaseClassifier:
                                        lambda: (batch_data_train, batch_label_train),
                                        lambda: (batch_data_test, batch_label_test))
 
-            model = vgg16.Vgg16(num_classes=self.num_classes)
-            optimizer = tf.train.GradientDescentOptimizer(self.learning_rate)
+            optimizer = tf.train.RMSPropOptimizer(self.learning_rate)
 
             features_split = tf.split(batch_data, self.num_gpus, axis=0)
             labels_split = tf.split(batch_label, self.num_gpus, axis=0)
@@ -90,9 +92,7 @@ class BaseClassifier:
                      with tf.name_scope("tower_{}".format(i)) as scope:
                          # logits, y_pred_class = core_model(features_split[i], labels_split[i])
                          x_input = tf.reshape(features_split[i], [-1, self.image_height, self.image_width, 3])
-                         logits_per_gpu = multiGpuModel(features_split[i],
-                                                        self.image_height, self.image_width, 3,
-                                                self.num_classes)
+                         logits_per_gpu = self.model.build(features_split[i])
 
                          #logits_per_gpu = tf.reshape(model.conv8, [-1, self.num_classes])
                          # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
