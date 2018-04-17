@@ -5,12 +5,10 @@ import os
 import _pickle
 from keras.utils import to_categorical
 
-
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")
 test_dir = os.path.join(data_dir, "test")
 ValidImageFormats= {'jpg','jpeg','png','gif'}
-
 
 cifar10_class_labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 

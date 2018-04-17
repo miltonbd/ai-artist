@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="cifar10_vgg_multi.py works.">
+      <change beforePath="" afterPath="$PROJECT_DIR$/utils/data_augmentor.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/utils/data_preprocessor.py" />
       <change beforePath="" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/classification/base_classifier.py" afterPath="$PROJECT_DIR$/classification/base_classifier.py" />
-      <change beforePath="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" afterPath="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" />
-      <change beforePath="$PROJECT_DIR$/classification/models/vgg16.py" afterPath="$PROJECT_DIR$/classification/models/vgg16.py" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" afterPath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" />
+      <change beforePath="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" />
+      <change beforePath="$PROJECT_DIR$/utils/data_reader_cifar10.py" afterPath="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" />
@@ -23,14 +26,28 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
-            <file leaf-file-name="cifar10_vgg.py" pinned="false" current-in-tab="true">
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file leaf-file-name="cifar10_vgg.py" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg.py">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="331">
                     <caret line="79" column="49" lean-forward="false" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="49" />
                     <folding>
                       <element signature="e#0#23#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="multigpu_cifar10.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="248">
+                    <caret line="180" column="5" lean-forward="false" selection-start-line="180" selection-start-column="3" selection-end-line="181" selection-end-column="32" />
+                    <folding>
+                      <element signature="e#0#15#0" expanded="true" />
+                      <element signature="e#923#1577#0" expanded="false" />
+                      <element signature="e#1631#3158#0" expanded="false" />
                     </folding>
                   </state>
                 </provider>
@@ -43,11 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base_classifier.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base_classifier.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="91" column="47" lean-forward="false" selection-start-line="91" selection-start-column="47" selection-end-line="91" selection-end-column="47" />
+            <state relative-caret-position="349">
+              <caret line="228" column="59" lean-forward="false" selection-start-line="228" selection-start-column="54" selection-end-line="228" selection-end-column="59" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -55,11 +72,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py">
+      <file leaf-file-name="queue_runner_utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/queue_runner_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="14" />
+            <state relative-caret-position="506">
+              <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="173" column="64" lean-forward="false" selection-start-line="173" selection-start-column="64" selection-end-line="173" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -68,44 +95,38 @@
       <file leaf-file-name="cifar10_vgg_multi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="322">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multigpu_mnist.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_mnist.py">
+      <file leaf-file-name="data_augmentor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/data_augmentor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3174">
-              <caret line="178" column="51" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-              <folding>
-                <element signature="e#501#1828#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="322">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multigpu_cifar10.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py">
+      <file leaf-file-name="data_preprocessor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/data_preprocessor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="122" column="36" lean-forward="false" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#923#1577#0" expanded="false" />
-                <element signature="e#1631#3158#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="92">
+              <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simplenetmultigpu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="simplenetmultigpu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/models/simplenetmultigpu.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2875">
-              <caret line="125" column="33" lean-forward="true" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
+              <caret line="125" column="33" lean-forward="false" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -114,7 +135,7 @@
       <file leaf-file-name="TensorflowUtils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
+            <state relative-caret-position="6693">
               <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
               <folding />
             </state>
@@ -124,7 +145,7 @@
       <file leaf-file-name="gen_nn_ops.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_nn_ops.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-965">
+            <state relative-caret-position="12604">
               <caret line="561" column="4" lean-forward="false" selection-start-line="561" selection-start-column="4" selection-end-line="561" selection-end-column="4" />
               <folding />
             </state>
@@ -143,15 +164,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>y_pred_cls</find>
-      <find>accurac</find>
       <find>concat</find>
       <find>sess</find>
       <find>none</find>
       <find>10</find>
       <find>Place</find>
       <find>batch_size_gpu</find>
-      <find>summaries</find>
       <find>summary_op</find>
       <find>global</find>
       <find>accuracy</find>
@@ -173,6 +191,9 @@
       <find>data_dir</find>
       <find>glo</find>
       <find>None</find>
+      <find>summaries</find>
+      <find>graph</find>
+      <find>writer</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -184,8 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classification/skin/predict.py" />
-        <option value="$PROJECT_DIR$/classification/skin/data_prepare.py" />
         <option value="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" />
         <option value="$PROJECT_DIR$/classification/metrics.py" />
         <option value="$PROJECT_DIR$/classification/skin/predict_isic_classification.py" />
@@ -221,7 +240,6 @@
         <option value="$PROJECT_DIR$/utils/data_reader_pascal.py" />
         <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" />
         <option value="$PROJECT_DIR$/utils/queue_runner_utils.py" />
-        <option value="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/cifar10_single_gpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/cifar10_multigpu.py" />
         <option value="$PROJECT_DIR$/python/dict.ipynb" />
@@ -229,12 +247,15 @@
         <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/cifar10_my_classifier.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg16.py" />
-        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg.py" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" />
         <option value="$PROJECT_DIR$/classification/models/vgg16.py" />
-        <option value="$PROJECT_DIR$/classification/base_classifier.py" />
         <option value="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" />
+        <option value="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
+        <option value="$PROJECT_DIR$/utils/data_augmentor.py" />
+        <option value="$PROJECT_DIR$/utils/data_preprocessor.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" />
+        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" />
+        <option value="$PROJECT_DIR$/classification/base_classifier.py" />
       </list>
     </option>
   </component>
@@ -279,6 +300,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -300,12 +323,6 @@
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
               <item name="tf-tutorials" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -322,8 +339,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -866,13 +881,20 @@
       <option name="project" value="LOCAL" />
       <updated>1523905335932</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="model can be passed via params.">
+      <created>1523906625953</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1523906625953</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="2015" y="34" width="1738" height="1048" extended-state="0" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15880322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13808976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39959016" sideWeight="0.31226566" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30212766" sideWeight="0.47241563" order="2" side_tool="false" content_ui="tabs" />
@@ -916,7 +938,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ai artist project renamed." />
     <MESSAGE value="tensorflow multi gpu training avergae_gradients added." />
     <MESSAGE value="cifar10 images loaded properly." />
     <MESSAGE value="train run using multi gpus." />
@@ -941,7 +962,8 @@
     <MESSAGE value="BaseClassifier updated." />
     <MESSAGE value="BaseClassifier updated with multigpu model." />
     <MESSAGE value="cifar10_vgg_multi.py works." />
-    <option name="LAST_COMMIT_MESSAGE" value="cifar10_vgg_multi.py works." />
+    <MESSAGE value="model can be passed via params." />
+    <option name="LAST_COMMIT_MESSAGE" value="model can be passed via params." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1076,21 +1098,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="153" column="52" lean-forward="true" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
@@ -1272,13 +1279,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_my_classificier.py" />
     <entry file="file://$PROJECT_DIR$/python/dict.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
@@ -1309,13 +1309,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg16.py" />
-    <entry file="file://$PROJECT_DIR$/utils/queue_runner_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -1359,15 +1352,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_nn_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="122" column="36" lean-forward="false" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#923#1577#0" expanded="false" />
-            <element signature="e#1631#3158#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="12604">
+          <caret line="561" column="4" lean-forward="false" selection-start-line="561" selection-start-column="4" selection-end-line="561" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6693">
+          <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/vgg16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/simplenetmultigpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2875">
+          <caret line="125" column="33" lean-forward="false" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1381,53 +1394,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_nn_ops.py">
+    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-965">
-          <caret line="561" column="4" lean-forward="false" selection-start-line="561" selection-start-column="4" selection-end-line="561" selection-end-column="4" />
+        <state relative-caret-position="276">
+          <caret line="173" column="64" lean-forward="false" selection-start-line="173" selection-start-column="64" selection-end-line="173" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
+    <entry file="file://$PROJECT_DIR$/utils/data_augmentor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+        <state relative-caret-position="322">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/data_preprocessor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/queue_runner_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="180" column="5" lean-forward="false" selection-start-line="180" selection-start-column="3" selection-end-line="181" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#923#1577#0" expanded="false" />
+            <element signature="e#1631#3158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/vgg16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        <state relative-caret-position="322">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="91" column="47" lean-forward="false" selection-start-line="91" selection-start-column="47" selection-end-line="91" selection-end-column="47" />
+        <state relative-caret-position="349">
+          <caret line="228" column="59" lean-forward="false" selection-start-line="228" selection-start-column="54" selection-end-line="228" selection-end-column="59" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/simplenetmultigpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2875">
-          <caret line="125" column="33" lean-forward="true" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>

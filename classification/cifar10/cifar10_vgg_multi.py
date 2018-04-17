@@ -9,4 +9,7 @@ class MyCifar10Classifier(BaseClassifier):
 if __name__ == '__main__':
     params={'batch_size_train_per_gpu':50, 'num_gpus':2}
     classifier=MyCifar10Classifier(params)
-    classifier.train()
+    params_training = {
+        'logdir': 'cifar10_multi_log/'
+    }
+    classifier.train(params_training)

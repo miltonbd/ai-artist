@@ -32,7 +32,7 @@ class BaseClassifier:
         self.batch_size_train = self.batch_size_train_per_gpu * self.num_gpus
         self.batch_size_test = self.batch_size_test_per_gpu * self.num_gpus
         self.num_threads = 2  # keep 4 for 2 gpus
-        self.learning_rate = 0.01 if not 'learning_rate' in params else params['learning_rate']
+        self.learning_rate = 0.005 if not 'learning_rate' in params else params['learning_rate']
         self.epochs = 100 if not 'epochs' in params else params['epochs']
         self.all_train_data = get_train_files_cifar_10_classification() if train_items == None else train_items
         self.all_test_data = get_test_files_cifar_10_classification() if test_items == None else test_items
@@ -41,8 +41,19 @@ class BaseClassifier:
         self.model = SimpleModel(self.image_height,self.image_width,self.num_channels,self.num_classes) \
             if not 'model' in params else params['model']
 
-    def train(self):
+        """
+        Adam: Auto learning rate decay with momentum
+        
+        """
+
+    """
+    pass augmentation and various params here
+    """
+    def train(self, params):
+        self.logdir = params['logdir']
         tf.reset_default_graph()
+        tf.summary.FileWriterCache.clear()
+
         with  tf.device('/cpu:0'):
             sess = tf.Session(config=tf.ConfigProto(
                 allow_soft_placement=True,
@@ -50,6 +61,10 @@ class BaseClassifier:
             sess.as_default()
             # initialize the variables
             global_step = tf.get_variable('global_step', [],initializer=tf.constant_initializer(0), trainable=False)
+
+            # tf.summary.FileWriter('board_beginner',sess.graph)   # magic board
+            writer = tf.summary.FileWriter('logdir')  # create writer
+
             is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
             # random.shuffle(all_filepath_labels)
             all_train_filepaths, all_train_labels = self.all_train_data
@@ -68,6 +83,11 @@ class BaseClassifier:
             queue_helper = QueueRunnerHelper(self.image_height, self.image_width, self.num_classes, self.num_threads)
             train_float_image, train_label = queue_helper.process_batch(
                 queue_helper.init_queue(all_train_filepaths, all_train_labels))
+
+            # preprocess data
+
+            # augment the trainng image here.
+
             batch_data_train, batch_label_train = queue_helper.make_queue(train_float_image, train_label, self.batch_size_train)
 
             test_float_image, test_label = queue_helper.process_batch(
@@ -78,7 +98,7 @@ class BaseClassifier:
                                        lambda: (batch_data_train, batch_label_train),
                                        lambda: (batch_data_test, batch_label_test))
 
-            optimizer = tf.train.RMSPropOptimizer(self.learning_rate)
+            optimizer = tf.train.AdagradOptimizer(self.learning_rate)
 
             features_split = tf.split(batch_data, self.num_gpus, axis=0)
             labels_split = tf.split(batch_label, self.num_gpus, axis=0)
@@ -104,6 +124,7 @@ class BaseClassifier:
 
                          tf.losses.softmax_cross_entropy(onehot_labels=labels_split[i], logits=logits_per_gpu)
                          tf.get_variable_scope().reuse_variables()
+                         summaries_train = tf.get_collection(tf.GraphKeys.SUMMARIES, scope)
 
                          update_ops = tf.get_collection(
                              tf.GraphKeys.UPDATE_OPS, scope)
@@ -125,10 +146,22 @@ class BaseClassifier:
             # We must calculate the mean of each gradient. Note that this is the
             # synchronization point across all towers.
             avg_grads = average_gradients(tower_grads)
+
+            # Add histograms for gradients.
+            for grad, var in avg_grads:
+                if grad is not None:
+                    summaries_train.append(tf.summary.histogram(var.op.name + '/gradients', grad))
+
             apply_gradient_op = optimizer.apply_gradients(avg_grads, global_step=global_step)
+
+            # Add histograms for trainable variables.
+            for var in tf.trainable_variables():
+                summaries_train.append(tf.summary.histogram(var.op.name, var))
 
             batch_loss=tf.reshape(tf.stack(tower_losses, axis=0), [-1])
             loss_op = tf.reduce_mean(batch_loss)
+
+            summaries_train.append(tf.summary.scalar("loss",loss_op))
 
             # model.build(batch_data, self.dropout)
             # logits = tf.reshape(model.conv8, [-1, self.num_classes])
@@ -143,6 +176,7 @@ class BaseClassifier:
 
             batch_accuracy = tf.reduce_mean(tf.cast(correct_prediction_batch, tf.float32))
             # accuracy = tf.Print(accuracy, data=[accuracy], message="accuracy:")
+            summaries_train.append(tf.summary.scalar("batch_accuracy",batch_accuracy))
 
             # We add the training op ...
             train_op = apply_gradient_op
@@ -154,6 +188,11 @@ class BaseClassifier:
             test_classes_op = tf.stack(test_classes, axis=0)
             correct_prediction_test = tf.reshape(test_classes_op, [-1])
             test_accuracy = tf.reduce_mean(tf.cast(correct_prediction_test, tf.float32))
+            summaries_test=[]
+            summaries_test.append(tf.summary.scalar("test_accuracy",test_accuracy))
+
+            summary_op_train = tf.summary.merge(summaries_train)
+            summary_op_test = tf.summary.merge(summaries_test)
 
             print("input pipeline ready")
             start = time.time()
@@ -165,6 +204,7 @@ class BaseClassifier:
             print("startng traing with {} GPUs".format(self.num_gpus))
             start = time.time()
 
+            writer.add_graph(sess.graph)
             coord = tf.train.Coordinator()
             threads = tf.train.start_queue_runners(coord=coord, sess=sess)
 
@@ -173,8 +213,11 @@ class BaseClassifier:
                  for step in range(batches_per_epoch_train):
                      if coord.should_stop():
                          break
-                     _,loss_out, batch_accuracy_out = sess.run([train_op,loss_op,batch_accuracy],
+                     _,merged_summary,loss_out, batch_accuracy_out, global_step_out = sess.run([train_op,summary_op_train,loss_op,batch_accuracy, global_step],
                                                                 feed_dict={is_training: True})
+
+                     if step % 5 == 0:
+                         writer.add_summary(merged_summary, global_step_out)
 
                      if step % 50 == 0:
                          print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,
@@ -182,7 +225,8 @@ class BaseClassifier:
 
                  # for test_index in range(batches_per_epoch_test):
                  # test_classes.append(correct_prediction_batch)
-                 prediction_test_out, = sess.run([test_accuracy], feed_dict={is_training: False})
+                 prediction_test_out, summary_out_test = sess.run([test_accuracy, summary_op_test], feed_dict={is_training: False})
+                 writer.add_summary(summary_out_test, epoch)
                  print("Test Accuracy: {}".format(prediction_test_out))
 
             except Exception as e:

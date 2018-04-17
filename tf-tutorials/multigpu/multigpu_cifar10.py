@@ -184,7 +184,6 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
     summary_op = tf.summary.merge(summaries)
 
 
-
     total_count = data_loader.total_train_count
     total_test_count = data_loader.total_test_count
     print("cifar 10 test")
