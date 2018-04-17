@@ -51,6 +51,12 @@ class BaseClassifier:
     """
     def train(self, params):
         self.logdir = params['logdir']
+
+        self.savedir = os.path.join(self.logdir, "saved_models/")
+
+        if not os.path.exists(self.savedir):
+            os.makedirs(self.savedir)
+
         tf.reset_default_graph()
         tf.summary.FileWriterCache.clear()
 
@@ -59,11 +65,11 @@ class BaseClassifier:
                 allow_soft_placement=True,
                 log_device_placement=False))
             sess.as_default()
-            # initialize the variables
+
             global_step = tf.get_variable('global_step', [],initializer=tf.constant_initializer(0), trainable=False)
 
             # tf.summary.FileWriter('board_beginner',sess.graph)   # magic board
-            writer = tf.summary.FileWriter('logdir')  # create writer
+            writer = tf.summary.FileWriter(self.logdir)  # create writer
 
             is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
             # random.shuffle(all_filepath_labels)
@@ -197,11 +203,18 @@ class BaseClassifier:
             print("input pipeline ready")
             start = time.time()
 
+            saver = tf.train.Saver()
             sess = tf.Session()
             # initialize the variables
-            sess.run(tf.global_variables_initializer())
+            # initialize the variables
+            try:
+                print("Trying to restore last checkpoint ...")
+                last_chk_path = tf.train.latest_checkpoint(checkpoint_dir=self.savedir)
+                saver.restore(sess, save_path=last_chk_path)
+            except:
+                print("Failed to restore checkpoint. Initializing variables instead.")
+                sess.run(tf.global_variables_initializer())
 
-            print("startng traing with {} GPUs".format(self.num_gpus))
             start = time.time()
 
             writer.add_graph(sess.graph)
@@ -209,7 +222,17 @@ class BaseClassifier:
             threads = tf.train.start_queue_runners(coord=coord, sess=sess)
 
             try:
-             for epoch in range(self.epochs):
+             global_step_gone = sess.run(global_step)
+             epoch_gone=int(global_step_gone)//batches_per_epoch_train
+
+             try:
+                 print("Restored {} global step checkpoint from:".format(global_step_gone, last_chk_path))
+             except NameError:
+                 pass
+
+             print("startng training from {} epoch with {} GPUs".format(epoch_gone, self.num_gpus))
+
+             for epoch in range(epoch_gone,self.epochs):
                  for step in range(batches_per_epoch_train):
                      if coord.should_stop():
                          break
@@ -228,10 +251,17 @@ class BaseClassifier:
                  prediction_test_out, summary_out_test = sess.run([test_accuracy, summary_op_test], feed_dict={is_training: False})
                  writer.add_summary(summary_out_test, epoch)
                  print("Test Accuracy: {}".format(prediction_test_out))
+                 saver.save(sess, save_path=self.savedir, global_step=global_step)
+                 print("Saved checkpoint.")
 
             except Exception as e:
                 print(e)
                 coord.request_stop()
+            except KeyboardInterrupt:
+                saver.save(sess, save_path=self.savedir, global_step=global_step)
+                print("Saved checkpoint globsl step {}".format(sess.run(global_step)))
+                coord.request_stop()
+
             finally:
                 coord.request_stop()
                 coord.join(threads)
@@ -240,7 +270,6 @@ class BaseClassifier:
             coord.join(threads)
             sess.close()
             print("Time Taken {}".format(time.time() - start))
-
 
     def test(self):
         pass
