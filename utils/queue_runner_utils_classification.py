@@ -40,6 +40,8 @@ class QueueRunnerHelper(object):
         batch_data, batch_label = q.dequeue_many(n=batch_size)
         return batch_data, batch_label
 
+
+
     def init_queue(self, data_paths, labels):
         train_images = ops.convert_to_tensor(data_paths, dtype=dtypes.string)
         train_labels = ops.convert_to_tensor(labels, dtype=dtypes.int32)
@@ -48,3 +50,6 @@ class QueueRunnerHelper(object):
             [train_images, train_labels],
             shuffle=True)
         return  train_input_queue
+
+
+

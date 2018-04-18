@@ -12,7 +12,7 @@ import time
 import _pickle
 from classification.models import vgg16
 from utils.data_reader_cifar10 import *
-from utils.queue_runner_utils import QueueRunnerHelper
+from utils.queue_runner_utils_classification import QueueRunnerHelper
 
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")

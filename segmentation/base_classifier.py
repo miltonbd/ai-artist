@@ -4,8 +4,8 @@ import tensorflow as tf
 import time
 import _pickle
 from classification.models import vgg16
-from utils.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from utils.data_reader_cardava import *
+from utils.queue_runner_utils_segmentation import QueueRunnerHelper
 from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
 from classification.models.simplenetmultigpu import SimpleModel
@@ -19,7 +19,7 @@ class BaseClassifier:
     __metaclass__ = ABCMeta
 
     def __init__(self, params, train_items=None, test_items=None, valid_items=None, model=None):
-        self.data_dir = "/home/milton/dataset/cifar/cifar10" if not 'data_dir' in params else params['data_dir']
+        self.data_dir = "/home/milton/dataset/segmentation/carvana" if not 'data_dir' in params else params['data_dir']
         self.tran_dir = os.path.join(self.data_dir, "train")
         self.test_dir = os.path.join(self.data_dir, "test")
         self.num_gpus = 2 if not 'num_gpus' in params else params['num_gpus']
@@ -34,8 +34,8 @@ class BaseClassifier:
         self.num_threads = 2  # keep 4 for 2 gpus
         self.learning_rate = 0.005 if not 'learning_rate' in params else params['learning_rate']
         self.epochs = 100 if not 'epochs' in params else params['epochs']
-        self.all_train_data = get_train_files_cifar_10_classification() if train_items == None else train_items
-        self.all_test_data = get_test_files_cifar_10_classification() if test_items == None else test_items
+        self.all_train_data = get_train_files_carvana_segmentation() if train_items == None else train_items
+        self.all_test_data = get_test_files_carvana_segmentation() if test_items == None else test_items
         self.dropout=0.5  if not 'droput' in params else params['droput']
         self.optimizer= 'adagrad'
         self.model = SimpleModel(self.image_height,self.image_width,self.num_channels,self.num_classes) \
@@ -45,6 +45,8 @@ class BaseClassifier:
         Adam: Auto learning rate decay with momentum
         
         """
+    def showParamsBeforeTraining(self):
+        print("num classes {}".format(self.num_classes))
 
     """
     pass augmentation and various params here
@@ -60,11 +62,13 @@ class BaseClassifier:
         tf.reset_default_graph()
         tf.summary.FileWriterCache.clear()
 
+
         with  tf.device('/cpu:0'):
             sess = tf.Session(config=tf.ConfigProto(
                 allow_soft_placement=True,
                 log_device_placement=False))
             sess.as_default()
+            self.showParamsBeforeTraining()
 
             global_step = tf.get_variable('global_step', [],initializer=tf.constant_initializer(0), trainable=False)
 
@@ -87,18 +91,18 @@ class BaseClassifier:
                                                                          batches_per_epoch_test))
 
             queue_helper = QueueRunnerHelper(self.image_height, self.image_width, self.num_classes, self.num_threads)
-            train_float_image, train_label = queue_helper.process_batch(
-                queue_helper.init_queue(all_train_filepaths, all_train_labels))
+            train_float_image, train_label = queue_helper.process_batch_segmentation(
+                queue_helper.init_queue_segmentation(all_train_filepaths, all_train_labels))
 
             # preprocess data
 
             # augment the trainng image here.
 
-            batch_data_train, batch_label_train = queue_helper.make_queue(train_float_image, train_label, self.batch_size_train)
+            batch_data_train, batch_label_train = queue_helper.make_queue_segmentation(train_float_image, train_label, self.batch_size_train)
 
-            test_float_image, test_label = queue_helper.process_batch(
-                queue_helper.init_queue(all_test_filepaths, all_test_labels))
-            batch_data_test, batch_label_test = queue_helper.make_queue(test_float_image, test_label, self.batch_size_test)
+            test_float_image, test_label = queue_helper.process_batch_segmentation(
+                queue_helper.init_queue_segmentation(all_test_filepaths, all_test_labels))
+            batch_data_test, batch_label_test = queue_helper.make_queue_segmentation(test_float_image, test_label, self.batch_size_test)
 
             batch_data, batch_label = tf.cond(is_training,
                                        lambda: (batch_data_train, batch_label_train),
@@ -128,7 +132,7 @@ class BaseClassifier:
                          # # loss = tf.add_n(losses, name='total_loss')
                          # print(logits.get_shape())
 
-                         tf.losses.softmax_cross_entropy(onehot_labels=labels_split[i], logits=logits_per_gpu)
+                         tf.losses.sigmoid_cross_entropy(labels_split[i], logits=logits_per_gpu)
                          tf.get_variable_scope().reuse_variables()
                          summaries_train = tf.get_collection(tf.GraphKeys.SUMMARIES, scope)
 
