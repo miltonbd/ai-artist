@@ -10,6 +10,10 @@
     <orderEntry type="module" module-name="isic-2017-segmentation" />
     <orderEntry type="module" module-name="isbi2017-part3" />
     <orderEntry type="module" module-name="Augmentor" />
+    <orderEntry type="module" module-name="unet-tensorflow" />
+    <orderEntry type="module" module-name="segmentation" />
+    <orderEntry type="module" module-name="Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation" />
+    <orderEntry type="module" module-name="FCN.tensorflow" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

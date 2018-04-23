@@ -8,38 +8,39 @@ from utils.data_reader_cardava import *
 from utils.queue_runner_utils_segmentation import QueueRunnerHelper
 from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
-from classification.models.simplenetmultigpu import SimpleModel
+
 
 
 """
 This class is base class for all classifier. All new classifier must extend and implement this class.
 """
 
-class BaseClassifier:
+class BaseSegmentation:
     __metaclass__ = ABCMeta
 
-    def __init__(self, params, train_items=None, test_items=None, valid_items=None, model=None):
-        self.data_dir = "/home/milton/dataset/segmentation/carvana" if not 'data_dir' in params else params['data_dir']
-        self.tran_dir = os.path.join(self.data_dir, "train")
-        self.test_dir = os.path.join(self.data_dir, "test")
-        self.num_gpus = 2 if not 'num_gpus' in params else params['num_gpus']
-        self.image_height = 32 if not 'image_height' in params else params['image_height']
-        self.image_width = 32 if not 'image_width' in params else params['image_width']
-        self.num_channels = 3
-        self.num_classes = 10 if not 'num_classes' in params else params['num_classes']
-        self.batch_size_train_per_gpu = 100 if not 'batch_size_train_per_gpu' in params else params['batch_size_train_per_gpu']
-        self.batch_size_test_per_gpu = 100 if not 'batch_size_test_per_gpu' in params else params['batch_size_test_per_gpu']
+    def __init__(self, data_reader, model_params, model):
+        self.data_reader=data_reader
+        self.model_params=model_params
+        self.num_gpus = model_params.num_gpus
+        self.image_height = data_reader.image_height
+        self.image_width = data_reader.image_width
+        self.num_channels = data_reader.num_channels
+        self.num_classes = data_reader.num_classes
+        self.batch_size_train_per_gpu = model_params.batch_size_train_per_gpu
+        self.batch_size_test_per_gpu = model_params.batch_size_test_per_gpu
         self.batch_size_train = self.batch_size_train_per_gpu * self.num_gpus
         self.batch_size_test = self.batch_size_test_per_gpu * self.num_gpus
-        self.num_threads = 2  # keep 4 for 2 gpus
-        self.learning_rate = 0.005 if not 'learning_rate' in params else params['learning_rate']
-        self.epochs = 100 if not 'epochs' in params else params['epochs']
-        self.all_train_data = get_train_files_carvana_segmentation() if train_items == None else train_items
-        self.all_test_data = get_test_files_carvana_segmentation() if test_items == None else test_items
-        self.dropout=0.5  if not 'droput' in params else params['droput']
-        self.optimizer= 'adagrad'
-        self.model = SimpleModel(self.image_height,self.image_width,self.num_channels,self.num_classes) \
-            if not 'model' in params else params['model']
+        self.num_threads = data_reader.num_threads
+        self.learning_rate = model_params.learning_rate
+        self.epochs = model_params.epochs
+        self.dropout=model_params.dropout
+        self.optimizer= model_params.optimizer
+        self.model = model
+        self.logdir = model.logdir
+        self.savedir = os.path.join(self.logdir, "saved_models/")
+
+        if not os.path.exists(self.savedir):
+            os.makedirs(self.savedir)
 
         """
         Adam: Auto learning rate decay with momentum
@@ -47,18 +48,13 @@ class BaseClassifier:
         """
     def showParamsBeforeTraining(self):
         print("num classes {}".format(self.num_classes))
+        print("num gpus {}".format(self.num_gpus))
+
 
     """
     pass augmentation and various params here
     """
-    def train(self, params):
-        self.logdir = params['logdir']
-
-        self.savedir = os.path.join(self.logdir, "saved_models/")
-
-        if not os.path.exists(self.savedir):
-            os.makedirs(self.savedir)
-
+    def train(self):
         tf.reset_default_graph()
         tf.summary.FileWriterCache.clear()
 
@@ -77,8 +73,8 @@ class BaseClassifier:
 
             is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
             # random.shuffle(all_filepath_labels)
-            all_train_filepaths, all_train_labels = self.all_train_data
-            all_test_filepaths, all_test_labels =  self.all_test_data
+            all_train_filepaths, all_train_labels = self.data_reader.get_train_files()
+            all_test_filepaths, all_test_labels =  self.data_reader.get_validation_files()
 
             total_train_items = len(all_train_labels)
             total_test_items = len(all_test_labels)
@@ -102,91 +98,48 @@ class BaseClassifier:
 
             test_float_image, test_label = queue_helper.process_batch_segmentation(
                 queue_helper.init_queue_segmentation(all_test_filepaths, all_test_labels))
-            batch_data_test, batch_label_test = queue_helper.make_queue_segmentation(test_float_image, test_label, self.batch_size_test)
+            batch_data_valid, batch_label_valid = queue_helper.make_queue_segmentation(test_float_image, test_label, self.batch_size_test)
 
             batch_data, batch_label = tf.cond(is_training,
                                        lambda: (batch_data_train, batch_label_train),
-                                       lambda: (batch_data_test, batch_label_test))
+                                       lambda: (batch_data_valid, batch_label_valid))
 
             optimizer = tf.train.AdagradOptimizer(self.learning_rate)
+            with tf.device('/gpu:0'):
+                pred_annotation, logits_per_gpu = self.model.inference(batch_data)
 
-            features_split = tf.split(batch_data, self.num_gpus, axis=0)
-            labels_split = tf.split(batch_label, self.num_gpus, axis=0)
-
-            tower_grads = []
-            tower_losses = []
-            tower_y_pred_classes = []
-            with tf.variable_scope(tf.get_variable_scope()):
-                for i in range(self.num_gpus):
-                    with tf.device('/gpu:{}'.format(i)):
-                     with tf.name_scope("tower_{}".format(i)) as scope:
-                         # logits, y_pred_class = core_model(features_split[i], labels_split[i])
-                         x_input = tf.reshape(features_split[i], [-1, self.image_height, self.image_width, 3])
-                         logits_per_gpu = self.model.build(features_split[i])
-
-                         #logits_per_gpu = tf.reshape(model.conv8, [-1, self.num_classes])
-                         # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=labels_split[i]))
-                         # # losses = tf.get_collection('losses', scope)
-                         #
-                         # # Calculate the total loss for the current tower.
-                         # # loss = tf.add_n(losses, name='total_loss')
-                         # print(logits.get_shape())
-
-                         tf.losses.sigmoid_cross_entropy(labels_split[i], logits=logits_per_gpu)
-                         tf.get_variable_scope().reuse_variables()
-                         summaries_train = tf.get_collection(tf.GraphKeys.SUMMARIES, scope)
-
-                         update_ops = tf.get_collection(
-                             tf.GraphKeys.UPDATE_OPS, scope)
-                         updates_op = tf.group(*update_ops)
-                         with tf.control_dependencies([updates_op]):
-                             losses_per_gpu = tf.get_collection(tf.GraphKeys.LOSSES, scope)
-                             total_loss_per_gpu = tf.add_n(losses_per_gpu, name='total_loss')
-                             tower_losses.append(total_loss_per_gpu)
-                             # Reuse variables for the next tower.
-
-                         grads_per_gpu = optimizer.compute_gradients(total_loss_per_gpu)
-
-                         # Keep track of the gradients across all towers.
-                         tower_grads.append(grads_per_gpu)
-                         soft_max_per_gpu = tf.nn.softmax(logits=logits_per_gpu)
-                         predict_per_gpu = tf.argmax(soft_max_per_gpu, axis=1)
-                         tower_y_pred_classes.append(predict_per_gpu)
-
-            # We must calculate the mean of each gradient. Note that this is the
-            # synchronization point across all towers.
-            avg_grads = average_gradients(tower_grads)
-
-            # Add histograms for gradients.
-            for grad, var in avg_grads:
-                if grad is not None:
-                    summaries_train.append(tf.summary.histogram(var.op.name + '/gradients', grad))
-
+                summaries_train = tf.get_collection(tf.GraphKeys.SUMMARIES)
+                logits_per_gpu_int=tf.cast(logits_per_gpu,tf.float32)
+                #label_batch_Reshape = tf.reshape(batch_label, [-1, self.num_classes])
+                labels_t=tf.cast(tf.squeeze(batch_label, squeeze_dims=[3]),tf.int32)
+                loss = tf.reduce_mean((
+                     tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits_per_gpu_int,
+                                                                    labels=labels_t,
+                                                                    name="entropy")))
+            # tf.summary.scalar("entropy", loss)
+            #
+            trainable_var = tf.trainable_variables()
+            # # tf.get_variable_scope().reuse_variables()
+            #
+            avg_grads = optimizer.compute_gradients(loss, var_list=trainable_var)
             apply_gradient_op = optimizer.apply_gradients(avg_grads, global_step=global_step)
 
             # Add histograms for trainable variables.
             for var in tf.trainable_variables():
                 summaries_train.append(tf.summary.histogram(var.op.name, var))
 
-            batch_loss=tf.reshape(tf.stack(tower_losses, axis=0), [-1])
+            batch_loss = loss
             loss_op = tf.reduce_mean(batch_loss)
 
-            summaries_train.append(tf.summary.scalar("loss",loss_op))
+            summaries_train.append(tf.summary.scalar("loss", loss_op))
 
-            # model.build(batch_data, self.dropout)
-            # logits = tf.reshape(model.conv8, [-1, self.num_classes])
-            # # print(logits.get_shape())
-            # # logits=tf.Print(logits,[logits.get_shape()])
-            # losses = tf.nn.sigmoid_cross_entropy_with_logits(None, tf.cast(batch_label, tf.float32), logits)
-            # loss_op = tf.reduce_mean(losses)
-
-            y_pred_classes_op_batch = tf.reshape(tf.stack(tower_y_pred_classes, axis=0), [-1])
-            labels_armax_batch =tf.argmax(batch_label, axis=1)
-            correct_prediction_batch  = tf.equal(y_pred_classes_op_batch, labels_armax_batch )
+            y_pred_classes_op_batch = pred_annotation
+            batch_label_int = tf.cast(batch_label, tf.int64)
+            correct_prediction_batch = tf.equal(y_pred_classes_op_batch, batch_label_int)
 
             batch_accuracy = tf.reduce_mean(tf.cast(correct_prediction_batch, tf.float32))
             # accuracy = tf.Print(accuracy, data=[accuracy], message="accuracy:")
-            summaries_train.append(tf.summary.scalar("batch_accuracy",batch_accuracy))
+            summaries_train.append(tf.summary.scalar("batch_accuracy", batch_accuracy))
 
             # We add the training op ...
             train_op = apply_gradient_op
@@ -198,8 +151,8 @@ class BaseClassifier:
             test_classes_op = tf.stack(test_classes, axis=0)
             correct_prediction_test = tf.reshape(test_classes_op, [-1])
             test_accuracy = tf.reduce_mean(tf.cast(correct_prediction_test, tf.float32))
-            summaries_test=[]
-            summaries_test.append(tf.summary.scalar("test_accuracy",test_accuracy))
+            summaries_test = []
+            summaries_test.append(tf.summary.scalar("test_accuracy", test_accuracy))
 
             summary_op_train = tf.summary.merge(summaries_train)
             summary_op_test = tf.summary.merge(summaries_test)
@@ -208,7 +161,7 @@ class BaseClassifier:
             start = time.time()
 
             saver = tf.train.Saver()
-            sess = tf.Session()
+
             # initialize the variables
             # initialize the variables
             try:
@@ -240,21 +193,22 @@ class BaseClassifier:
                  for step in range(batches_per_epoch_train):
                      if coord.should_stop():
                          break
+
                      _,merged_summary,loss_out, batch_accuracy_out, global_step_out = sess.run([train_op,summary_op_train,loss_op,batch_accuracy, global_step],
-                                                                feed_dict={is_training: True})
+                                                               feed_dict={is_training: True})
 
                      if step % 5 == 0:
-                         writer.add_summary(merged_summary, global_step_out)
+                        writer.add_summary(merged_summary, global_step_out)
 
-                     if step % 50 == 0:
-                         print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,
-                                                                                       batch_accuracy_out))
+                     if step % 5 == 0:
+                        print('epoch:{}, step:{} , loss:{}, batch accuracy:{}'.format(epoch, step, loss_out,
+                                                                                      batch_accuracy_out))
 
                  # for test_index in range(batches_per_epoch_test):
                  # test_classes.append(correct_prediction_batch)
-                 prediction_test_out, summary_out_test = sess.run([test_accuracy, summary_op_test], feed_dict={is_training: False})
-                 writer.add_summary(summary_out_test, epoch)
-                 print("Test Accuracy: {}".format(prediction_test_out))
+                 #prediction_test_out, summary_out_test = sess.run([test_accuracy, summary_op_test], feed_dict={is_training: False})
+                 #writer.add_summary(summary_out_test, epoch)
+                 #print("Test Accuracy: {}".format(prediction_test_out))
                  saver.save(sess, save_path=self.savedir, global_step=global_step)
                  print("Saved checkpoint.")
 

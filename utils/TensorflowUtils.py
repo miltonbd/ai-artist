@@ -56,7 +56,7 @@ def save_image(image, save_dir, name, mean=None):
         image = unprocess_image(image, mean)
     misc.imsave(os.path.join(save_dir, name + ".png"), image)
 
-def _variable_on_cpu(name, shape, initializer):
+def variable_on_cpu(name, shape, initializer):
   """Helper to create a Variable stored on CPU memory.
   Args:
     name: name of the variable
@@ -71,7 +71,7 @@ def _variable_on_cpu(name, shape, initializer):
   return var
 
 
-def _variable_with_weight_decay(name, shape, stddev, wd):
+def variable_with_weight_decay(name, shape, stddev, wd):
     """Helper to create an initialized Variable with weight decay.
 
     Note that the Variable is initialized with a truncated normal distribution.
@@ -88,7 +88,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
       Variable Tensor
     """
     dtype = tf.float32
-    var = _variable_on_cpu(
+    var = variable_on_cpu(
         name,
         shape,
         tf.truncated_normal_initializer(stddev=stddev, dtype=dtype))

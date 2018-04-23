@@ -21,9 +21,9 @@ class QueueRunnerHelper(object):
         return
 
     def make_queue_segmentation(self, float_image, train_label, batch_size):
-        q = tf.FIFOQueue(capacity=5 * batch_size, dtypes=[tf.float32, tf.float32],
+        q = tf.FIFOQueue(capacity=2 * batch_size, dtypes=[tf.float32, tf.float32],
                          shapes=[(self.image_height, self.image_width, 3),
-                                 (self.image_height, self.image_width, self.num_classes)])
+                                 (self.image_height, self.image_width, 1)])
         enqueue_op = q.enqueue([float_image, train_label])
         qr = tf.train.QueueRunner(q, [enqueue_op] * self.num_threads)
         tf.train.add_queue_runner(qr)
@@ -42,14 +42,16 @@ class QueueRunnerHelper(object):
 
 
     def process_batch_segmentation(self, train_input_queue):
-        file_content = tf.read_file(train_input_queue[0])
-        train_image = tf.image.decode_jpeg(file_content, channels=3)
+        file_content_image = tf.read_file(train_input_queue[0])
+        train_image = tf.image.decode_jpeg(file_content_image, channels=3)
         resized_image = tf.image.resize_images(train_image, [self.image_height, self.image_width])
         resized_image.set_shape([self.image_height, self.image_width, 3])
         float_image = tf.image.per_image_standardization(resized_image)
 
-        train_label = tf.image.decode_gif(file_content)
-        float_image_gt = tf.reshape(tf.cast(train_label,tf.float32),[self.image_height, self.image_width,1])
+        file_content_mask = tf.read_file(train_input_queue[1])
+        train_label = tf.image.decode_png(file_content_mask)
+        train_label_resize = tf.image.resize_images(train_label, [self.image_height, self.image_width])
+        float_image_gt = tf.reshape(tf.cast(train_label_resize,tf.float32),[self.image_height, self.image_width,1])
         float_image_gt.set_shape([self.image_height, self.image_width, 1])
 
         return float_image, float_image_gt

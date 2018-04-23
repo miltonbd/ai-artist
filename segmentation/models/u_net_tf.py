@@ -10,23 +10,23 @@ class UNet():
         self.input = input
         with tf.variable_scope('UNet/down_full_size'):
             down0a = tc.layers.conv2d(self.input, 8, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
+                                      normalizer_params={'is_training': is_training},padding="SAME")
             down0b = tc.layers.conv2d(down0a, 8, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
-            down0c = tc.layers.max_pool2d(down0b, (2, 2), padding='same')
+                                      normalizer_params={'is_training': is_training},padding='SAME')
+            down0c = tc.layers.max_pool2d(down0b, (2, 2), padding='SAME')
 
         with tf.variable_scope('UNet/down_1-2_size'):
             down1a = tc.layers.conv2d(down0c, 16, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
+                                      normalizer_params={'is_training': is_training},padding="SAME")
             down1b = tc.layers.conv2d(down1a, 16, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
+                                      normalizer_params={'is_training': is_training},padding="SAME")
             down1c = tc.layers.max_pool2d(down1b, (2, 2), padding='same')
 
         with tf.variable_scope('UNet/down_1-4_size'):
             down2a = tc.layers.conv2d(down1c, 32, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
+                                      normalizer_params={'is_training': is_training},padding='SAME')
             down2b = tc.layers.conv2d(down2a, 32, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                      normalizer_params={'is_training': is_training})
+                                      normalizer_params={'is_training': is_training},padding='SAME')
             down2c = tc.layers.max_pool2d(down2b, (2, 2), padding='same')
 
         with tf.variable_scope('UNet/down_1-8_size'):
@@ -112,9 +112,9 @@ class UNet():
                                               normalizer_params={'is_training': is_training})
             up2b = tf.concat([up2a, down2b], axis=3)
             up2c = tc.layers.conv2d(up2b, 32, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                    normalizer_params={'is_training': is_training})
+                                    normalizer_params={'is_training': is_training},padding="SAME")
             up2d = tc.layers.conv2d(up2c, 32, (3, 3), normalizer_fn=tc.layers.batch_norm,
-                                    normalizer_params={'is_training': is_training})
+                                    normalizer_params={'is_training': is_training},padding="SAME")
             up2e = tc.layers.conv2d(up2d, 32, (3, 3), normalizer_fn=tc.layers.batch_norm,
                                     normalizer_params={'is_training': is_training})
 

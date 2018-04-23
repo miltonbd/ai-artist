@@ -39,8 +39,8 @@ tf.summary.FileWriterCache.clear()
 def model(input_images):
     x_images = tf.reshape(input_images,[-1,image_height,image_width,image_channels])
     with tf.name_scope("hidden"):
-        W = tfutils._variable_with_weight_decay("weight",shape=[image_height*image_width*image_channels,num_clasess],stddev=0.04, wd=0.0)
-        b = tfutils._variable_on_cpu('biases', [num_clasess],tf.zeros_initializer(10))
+        W = tfutils.variable_with_weight_decay("weight", shape=[image_height * image_width * image_channels, num_clasess], stddev=0.04, wd=0.0)
+        b = tfutils.variable_on_cpu('biases', [num_clasess], tf.zeros_initializer(10))
         logits = tf.matmul(input_images, W) + b
         with tf.device('/cpu:0'):
             tf.summary.histogram("weights", W)

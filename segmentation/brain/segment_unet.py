@@ -1,9 +1,10 @@
-from segmentation.base_classifier import BaseClassifier
-from segmentation.models.u_net_tf import UNet
+from segmentation.base_segmentation_singe_gpu import BaseSegmentation
+from segmentation.models.FCN import FCN
+from segmentation.mitsceneparsing.data_reader_mitsceneparsing import DataReaderMitSceneParsing
 
-class MyCarvanaSegmentation(BaseClassifier):
+class MyCarvanaSegmentation(BaseSegmentation):
     def __init__(self,params):
-        BaseClassifier.__init__(self,params)
+        BaseSegmentation.__init__(self, params)
 
 
 
@@ -12,10 +13,11 @@ if __name__ == '__main__':
         'batch_size_train_per_gpu':50,
         'num_gpus':1,
         'epochs':200,
-        'image_height': 1280,
-        'image_width': 1918,
+        'image_height': 224,
+        'image_width': 224,
         'num_classes':1,
-        'model': UNet()
+        'model': FCN(image_height=224, image_width=224, num_classes=151, channels=3),
+        'data_reader' : DataReaderMitSceneParsing()
     }
 
     segmentor=MyCarvanaSegmentation(params)
