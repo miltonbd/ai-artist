@@ -1,11 +1,8 @@
 import tensorflow as tf
 import time
-import _pickle
 from classification.models import vgg16
-from utils.data_reader_cifar10 import *
+from classification.cifar10.data_reader_cifar10 import *
 from utils.queue_runner_utils_classification import QueueRunnerHelper
-from sklearn import metrics
-from classification.models.simplenetmultigpu import model as multiGpuModel
 
 print("pid {}".format(os.getpid()))
 data_dir = "/home/milton/dataset/cifar/cifar10"

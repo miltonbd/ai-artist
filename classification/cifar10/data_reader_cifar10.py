@@ -5,6 +5,27 @@ import os
 import _pickle
 from keras.utils import to_categorical
 
+
+
+class DataReaderMitSceneP(object):
+
+    def __init__(self):
+        self.data_dir = "/home/milton/dataset/segmentation/mitsceneparsing"
+        self.train_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "images", "training")
+        self.validation_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "images", "validation")
+        self.test_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "images", "testing")
+        self.train_masks_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "annotations", "training")
+        self.validation_masks_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "annotations", "validation")
+        self.num_channels = 3
+        self.image_height = 224
+        self.image_width = 224
+        self.num_classes = 151
+        self.num_threads = 8
+        self.resize_train_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "images", "224", "training")
+        self.resize_train_masks_dir = os.path.join(self.data_dir, "ADEChallengeData2016", "annotations", "224",
+                                                   "training")
+
+
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")
 test_dir = os.path.join(data_dir, "test")
@@ -88,44 +109,23 @@ def cifar10_save_test():
 #cifar10_save()
 
 
-def get_test_files_cifar_10_classification():
-   files=[]
-   labels=[]
-   for class_name in cifar10_class_labels:
-       class_dir = os.path.join(test_dir, class_name)
-       for file_name in os.listdir(class_dir):
-           file_path = os.path.join(class_dir, file_name)
-           files.append(file_path)
-           labels.append(cifar10_class_labels.index(class_name))
-   print("path:{}, label:{}".format(files[0],labels[0]))
-   return files, labels
-
-
-def get_train_files_cifar_10_classification():
-   train_files=[]
-   train_labels=[]
-   for class_name in cifar10_class_labels:
-       class_dir = os.path.join(tran_dir, class_name)
-       for file_name in os.listdir(class_dir):
-           file_path = os.path.join(class_dir, file_name)
-           train_files.append(file_path)
-           train_labels.append(cifar10_class_labels.index(class_name))
-   return train_files, train_labels
-
-
 class DataReaderCifar10(object):
     """
     data_dir = "/home/milton/dataset/cifar/cifar10" # contains data_batch_{1..5}
     """
-    def __init__(self, batch_size, gpu_nums):
+    def __init__(self, model_params):
         self.data_dir =  "/home/milton/dataset/cifar/cifar10"
-        self.batch_size = batch_size
+        self.num_channels = 3
+        self.image_height = 224
+        self.image_width = 224
+        self.num_classes = 151
+        self.num_threads = 8
+        self.channels = 3
+
         self.epoch = 0
         self.itr = 0
         self.itr_test = 0
         self.total_train_count = 0
-        self.gpu_nums = gpu_nums
-        print("batch, gpu nums".format(batch_size, gpu_nums))
         # cifar is smaller dataset which can be hold in ram, for bigger dataset the dataset should be loaded from storage while
         # building next batch.
         self.images = []
@@ -133,6 +133,42 @@ class DataReaderCifar10(object):
         self.images_test = []
         self.labels_test = []
         return
+
+    def get_train_files(self):
+        train_files = []
+        train_labels = []
+        for class_name in cifar10_class_labels:
+            class_dir = os.path.join(tran_dir, class_name)
+            for file_name in os.listdir(class_dir):
+                file_path = os.path.join(class_dir, file_name)
+                train_files.append(file_path)
+                train_labels.append(cifar10_class_labels.index(class_name))
+        return train_files, train_labels
+
+    def get_test_files(self):
+        files = []
+        labels = []
+        for class_name in cifar10_class_labels:
+            class_dir = os.path.join(test_dir, class_name)
+            for file_name in os.listdir(class_dir):
+                file_path = os.path.join(class_dir, file_name)
+                files.append(file_path)
+                labels.append(cifar10_class_labels.index(class_name))
+        print("path:{}, label:{}".format(files[0], labels[0]))
+        return files, labels
+
+
+    def get_validation_files(self):
+        files = []
+        labels = []
+        for class_name in cifar10_class_labels:
+            class_dir = os.path.join(test_dir, class_name)
+            for file_name in os.listdir(class_dir):
+                file_path = os.path.join(class_dir, file_name)
+                files.append(file_path)
+                labels.append(cifar10_class_labels.index(class_name))
+        print("path:{}, label:{}".format(files[0], labels[0]))
+        return files, labels
 
     def loadDataSet(self):
         for i in np.arange(1, 6):

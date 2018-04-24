@@ -5,18 +5,18 @@ every model class will have a build() method
 """
 class SimpleModel(object):
 
-    def __init__(self,image_height, image_width, channels, num_classes):
-        self.image_height=image_height
-        self.image_width=image_width
-        self.channels=channels
-        self.num_classes=num_classes
+    def __init__(self,data_reader):
+        self.data_reader = data_reader
+        self.num_classes = data_reader.num_classes
 
     def build(self,input_batch):
 
         with tf.name_scope('data'):
             #     x = tf.placeholder(tf.float32, shape=[batch_size_per_gpu, image_height * image_width * channels], name='Input')
             #     y = tf.placeholder(tf.float32, shape=[batch_size_per_gpu, num_classes], name='Output')
-            x_image = tf.reshape(input_batch, [-1, self.image_height, self.image_width, self.channels], name='images')
+            x_image = tf.reshape(input_batch, [-1, self.data_reader.image_height,
+                                               self.data_reader.image_width,
+                                               self.data_reader.channels], name='images')
 
         def variable_with_weight_decay(name, shape, stddev, wd):
             dtype = tf.float32

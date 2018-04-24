@@ -1,61 +1,28 @@
 from abc import ABCMeta, abstractmethod
 import tensorflow as tf
-import tensorflow as tf
 import time
-import _pickle
-from classification.models import vgg16
-from utils.data_reader_cifar10 import *
+from classification.cifar10.data_reader_cifar10 import *
 from utils.queue_runner_utils_classification import QueueRunnerHelper
-from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
-from classification.models.simplenetmultigpu import SimpleModel
+from base.base_trainer import BaseTrainer
 
 
 """
 This class is base class for all classifier. All new classifier must extend and implement this class.
 """
 
-class BaseClassifier:
+class BaseClassifier(BaseTrainer):
     __metaclass__ = ABCMeta
 
-    def __init__(self, params, train_items=None, test_items=None, valid_items=None, model=None):
-        self.data_dir = "/home/milton/dataset/cifar/cifar10" if not 'data_dir' in params else params['data_dir']
-        self.tran_dir = os.path.join(self.data_dir, "train")
-        self.test_dir = os.path.join(self.data_dir, "test")
-        self.num_gpus = 2 if not 'num_gpus' in params else params['num_gpus']
-        self.image_height = 32 if not 'image_height' in params else params['image_height']
-        self.image_width = 32 if not 'image_width' in params else params['image_width']
-        self.num_channels = 3
-        self.num_classes = 10 if not 'num_classes' in params else params['num_classes']
-        self.batch_size_train_per_gpu = 100 if not 'batch_size_train_per_gpu' in params else params['batch_size_train_per_gpu']
-        self.batch_size_test_per_gpu = 100 if not 'batch_size_test_per_gpu' in params else params['batch_size_test_per_gpu']
-        self.batch_size_train = self.batch_size_train_per_gpu * self.num_gpus
-        self.batch_size_test = self.batch_size_test_per_gpu * self.num_gpus
-        self.num_threads = 2  # keep 4 for 2 gpus
-        self.learning_rate = 0.005 if not 'learning_rate' in params else params['learning_rate']
-        self.epochs = 100 if not 'epochs' in params else params['epochs']
-        self.all_train_data = get_train_files_cifar_10_classification() if train_items == None else train_items
-        self.all_test_data = get_test_files_cifar_10_classification() if test_items == None else test_items
-        self.dropout=0.5  if not 'droput' in params else params['droput']
-        self.optimizer= 'adagrad'
-        self.model = SimpleModel(self.image_height,self.image_width,self.num_channels,self.num_classes) \
-            if not 'model' in params else params['model']
-
-        """
-        Adam: Auto learning rate decay with momentum
-        
-        """
+    def __init__(self, data_reader, model_params, model):
+        BaseTrainer.__init__(self,data_reader,model_params,model)
+        return
 
     """
     pass augmentation and various params here
     """
-    def train(self, params):
-        self.logdir = params['logdir']
+    def train(self):
 
-        self.savedir = os.path.join(self.logdir, "saved_models/")
-
-        if not os.path.exists(self.savedir):
-            os.makedirs(self.savedir)
 
         tf.reset_default_graph()
         tf.summary.FileWriterCache.clear()
@@ -73,8 +40,8 @@ class BaseClassifier:
 
             is_training = tf.placeholder(tf.bool, shape=None, name="is_training")
             # random.shuffle(all_filepath_labels)
-            all_train_filepaths, all_train_labels = self.all_train_data
-            all_test_filepaths, all_test_labels =  self.all_test_data
+            all_train_filepaths, all_train_labels = self.data_reader.get_train_files()
+            all_test_filepaths, all_test_labels = self.data_reader.get_validation_files()
 
             total_train_items = len(all_train_labels)
             total_test_items = len(all_test_labels)

@@ -1,5 +1,5 @@
 import tensorflow as tf
-from utils.data_reader_cifar10 import *
+from classification.cifar10.data_reader_cifar10 import *
 from classification.my_net1 import MyCifar10Classifier
 
 model1 = "models/gpu_1_model.ckpt"

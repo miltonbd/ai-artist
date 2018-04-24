@@ -1,18 +1,9 @@
-import tensorflow as tf
-import time
-import os
-import imageio
-import numpy as np
 from tensorflow.python.framework import ops
 from tensorflow.python.framework import dtypes
 import tensorflow as tf
-import random
-import os
 import time
 import _pickle
-from classification.models import vgg16
-from utils.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from classification.cifar10.data_reader_cifar10 import *
 
 data_dir = "/home/milton/dataset/cifar/cifar10"
 tran_dir = os.path.join(data_dir, "train")

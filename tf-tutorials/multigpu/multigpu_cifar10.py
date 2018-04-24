@@ -1,16 +1,8 @@
-import argparse
-import sys
-from classification.skin.models import simplenet
-from classification.skin import data_loader
 from classification.models.simplenetmultigpu import model as multiGpuModel
 
-import numpy as np
 from sklearn import metrics
-from utils.data_reader_cifar10 import DataReaderCifar10
 import utils.TensorflowUtils as tfutils  # place all utitilies funvtions here
-from classification.models import vgg16
-from utils.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from classification.cifar10.data_reader_cifar10 import *
 
 # Train
 step_num = 10001
@@ -187,7 +179,6 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
     total_count = data_loader.total_train_count
     total_test_count = data_loader.total_test_count
     print("cifar 10 test")
-    import math
     for step in range(step_num):
         batch_xs, batch_ys = data_loader.nextBatchTrain()
         startOffset = step%total_count

@@ -15,7 +15,7 @@ from utils.TensorflowUtils import average_gradients
 This class is base class for all classifier. All new classifier must extend and implement this class.
 """
 
-class BaseSegmentation:
+class BaseSegmentationMultiGpu:
     __metaclass__ = ABCMeta
 
     def __init__(self, params, train_items=None, test_items=None, valid_items=None, model=None):

@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/skin/isic-2017-segmentation/.idea/isic-2017-segmentation.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/skin/isic-2017-segmentation/.idea/isic-2017-segmentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/.idea/segmentation.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/.idea/segmentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/.idea/tensorflow-cifar-10.iml" filepath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/.idea/tensorflow-cifar-10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tensorpack/.idea/tensorpack.iml" filepath="$PROJECT_DIR$/../tensorpack/.idea/tensorpack.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/.idea/unet-tensorflow.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/.idea/unet-tensorflow.iml" />
     </modules>
   </component>

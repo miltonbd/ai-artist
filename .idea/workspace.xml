@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="cifar10_vgg_multi.py works.">
-      <change afterPath="$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/brain/process_data.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/data_reader_mitsceneparsing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/models/BuildNetVgg16.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/models/FCN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/models/deconvnet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/models/myunet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/data_reader_brats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/data_reader_video_webcam.py" afterDir="false" />
+    <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/base/base_data_reader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/base/base_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/base/base_model_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/base/base_trainer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classification/cifar10/cifar10_model_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classification/models/DenseNet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classification/skin/train_resnet.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code-power.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/my_net1.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/my_net1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/base_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/base_segmentation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/brain/segment_unet.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/brain/segment_unet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/models/simplenetmultigpu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/models/u_net_tf.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/u_net_tf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf-tutorials/conv1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf-tutorials/conv1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/base_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/base_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10/cifar10_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/cifar10/cifar10_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/base_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/base_segmentation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/TensorflowUtils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/TensorflowUtils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_reader_cardava.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_reader_cardava.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/queue_runner_utils_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/queue_runner_utils_segmentation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/data_reader_cifar10.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/cifar10/data_reader_cifar10.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" afterDir="false" />
@@ -58,11 +55,11 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="base_segmentation.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation.py">
+            <file leaf-file-name="base_classifier.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="555">
-                    <caret line="116" column="4" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+                  <state relative-caret-position="299">
+                    <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
                     <folding>
                       <element signature="e#0#39#0" expanded="true" />
                     </folding>
@@ -77,56 +74,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="model_params.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py">
+      <file leaf-file-name="train_isic_classification_multi_gpu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="base_trainer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/base/base_trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="23" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="23" />
+            <state relative-caret-position="184">
+              <caret line="8" column="36" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_reader_brats.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
+      <file leaf-file-name="cifar10_vgg_multi.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1247">
-              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="184">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_reader_mitsceneparsing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data_reader_cifar10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/cifar10/data_reader_cifar10.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="426">
+              <caret line="128" selection-start-line="128" selection-end-line="128" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_reader_mitsceneparsing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/data_reader_mitsceneparsing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pipeline.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Augmentor/Augmentor/Pipeline.py">
+      <file leaf-file-name="cifar10_model_params.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_model_params.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-485">
-              <caret line="1449" column="8" selection-start-line="1449" selection-start-column="8" selection-end-line="1449" selection-end-column="8" />
-              <folding>
-                <element signature="e#533#641#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="69">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TensorflowUtils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/TensorflowUtils.py">
+      <file leaf-file-name="base_model_params.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/base/base_model_params.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="33" column="80" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
+            <state relative-caret-position="184">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fcn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_segmentation_singe_gpu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
+              <folding>
+                <element signature="e#346#455#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,9 +169,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>accuracy</find>
       <find>model</find>
-      <find>batch_size</find>
       <find>itr</find>
       <find>threa</find>
       <find>cifar_shuffle_queue_batch</find>
@@ -173,6 +197,8 @@
       <find>MODEL_URL</find>
       <find>ap</find>
       <find>progres</find>
+      <find>NUM_UNITS</find>
+      <find>batch_size</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -185,20 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/python/dict.ipynb" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_my_classificier.py" />
-        <option value="$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_my_classifier.py" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg16.py" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg.py" />
-        <option value="$PROJECT_DIR$/classification/models/vgg16.py" />
-        <option value="$PROJECT_DIR$/utils/data_reader_cifar10.py" />
-        <option value="$PROJECT_DIR$/utils/data_augmentor.py" />
-        <option value="$PROJECT_DIR$/utils/data_preprocessor.py" />
-        <option value="$PROJECT_DIR$/tf-tutorials/multigpu/multigpu_cifar10.py" />
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" />
-        <option value="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/train.py" />
-        <option value="$PROJECT_DIR$/../research-projects/segmentation/segmentation/model.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data_stats.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data.py" />
         <option value="$PROJECT_DIR$/utils/queue_runner_utils.py" />
@@ -206,14 +218,12 @@
         <option value="$PROJECT_DIR$/utils/data_reader_brats.py" />
         <option value="$PROJECT_DIR$/segmentation/models/u_net_tf.py" />
         <option value="$PROJECT_DIR$/utils/TensorflowUtils.py" />
-        <option value="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" />
         <option value="$PROJECT_DIR$/segmentation/base_classifier.py" />
         <option value="$PROJECT_DIR$/segmentation/models/simplenetmultigpu.py" />
         <option value="$PROJECT_DIR$/segmentation/models/conv_deconv_model.py" />
         <option value="$PROJECT_DIR$/tf-tutorials/conv1.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" />
         <option value="$PROJECT_DIR$/segmentation/models/BuildNetVgg16.py" />
-        <option value="$PROJECT_DIR$/segmentation/base_segmentation.py" />
         <option value="$PROJECT_DIR$/segmentation/models/deconvnet.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Inference.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/TensorflowUtils.py" />
@@ -222,26 +232,42 @@
         <option value="$PROJECT_DIR$/utils/data_reader_video_webcam.py" />
         <option value="$PROJECT_DIR$/segmentation/brain/segment_unet.py" />
         <option value="$PROJECT_DIR$/utils/ModelParams.py" />
-        <option value="$PROJECT_DIR$/classification/base_classifier.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/FCN.py" />
         <option value="$PROJECT_DIR$/utils/data_reader_mitsceneparsing.py" />
         <option value="$PROJECT_DIR$/utils/model_params.py" />
         <option value="$PROJECT_DIR$/utils/data_reader_cardava.py" />
-        <option value="$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py" />
         <option value="$PROJECT_DIR$/utils/queue_runner_utils_segmentation.py" />
         <option value="$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py" />
-        <option value="$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py" />
         <option value="$PROJECT_DIR$/segmentation/models/myunet.py" />
-        <option value="$PROJECT_DIR$/segmentation/models/FCN.py" />
         <option value="$PROJECT_DIR$/segmentation/brain/process_data.ipynb" />
-        <option value="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" />
         <option value="$PROJECT_DIR$/segmentation/mitsceneparsing/data_reader_mitsceneparsing.py" />
+        <option value="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" />
+        <option value="$PROJECT_DIR$/classification/models/DenseNet.py" />
+        <option value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/my.py" />
+        <option value="$PROJECT_DIR$/classification/models/vgg16.py" />
+        <option value="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" />
+        <option value="$PROJECT_DIR$/base/BaseTrainer.py" />
+        <option value="$PROJECT_DIR$/base/BaseModel.py" />
+        <option value="$PROJECT_DIR$/base/BaseDataReader.py" />
+        <option value="$PROJECT_DIR$/base/BaseModelParams.py" />
+        <option value="$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py" />
+        <option value="$PROJECT_DIR$/segmentation/base_segmentation.py" />
+        <option value="$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py" />
+        <option value="$PROJECT_DIR$/segmentation/models/FCN.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10/Cifar10ModelParams.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_model_params.py" />
+        <option value="$PROJECT_DIR$/base/base_trainer.py" />
+        <option value="$PROJECT_DIR$/classification/base_classifier.py" />
+        <option value="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" />
+        <option value="$PROJECT_DIR$/base/base_model_params.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10/data_reader_cifar10.py" />
+        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="1920" />
-    <option name="width" value="1913" />
+    <option name="width" value="1883" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -269,13 +295,40 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="cifar10" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="skin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
@@ -291,12 +344,19 @@
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="segmentation" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,19 +364,19 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
-      <recent name="$PROJECT_DIR$/classification/cifar10" />
-      <recent name="$PROJECT_DIR$/classification/models" />
-      <recent name="$PROJECT_DIR$/tf-tutorials/multigpu" />
-      <recent name="$PROJECT_DIR$/classification" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/segmentation/brain" />
       <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
       <recent name="$PROJECT_DIR$/segmentation/models" />
       <recent name="$PROJECT_DIR$/segmentation" />
       <recent name="$PROJECT_DIR$/tf-tutorials/queue_threading" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/classification/cifar10" />
+      <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
+      <recent name="$PROJECT_DIR$/classification/models" />
+      <recent name="$PROJECT_DIR$/tf-tutorials/multigpu" />
+      <recent name="$PROJECT_DIR$/classification" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -331,7 +391,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.data_reader_mitsceneparsing">
+  <component name="RunManager" selected="Python.cifar10_vgg_multi">
     <configuration name="unet-tensorflow" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="unet-tensorflow" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -347,24 +407,6 @@
       <option name="additionalOptions" value="" />
       <option name="ipnbHost" value="127.0.0.1" />
       <option name="ipnbPort" value="8888" />
-    </configuration>
-    <configuration name="FCN" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCN.tensorflow" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/FCN.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <module name="code-power" />
@@ -456,7 +498,25 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="segment_unet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="my" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="cifar10" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/my.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="train_isic_classification_multi_gpu" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -464,11 +524,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/segmentation/brain" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification/skin" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/segmentation/brain/segment_unet.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -573,20 +633,20 @@
     </configuration>
     <list>
       <item itemvalue="Python.Unnamed" />
-      <item itemvalue="Python.segment_unet" />
-      <item itemvalue="Python.FCN" />
+      <item itemvalue="Jupyter Notebook.unet-tensorflow" />
       <item itemvalue="Python.data_reader_mitsceneparsing" />
       <item itemvalue="Python.fcn" />
       <item itemvalue="Python.cifar10_vgg_multi" />
-      <item itemvalue="Jupyter Notebook.unet-tensorflow" />
+      <item itemvalue="Python.my" />
+      <item itemvalue="Python.train_isic_classification_multi_gpu" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cifar10_vgg_multi" />
+        <item itemvalue="Python.train_isic_classification_multi_gpu" />
+        <item itemvalue="Python.my" />
         <item itemvalue="Python.data_reader_mitsceneparsing" />
         <item itemvalue="Python.fcn" />
-        <item itemvalue="Python.cifar10_vgg_multi" />
-        <item itemvalue="Python.segment_unet" />
-        <item itemvalue="Python.FCN" />
       </list>
     </recent_temporary>
   </component>
@@ -874,21 +934,27 @@
       <option name="project" value="LOCAL" />
       <updated>1524034597142</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="mit sceneparsing augmentation added.">
+      <created>1524513934789</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1524513934789</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1913" height="1080" extended-state="4" />
+    <frame x="1920" y="0" width="1883" height="1080" extended-state="4" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.16878307" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.16827957" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32719395" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.29831934" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.2976939" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32896176" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32845187" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" weight="0.3970588" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -898,33 +964,33 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32719395" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19708455" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" weight="0.30163935" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" visible="true" weight="0.3978142" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32896176" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="evaluation class added for cifar 10 classification." />
     <MESSAGE value="pytorch added." />
     <MESSAGE value="segmentation detection directory added." />
     <MESSAGE value="pytorch tutorials added." />
@@ -949,7 +1015,8 @@
     <MESSAGE value="tensorboard logs added." />
     <MESSAGE value="checkpoint can be saved and re3stored and keyboard interrupt catching added." />
     <MESSAGE value="cardava data loader and segmentor added." />
-    <option name="LAST_COMMIT_MESSAGE" value="cardava data loader and segmentor added." />
+    <MESSAGE value="mit sceneparsing augmentation added." />
+    <option name="LAST_COMMIT_MESSAGE" value="mit sceneparsing augmentation added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1011,7 +1078,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tf-tutorials/queue_threading/pipeline_cifar10_multigpu.py</url>
-          <line>56</line>
+          <line>46</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1098,141 +1165,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/u_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_cifar10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="100" column="23" lean-forward="true" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="3100" selection-start-line="3100" selection-end-line="3100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_reader_brats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/u_net_tf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="123" column="30" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/TensorflowUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6693">
-          <caret line="298" selection-start-line="298" selection-end-line="298" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/conv_deconv_model.py" />
-    <entry file="file://$PROJECT_DIR$/tf-tutorials/conv1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/fcn_gcn_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/segmentation/layers_fcn_gcn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="149" column="55" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/BuildNetVgg16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="109" column="39" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/simplenetmultigpu.py" />
-    <entry file="file://$PROJECT_DIR$/classification/models/vgg16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="14" column="19" selection-start-line="11" selection-start-column="7" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/BuildNetVgg16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2369">
-          <caret line="107" column="17" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_nn_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="3475" column="4" selection-start-line="3475" selection-start-column="4" selection-end-line="3475" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Inference.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/simplenetmultigpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/lib/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2001">
@@ -1282,13 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/data_reader_video_webcam.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1328,9 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
           <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1341,12 +1263,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py">
+    <entry file="file://$PROJECT_DIR$/utils/queue_runner_utils_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="144" column="40" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="40" />
+        <state relative-caret-position="253">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/models/myunet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/process_data.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/DenseNet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Augmentor/Augmentor/Pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-485">
+          <caret line="1449" column="8" selection-start-line="1449" selection-start-column="8" selection-end-line="1449" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/TensorflowUtils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="33" column="80" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/tensorpack/graph_builder/model_desc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3703">
+          <caret line="170" column="6" selection-start-line="170" selection-start-column="6" selection-end-line="170" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/examples/ImageNetModels/vgg16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="165" column="43" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/examples/ResNet/imagenet_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorflow-code/models/tutorials/image/cifar10/my.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorpack-0.8.5-py3.5.egg/tensorpack/models/conv2d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="856">
+          <caret line="177" column="26" selection-start-line="177" selection-start-column="26" selection-end-line="177" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/examples/ShuffleNet/README.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/examples/ResNet/cifar10-resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="135" column="15" selection-start-line="135" selection-start-column="15" selection-end-line="135" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/tensorpack/dataflow/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15497">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tensorpack/examples/ResNet/resnet_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/my_net1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/vgg16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1358,104 +1397,135 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/queue_runner_utils_segmentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/FCN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="21" column="52" lean-forward="true" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/myunet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="64" column="37" selection-start-line="63" selection-start-column="30" selection-end-line="65" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/brain/process_data.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/python_utils/__init__.py">
+    <entry file="file://$PROJECT_DIR$/base/base_data_reader.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/TensorflowUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="33" column="80" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/base/base_model.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="116" column="4" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+        <state>
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Augmentor/Augmentor/Pipeline.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/fcn/fcnvgg16.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-485">
-          <caret line="1449" column="8" selection-start-line="1449" selection-start-column="8" selection-end-line="1449" selection-end-column="8" />
+        <state>
           <folding>
-            <element signature="e#533#641#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/model_params.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="23" />
+        <state relative-caret-position="299">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/models/FCN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1247">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="184">
+          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/train_isic_classification_multi_gpu.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="e#346#455#1" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/data_reader_mitsceneparsing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+        <state relative-caret-position="184">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/simplenetmultigpu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/base_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/base_trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_model_params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/base_model_params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10/data_reader_cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/cifar10/cifar10_vgg_multi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

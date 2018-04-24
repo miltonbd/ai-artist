@@ -14,6 +14,7 @@
     <orderEntry type="module" module-name="segmentation" />
     <orderEntry type="module" module-name="Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation" />
     <orderEntry type="module" module-name="FCN.tensorflow" />
+    <orderEntry type="module" module-name="tensorpack" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

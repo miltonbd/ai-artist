@@ -90,14 +90,7 @@ class DataReaderBrats(object):
 
 if __name__ == '__main__':
     obj=DataReaderBrats()
-    train_images , train_masks = obj.get_validation_files()
-    mask=Image.open(train_masks[10])
-    print("max pixel mask {}".format(np.unique(mask)))
-    mask_resized=mask.resize((224,224))
-    print(np.asarray(mask_resized))
-    print("max pixel mask {}".format(np.unique(mask_resized)))
 
-    print("{},{}".format(len(train_images), len(train_masks)))
 
 
 
