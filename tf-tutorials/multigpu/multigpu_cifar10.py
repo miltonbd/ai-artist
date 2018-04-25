@@ -1,4 +1,4 @@
-from classification.models.simplenetmultigpu import model as multiGpuModel
+from classification.models.tensorflow.simplenetmultigpu import model as multiGpuModel
 
 from sklearn import metrics
 import utils.TensorflowUtils as tfutils  # place all utitilies funvtions here

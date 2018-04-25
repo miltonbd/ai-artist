@@ -1,7 +1,7 @@
 from classification.base_classifier import BaseClassifier
-from classification.models.simplenetmultigpu import SimpleModel
 from classification.cifar10.cifar10_model_params import Cifar10ModelParams
 from classification.cifar10.data_reader_cifar10 import DataReaderCifar10
+from classification.models.tensorflow.simplenetmultigpu import SimpleModel
 
 class MyCifar10(BaseClassifier):
     def __init__(self, data_reader, model_params, model):
@@ -15,5 +15,4 @@ if __name__ == '__main__':
     model=SimpleModel(data_reader)
     model.logdir = 'logs_dir'
     trainer=MyCifar10(data_reader, model_params, model)
-
     trainer.train()

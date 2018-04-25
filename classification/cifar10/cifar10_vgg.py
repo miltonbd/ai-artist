@@ -1,8 +1,8 @@
 import tensorflow as tf
 import time
-from classification.models import vgg16
+from classification.models.tensorflow import vgg16
 from classification.cifar10.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from classification.queue_runner_utils_classification import QueueRunnerHelper
 
 print("pid {}".format(os.getpid()))
 data_dir = "/home/milton/dataset/cifar/cifar10"
@@ -50,7 +50,7 @@ batch_data_test, batch_label_test = queue_helper.make_queue(test_float_image, te
 batch_data, batch_label = tf.cond(is_training,
                      lambda:(batch_data_train, batch_label_train),
                      lambda:(batch_data_test, batch_label_test))
-model=vgg16.Vgg16(num_classes=num_classes)
+model= vgg16.Vgg16(num_classes=num_classes)
 with tf.device('/gpu:1'):
     model.build(batch_data,0.5)
     logits=model.logits

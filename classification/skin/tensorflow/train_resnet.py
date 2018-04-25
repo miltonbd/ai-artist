@@ -39,7 +39,7 @@ from tensorpack.tfutils.summary import add_moving_summary, add_param_summary
 from tensorpack.utils.gpu import get_nr_gpu
 from tensorpack.dataflow import dataset
 
-import tensorflow as tf
+import classification.skin.tensorflow as tf
 
 """
 CIFAR10 ResNet example. See:

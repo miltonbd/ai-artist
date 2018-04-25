@@ -1,4 +1,4 @@
-import tensorflow as tf
+import classification.models.tensorflow as tf
 
 
 class Model(ModelDesc):

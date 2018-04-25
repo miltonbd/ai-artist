@@ -1,5 +1,5 @@
 import numpy as np
-import tensorflow as tf
+import classification.skin.tensorflow as tf
 from sklearn import  metrics
 from classification.skin import data_loader
 from classification.skin.models import simplenet

@@ -11,6 +11,7 @@ class MyMitSceneSegmentation(BaseSegmentation):
 
 if __name__ == '__main__':
     model_params = ModeParams()
+    model_params.num_gpus=2
     data_reader=DataReaderMitSceneParsing()
     model=FCN(data_reader)
     model.logdir = 'logs_dir'

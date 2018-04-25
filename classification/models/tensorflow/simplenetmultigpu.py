@@ -1,4 +1,5 @@
-import tensorflow as tf
+import classification.models.tensorflow as tf
+from utils.TensorflowUtils import *
 
 """
 every model class will have a build() method
@@ -17,20 +18,6 @@ class SimpleModel(object):
             x_image = tf.reshape(input_batch, [-1, self.data_reader.image_height,
                                                self.data_reader.image_width,
                                                self.data_reader.channels], name='images')
-
-        def variable_with_weight_decay(name, shape, stddev, wd):
-            dtype = tf.float32
-            var = variable_on_cpu( name, shape, tf.truncated_normal_initializer(stddev=stddev, dtype=dtype))
-            if wd is not None:
-                weight_decay = tf.multiply(tf.nn.l2_loss(var), wd, name='weight_loss')
-                tf.add_to_collection('losses', weight_decay)
-            return var
-
-        def variable_on_cpu(name, shape, initializer):
-            with tf.device('/cpu:0'):
-                dtype = tf.float32
-                var = tf.get_variable(name, shape, initializer=initializer, dtype=dtype)
-            return var
 
         with tf.variable_scope('conv1_1') as scope:
             kernel = variable_with_weight_decay('weights', shape=[5, 5, 3, 64], stddev=5e-2, wd=0.0)

@@ -1,8 +1,8 @@
 import tensorflow as tf
 import time
-from classification.models import vgg16
+from classification.models.tensorflow import vgg16
 from classification.cifar10.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from classification.queue_runner_utils_classification import QueueRunnerHelper
 
 
 data_dir = "/home/milton/dataset/cifar/cifar10"
@@ -211,7 +211,7 @@ with  tf.device('/cpu:0'):
     tower_grads = []
     losses = []
     y_pred_classes = []
-    vgg=vgg16.Vgg16(num_classes=num_classes)
+    vgg= vgg16.Vgg16(num_classes=num_classes)
 
     for i in range(num_gpus):
         with tf.device('/gpu:{}'.format(i)):

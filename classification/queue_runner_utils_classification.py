@@ -32,7 +32,7 @@ class QueueRunnerHelper(object):
         return float_image, train_label
 
     def make_queue(self,float_image, train_label, batch_size):
-        q = tf.FIFOQueue(capacity=5 * batch_size, dtypes=[tf.float32, tf.float32],
+        q = tf.FIFOQueue(capacity=10 * batch_size, dtypes=[tf.float32, tf.float32],
                          shapes=[(self.image_height, self.image_width, 3), (self.num_classes,)])
         enqueue_op = q.enqueue([float_image, train_label])
         qr = tf.train.QueueRunner(q, [enqueue_op] * self.num_threads)

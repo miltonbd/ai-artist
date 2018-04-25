@@ -1,8 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import tensorflow as tf
 import time
-from classification.cifar10.data_reader_cifar10 import *
-from utils.queue_runner_utils_classification import QueueRunnerHelper
+from classification.queue_runner_utils_classification import QueueRunnerHelper
 from utils.TensorflowUtils import average_gradients
 from base.base_trainer import BaseTrainer
 
@@ -28,9 +27,11 @@ class BaseClassifier(BaseTrainer):
         tf.summary.FileWriterCache.clear()
 
         with  tf.device('/cpu:0'):
+            # Assume that you have 12GB of GPU memory and want to allocate ~4GB:
+            gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
             sess = tf.Session(config=tf.ConfigProto(
                 allow_soft_placement=True,
-                log_device_placement=False))
+                log_device_placement=False,gpu_options=gpu_options))
             sess.as_default()
 
             global_step = tf.get_variable('global_step', [],initializer=tf.constant_initializer(0), trainable=False)

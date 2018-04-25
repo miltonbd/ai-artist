@@ -1,12 +1,8 @@
 from abc import ABCMeta, abstractmethod
 import tensorflow as tf
-import tensorflow as tf
 import time
-import _pickle
-from classification.models import vgg16
 from utils.data_reader_cardava import *
 from utils.queue_runner_utils_segmentation import QueueRunnerHelper
-from sklearn import metrics
 from utils.TensorflowUtils import average_gradients
 
 
