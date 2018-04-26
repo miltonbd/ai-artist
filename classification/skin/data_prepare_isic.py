@@ -62,7 +62,7 @@ class Augment:
     pass
 
 if __name__ == '__main__':
-    #resizeAll(valid, 224, "classification_valid","ISIC-2017_Validation_Data")
-    #resizeAll(valid, 224, "classification_valid", "ISIC-2017_Validation_Data")
-    #resizeAll(test, 224, "classification_test", "ISIC-2017_Test_v2_Data")
+    resizeAll(train, 224, "classification_train","ISIC-2017_Training_Data")
+    resizeAll(valid, 224, "classification_valid", "ISIC-2017_Validation_Data")
+    resizeAll(test, 224, "classification_test", "ISIC-2017_Test_v2_Data")
 

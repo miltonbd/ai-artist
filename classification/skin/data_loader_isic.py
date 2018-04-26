@@ -5,7 +5,6 @@ import os
 import _pickle
 import math
 
-
 class DataReaderISIC2017(object):
     """
     data_dir = "/home/milton/dataset/cifar/cifar10" # contains data_batch_{1..5}
@@ -125,11 +124,7 @@ class DataReaderISIC2017(object):
 
     def getTrainDataForClassificationMelanoma(self):
         melanomas_train, nonmelanomas_train = self.getMelanoma('classification_train_224')
-        train_paths = np.concatenate((melanomas_train , nonmelanomas_train), axis=0)
-        train_x = []
-        for train_path in train_paths:
-            X = imageio.imread(train_path).reshape(224 * 224 * 3)/255
-            train_x.append(X)
+        train_x = np.concatenate((melanomas_train , nonmelanomas_train), axis=0)
         train_y = np.zeros(shape=[len(train_x),2],dtype=np.float32)
         train_y[0:len(melanomas_train),0]=1
         train_y[len(melanomas_train):,1]=1
@@ -143,11 +138,11 @@ class DataReaderISIC2017(object):
         return train_x, train_y, labels
 
     def getTestDataForClassificationMelanoma(self):
-        test_paths = np.concatenate((self.melanomas_test, self.nonmelanomas_test), axis=0)
-        test_x = []
-        for test_path in test_paths:
-            X = imageio.imread(test_path).reshape(224 * 224 * 3) / 255
-            test_x.append(X)
+        test_x = np.concatenate((self.melanomas_test, self.nonmelanomas_test), axis=0)
+        # test_x = []
+        # for test_path in test_paths:
+        #     X = imageio.imread(test_path).reshape(224 * 224 * 3) / 255
+        #     test_x.append(X)
         test_y = np.zeros(shape=[len(test_x), 2], dtype=np.float32)
         test_y[0:len(self.melanomas_test), 0] = 1
         test_y[len(self.melanomas_test):, 1] = 1
@@ -156,11 +151,12 @@ class DataReaderISIC2017(object):
         #print(len(test_y))
         test_x = np.asarray(test_x)
         #print(test_x.shape)
+        print("total melanoma test items {}".format(len(test_x)))
         self.initIterationsCount()
         return test_x, test_y, labels
 
-    def getDataForClassificationSeborrheicKeratosis(self):
-        return (self.seborrheic_keratosis, self.nonseborrheic_keratosis,['Seborrheic Keratosis','Non Seborrheic Keratosis'])
+    def getTrainDataForClassificationSeborrheicKeratosis(self):
+        return (self.seborrheic_keratosis_train, self.nonseborrheic_keratosis_train,['Seborrheic Keratosis','Non Seborrheic Keratosis'])
 
 
     def nextBatch(self):

@@ -1,25 +1,33 @@
 '''Train CIFAR10 with PyTorch.'''
 from __future__ import print_function
 
+from sklearn import metrics
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
-
+import numpy as np
 import torchvision
 import torchvision.transforms as transforms
 from utils.functions import progress_bar
 import os
+from tensorboardX import SummaryWriter
 
-from classification.models.pytorch.resnext import ResNeXt29_2x64d
+from classification.models.pytorch.vgg import VGG
 from torch.autograd import Variable
-from classification.skin.data_loader_isic import DataReaderISIC2017
+from classification.skin.pytorch.dataset_isic import ISIC2017Dataset
 
-batch_size=128
-epochs=200
 
-loader = DataReaderISIC2017(batch_size=batch_size,epochs=epochs,gpu_nums=1)
-loader.loadDataSet()
+batch_size_train_per_gpu = 50
+epochs = 200
+num_classes = 2
+learning_rate = 0.001
+log_dir='logs'
+
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+writer = SummaryWriter(log_dir)
 
 use_cuda = torch.cuda.is_available()
 best_acc = 0  # best test accuracy
@@ -27,30 +35,15 @@ start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 
 # Data
 print('==> Preparing data..')
-transform_train = transforms.Compose([
-    transforms.RandomCrop(32, padding=4),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-])
 
-transform_test = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-])
+trainset=ISIC2017Dataset(task=1, mode='train')
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size_train_per_gpu, shuffle=True, num_workers=2)
 
-trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
-
-testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
+testset = ISIC2017Dataset(task=1, mode='test')
 testloader = torch.utils.data.DataLoader(testset, batch_size=10, shuffle=False, num_workers=2)
 
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-
-args = {'resume':True, 'lr':0.001}
-
 # Model
-if args['resume']:
+try:
     # Load checkpoint.
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
@@ -58,14 +51,14 @@ if args['resume']:
     net = checkpoint['net']
     best_acc = checkpoint['acc']
     start_epoch = checkpoint['epoch']
-else:
+except Exception as e:
     print('==> Building model..')
-    # net = VGG('VGG19')
+    net = VGG('VGG19',num_classes)
     # net = ResNet18()
     # net = PreActResNet18()
     # net = GoogLeNet()
     # net = DenseNet121()
-    net = ResNeXt29_2x64d()
+    #net = ResNeXt29_2x64d(num_classes=2)
     # net = MobileNet()
     # net = MobileNetV2()
     # net = DPN92()
@@ -78,17 +71,18 @@ if use_cuda:
     cudnn.benchmark = True
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=args['lr'], momentum=0.9, weight_decay=5e-4)
+optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 # Training
 def train(epoch):
-    print('\nEpoch: %d' % epoch)
+    print('\n Training Epoch:{} '.format(epoch))
     net.train()
     train_loss = 0
     correct = 0
     total = 0
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
+        step = epoch * len(trainloader) + batch_idx
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         optimizer.zero_grad()
@@ -100,6 +94,7 @@ def train(epoch):
 
         train_loss += loss.data[0]
         _, predicted = torch.max(outputs.data, 1)
+        writer.add_scalar('train loss',train_loss,step)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
 
@@ -108,7 +103,7 @@ def train(epoch):
 
 
 def save_model(acc, epoch):
-    print('Saving..')
+    print('\n Saving new model with accuracy {}'.format(acc))
     state = {
         'net': net.module if use_cuda else net,
         'acc': acc,
@@ -124,7 +119,9 @@ def test(epoch):
     test_loss = 0
     correct = 0
     total = 0
-    print("testing")
+    target_all=[]
+    predicted_all=[]
+    print("\ntesting with previous accuracy {}".format(best_acc))
     for batch_idx, (inputs, targets) in enumerate(testloader):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
@@ -134,17 +131,74 @@ def test(epoch):
 
         test_loss += loss.data[0]
         _, predicted = torch.max(outputs.data, 1)
+        predicted_batch=predicted.eq(targets.data).cpu()
+        predicted_reshaped=predicted_batch.numpy().reshape(-1)
+        predicted_all=np.concatenate((predicted_all,predicted_reshaped),axis=0)
+
+        targets_reshaped = targets.data.cpu().numpy().reshape(-1)
+        target_all = np.concatenate((target_all, targets_reshaped), axis=0)
         total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+        correct += predicted_batch.sum()
 
         progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
             % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
     # Save checkpoint.
     acc = 100.*correct/total
+    writer.add_scalar('test accuracy', acc, epoch)
     if acc > best_acc:
         save_model(acc, epoch)
         best_acc = acc
+
+    accuracy = metrics.accuracy_score(target_all, predicted_all)
+
+    print(accuracy)
+
+    """
+    total sum of confusion matrix value is same as total number items in test set.
+    """
+    cm = metrics.confusion_matrix(target_all, predicted_all)
+    print(cm)
+
+    auc = metrics.roc_auc_score(target_all, predicted_all)
+    print("Auc {}".format(auc))
+    writer.add_scalar('test auc', auc, epoch)
+
+
+    # f1_score = metrics.f1_score(y_true, y_pred)
+
+    # print(f1_score)
+
+    # average_precision = metrics.average_precision_score(y_true, y_pred)
+    #
+    # print(average_precision)
+
+    FP = cm.sum(axis=0) - np.diag(cm)
+    FN = cm.sum(axis=1) - np.diag(cm)
+    TP = np.diag(cm)
+    TN = cm.sum() - (FP + FN + TP)
+    #print(TP)
+    #print(TN)
+    #
+    # # Sensitivity, hit rate, recall, or true positive rate
+    TPR = TP / (TP + FN)
+    # # Specificity or true negative rate
+    TNR = TN / (TN + FP)
+    # # Precision or positive predictive value
+    # PPV = TP / (TP + FP)
+    # # Negative predictive value
+    # NPV = TN / (TN + FN)
+    # # Fall out or false positive rate
+    # FPR = FP / (FP + TN)
+    # # False negative rate
+    # FNR = FN / (TP + FN)
+    # # False discovery rate
+    # FDR = FP / (TP + FP)
+    #
+    # # Overall accuracy
+    ACC = (TP + TN) / (TP + FP + FN + TN)
+    # print(ACC.mean())
+
 
 try:
   for epoch in range(start_epoch, start_epoch + epochs):
