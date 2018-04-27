@@ -12,7 +12,6 @@ import torchvision.transforms as transforms
 from utils.functions import progress_bar
 import os
 from tensorboardX import SummaryWriter
-
 from classification.models.pytorch.vgg import VGG
 from classification.models.pytorch.dpn import DPN92
 from classification.models.pytorch.mobilenetv2 import MobileNetV2
@@ -20,8 +19,7 @@ from classification.models.pytorch.densenet import DenseNet201
 from torch.autograd import Variable
 from classification.skin.pytorch.dataset_isic import ISIC2017Dataset
 
-
-batch_size_train_per_gpu = 40
+batch_size_train_per_gpu = 50
 epochs = 200
 num_classes = 2
 learning_rate = 0.001
@@ -110,7 +108,6 @@ def train(epoch):
             % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
 
-
 def save_model(acc, epoch):
     print('\n Saving new model with accuracy {}'.format(acc))
     state = {
@@ -161,22 +158,23 @@ def test(epoch):
 
     accuracy = metrics.accuracy_score(target_all, predicted_all)
 
-    print(accuracy)
+    print('\n Accuracy: {}'.format(accuracy))
 
     """
     total sum of confusion matrix value is same as total number items in test set.
     """
     cm = metrics.confusion_matrix(target_all, predicted_all)
-    print(cm)
+    print("Confsusion metrics: {}".format(cm))
 
     auc = metrics.roc_auc_score(target_all, predicted_all)
     print("Auc {}".format(auc))
     writer.add_scalar('test auc', auc, epoch)
 
+    f1_score = metrics.f1_score(target_all, predicted_all)
 
-    # f1_score = metrics.f1_score(y_true, y_pred)
+    print("F1 Score: {}".format(f1_score))
+    writer.add_scalar('F1 Score', f1_score, epoch)
 
-    # print(f1_score)
 
     # average_precision = metrics.average_precision_score(y_true, y_pred)
     #
@@ -186,12 +184,14 @@ def test(epoch):
     FN = cm.sum(axis=1) - np.diag(cm)
     TP = np.diag(cm)
     TN = cm.sum() - (FP + FN + TP)
-    #print(TP)
-    #print(TN)
-    #
-    # # Sensitivity, hit rate, recall, or true positive rate
+    # print(TP)
+    # print(TN)
+    # Sensitivity, hit rate, recall, or true positive rate
     TPR = TP / (TP + FN)
-    # # Specificity or true negative rate
+    sensitivity=np.mean(TPR)
+    print("Senstivity: {} ".format(sensitivity))
+    writer.add_scalar('Sensitivity',sensitivity,epoch)
+    #Specificity or true negative rate
     TNR = TN / (TN + FP)
     # # Precision or positive predictive value
     # PPV = TP / (TP + FP)
