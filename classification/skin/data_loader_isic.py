@@ -33,25 +33,31 @@ class DataReaderISIC2017(object):
     def initIterationsCount(self):
         self.iterations = int( math.ceil(self.total_train_count / (self.batch_size * self.gpu_nums)))
 
+    def get_all_images(self, target_dir):
+        files = []
+        for name in os.listdir(target_dir):
+            path = os.path.join(target_dir, name)
+            if os.path.exists(path) and path.endswith(".jpg"):
+                files.append(path)
+        return files
+
 
     def getMelanoma(self, images_dir):
         melanomas_dir = os.path.join(self.data_dir, images_dir, 'melanomas')
+        melanomas_aug_dir = os.path.join(melanomas_dir, 'output')
+
         seborrheic_keratosis_dir = os.path.join(self.data_dir, images_dir, 'seborrheic_keratosis')
         nevus_dir = os.path.join(self.data_dir, images_dir, 'nevus')
 
-        melanomas = np.array([])
-        for name in os.listdir(melanomas_dir):
-            path = os.path.join(melanomas_dir, name)
-            melanomas = np.append(melanomas, path)
-        nonmelanomas = np.array([])
+        melanomas = self.get_all_images(melanomas_dir)
+        if os.path.exists(melanomas_aug_dir):
+            melanomas_aug= self.get_all_images(melanomas_aug_dir)
+            melanomas.extend(melanomas_aug)
 
-        for name in os.listdir(seborrheic_keratosis_dir):
-            path = os.path.join(seborrheic_keratosis_dir, name)
-            nonmelanomas = np.append(nonmelanomas, path)
+        nonmelanomas = self.get_all_images(seborrheic_keratosis_dir)
+        nonmelanomas.extend(self.get_all_images(nevus_dir))
 
-        for name in os.listdir(nevus_dir):
-            path = os.path.join(nevus_dir, name)
-            nonmelanomas = np.append(nonmelanomas, path)
+
 
         #print("{} melanomas {}".format(images_dir, len(melanomas)))
         #print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
@@ -129,7 +135,7 @@ class DataReaderISIC2017(object):
         train_y[0:len(melanomas_train),0]=1
         train_y[len(melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
-        print("Total train items for melanona {}".format(len(train_x)))
+        #print("Total train items for melanona {}".format(len(train_x)))
         train_x = np.asarray(train_x)
         #print(train_x.shape)
         self.total_train_count = len(train_x)
@@ -151,7 +157,7 @@ class DataReaderISIC2017(object):
         #print(len(test_y))
         test_x = np.asarray(test_x)
         #print(test_x.shape)
-        print("total melanoma test items {}".format(len(test_x)))
+        #print("total melanoma test items {}".format(len(test_x)))
         self.initIterationsCount()
         return test_x, test_y, labels
 

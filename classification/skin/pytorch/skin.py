@@ -102,6 +102,7 @@ def train(epoch):
             % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
 
+
 def save_model(acc, epoch):
     print('\n Saving new model with accuracy {}'.format(acc))
     state = {

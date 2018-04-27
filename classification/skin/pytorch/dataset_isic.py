@@ -4,7 +4,7 @@ from classification.skin.data_loader_isic import DataReaderISIC2017
 import numpy as np
 import imageio
 import torch
-import torchvision
+from torchvision import transforms
 import Augmentor
 
 
@@ -23,24 +23,9 @@ class ISIC2017Dataset(Dataset):
         self.melanoma_validation=np.asarray(loader.getValidationDataForClassificationMelanoma())
         self.melanoma_test=np.asarray(loader.getTestDataForClassificationMelanoma())
         self.mode = mode
-        p = Augmentor.Pipeline("/home/milton/dataset/skin/classification_train_224/images")
-        # Point to a directory containing ground truth data.
-        # Images with the same file names will be added as ground truth data
-        # and augmented in parallel to the original data.
-        #p.ground_truth("/path/to/ground_truth_images")
-        # Add operations to the pipeline as normal:
-        p.rotate(probability=1, max_left_rotation=5, max_right_rotation=5)
-        p.flip_left_right(probability=0.5)
-        p.zoom_random(probability=0.5, percentage_area=0.8)
-        p.flip_top_bottom(probability=0.5)
-        #
-        self.transform = torchvision.transforms.Compose([
-            p.torch_transform(),
-            torchvision.transforms.ToTensor(),
-        ])
-        # self.transform = transforms.Compose(
-        #     [transforms.ToTensor(),
-        #      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        self.transforms = transforms.Compose(
+            [transforms.ToTensor(),
+             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     def __getitem__(self, index):
 
@@ -49,7 +34,7 @@ class ISIC2017Dataset(Dataset):
                 train_x, train_y, labels = self.melanoma_train
                 img = imageio.imread(train_x[index])
                 img=img.astype(np.float32)
-                data = self.transform(img)
+                data = self.transforms(img)
                 label = train_y[index]
                 return (data, np.argmax(label))
             elif self.mode == 'validation':
@@ -57,9 +42,9 @@ class ISIC2017Dataset(Dataset):
                 return valid_x[index], valid_y[index]
             else:
                 test_x, test_y,labels = self.melanoma_test
-                img = imageio.imread(test_x[index]).reshape([3, 224, 224]) / 255
+                img = imageio.imread(test_x[index])
                 img = img.astype(np.float32)
-                data = torch.from_numpy(img.copy())
+                data = self.transforms(img)
                 label = test_y[index]
                 return (data, np.argmax(label))
 

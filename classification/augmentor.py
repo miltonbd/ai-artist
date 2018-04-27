@@ -75,6 +75,9 @@ for f in glob.glob(root_directory):
         
 print("Folders (classes) found: %s " % [os.path.split(x)[1] for x in folders])
 
+# for p in pipelines.values():
+#     print("Class %s has %s samples." % (p.augmentor_images[0].class_label, len(p.augmentor_images)))
+
 pipelines = {}
 for folder in folders:
     print("Folder %s:" % (folder))
@@ -98,5 +101,4 @@ for folder in folders:
     print("\n----------------------------\n")
 
 
-for p in pipelines.values():
-    print("Class %s has %s samples." % (p.augmentor_images[0].class_label, len(p.augmentor_images)))
+print("Augmentation ended.")
