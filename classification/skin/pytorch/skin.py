@@ -14,11 +14,14 @@ import os
 from tensorboardX import SummaryWriter
 
 from classification.models.pytorch.vgg import VGG
+from classification.models.pytorch.dpn import DPN92
+from classification.models.pytorch.mobilenetv2 import MobileNetV2
+from classification.models.pytorch.densenet import DenseNet201
 from torch.autograd import Variable
 from classification.skin.pytorch.dataset_isic import ISIC2017Dataset
 
 
-batch_size_train_per_gpu = 50
+batch_size_train_per_gpu = 40
 epochs = 200
 num_classes = 2
 learning_rate = 0.001
@@ -38,22 +41,27 @@ print('==> Preparing data..')
 
 trainset=ISIC2017Dataset(task=1, mode='train')
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size_train_per_gpu, shuffle=True, num_workers=2)
+print('==> Total train examples: {}'.format(len(trainloader)*batch_size_train_per_gpu))
 
 testset = ISIC2017Dataset(task=1, mode='test')
 testloader = torch.utils.data.DataLoader(testset, batch_size=10, shuffle=False, num_workers=2)
+
+model_name=VGG
+model_name_str=model_name.class_name()
+print('\n==> using model {}'.format(model_name_str))
 
 # Model
 try:
     # Load checkpoint.
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/ckpt.t7')
+    checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(model_name_str))
     net = checkpoint['net']
     best_acc = checkpoint['acc']
     start_epoch = checkpoint['epoch']
 except Exception as e:
     print('==> Building model..')
-    net = VGG('VGG19',num_classes)
+    #net = VGG('VGG19',num_classes)
     # net = ResNet18()
     # net = PreActResNet18()
     # net = GoogLeNet()
@@ -61,7 +69,7 @@ except Exception as e:
     #net = ResNeXt29_2x64d(num_classes=2)
     # net = MobileNet()
     # net = MobileNetV2()
-    # net = DPN92()
+    net = model_name()
     # net = ShuffleNetG2()
     # net = SENet18()
 
@@ -71,7 +79,7 @@ if use_cuda:
     cudnn.benchmark = True
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+optimizer = optim.Adagrad(net.parameters(), lr=learning_rate, lr_decay=5e-4, weight_decay=5e-4)
 
 # Training
 def train(epoch):
@@ -112,7 +120,7 @@ def save_model(acc, epoch):
     }
     if not os.path.isdir('checkpoint'):
         os.mkdir('checkpoint')
-    torch.save(state, './checkpoint/ckpt.t7')
+    torch.save(state, './checkpoint/{}_ckpt.t7'.format(model_name_str))
 
 def test(epoch):
     global best_acc
