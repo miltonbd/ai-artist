@@ -19,23 +19,27 @@ from torch.autograd import Variable
 from classification.skin.pytorch.data_reader_isic import ISIC2017Dataset
 
 class SkinLeisonClassfication(object):
-    def __init__(self):
+    def __init__(self,logs):
         self.device_ids=[0]
         self.batch_size_train_per_gpu = 50
         self.batch_size_test_per_gpu=50
         self.epochs = 200
         self.num_classes = 2
         self.learning_rate = 0.001
-        self.log_dir='logs'
+        self.log_dir=logs
 
         if not os.path.exists(self.log_dir):
-            os.makedirs(log_dir)
+            os.makedirs(self.log_dir)
 
         self.writer = SummaryWriter(self.log_dir)
 
         self.use_cuda = torch.cuda.is_available()
         self.best_acc = 0  # best test accuracy
         self.start_epoch = 0  # start from epoch 0 or last checkpoint epoch
+        self.net = None
+        self.criterion = None
+        self.optimizer = None
+        self.model_name_str = None
 
     def load_data(self):
         # Data
@@ -45,7 +49,6 @@ class SkinLeisonClassfication(object):
         self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=self.batch_size_train_per_gpu, shuffle=True,
                                                   num_workers=2)
 
-
         testset = ISIC2017Dataset(task=1, mode='test')
         self.testloader = torch.utils.data.DataLoader(testset, batch_size=self.batch_size_test_per_gpu, shuffle=False, num_workers=2)
 
@@ -53,33 +56,24 @@ class SkinLeisonClassfication(object):
         test_count = len(self.testloader) * self.batch_size_test_per_gpu
         print('==> Total examples, train: {}, test:{}'.format(train_count, test_count))
 
-    def load_model(self):
-        model_name = VGG
+    def load_model(self, model):
+        model_name = model.model_name
         model_name_str = model_name.class_name()
         print('\n==> using model {}'.format(model_name_str))
+        self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
 
         # Model
         try:
             # Load checkpoint.
             print('==> Resuming from checkpoint..')
-            assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-            checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(model_name_str))
+            assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
+            checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
             net = checkpoint['net']
             self.best_acc = checkpoint['acc']
             self.start_epoch = checkpoint['epoch']
         except Exception as e:
-            print('==> Building model..')
-            # net = VGG('VGG19',num_classes)
-            # net = ResNet18()
-            # net = PreActResNet18()
-            # net = GoogLeNet()
-            # net = DenseNet121()
-            # net = ResNeXt29_2x64d(num_classes=2)
-            # net = MobileNet()
-            # net = MobileNetV2()
             net = model_name()
-            # net = ShuffleNetG2()
-            # net = SENet18()
+            print('==> Building model..')
 
         if self.use_cuda:
             net.cuda()
@@ -88,7 +82,6 @@ class SkinLeisonClassfication(object):
         self.net=net
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=.1)
-
 
     # Training
     def train(self, epoch):
@@ -121,16 +114,16 @@ class SkinLeisonClassfication(object):
                 % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
 
-    def save_model(acc, epoch):
+    def save_model(self, acc, epoch):
         print('\n Saving new model with accuracy {}'.format(acc))
         state = {
-            'net': net.module if self.use_cuda else self.net,
+            'net': self.net.module if self.use_cuda else self.net,
             'acc': acc,
             'epoch': epoch,
         }
         if not os.path.isdir('checkpoint'):
             os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/{}_ckpt.t7'.format(model_name_str))
+        torch.save(state, './checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
 
     def test(self, epoch):
         writer=self.writer
@@ -167,8 +160,9 @@ class SkinLeisonClassfication(object):
         acc = 100.*correct/total
         writer.add_scalar('test accuracy', acc, epoch)
         if acc > self.best_acc:
-            self.save_model(acc, epoch)
-            self.best_acc = acc
+            pass
+        self.save_model(acc, epoch)
+        self.best_acc = acc
 
         accuracy = metrics.accuracy_score(target_all, predicted_all)
 
@@ -221,19 +215,4 @@ class SkinLeisonClassfication(object):
         # # Overall accuracy
         ACC = (TP + TN) / (TP + FP + FN + TN)
         # print(ACC.mean())
-
-import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
-try:
-    clasifier=SkinLeisonClassfication()
-    clasifier.load_data()
-    clasifier.load_model()
-    for epoch in range(clasifier.start_epoch, clasifier.start_epoch + clasifier.epochs):
-      clasifier.train(epoch)
-      clasifier.test(epoch)
-except KeyboardInterrupt:
-    clasifier.test(epoch)
-
 
