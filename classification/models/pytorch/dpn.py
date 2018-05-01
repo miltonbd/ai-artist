@@ -52,7 +52,7 @@ class DPN(nn.Module):
         self.layer4 = self._make_layer(in_planes[3], out_planes[3], num_blocks[3], dense_depth[3], stride=2)
         self.linear = nn.Linear(out_planes[3]+(num_blocks[3]+1)*dense_depth[3], 2)
 
-    def __repr__(self):
+    def class_name(self):
         return 'DPN92'
 
     def _make_layer(self, in_planes, out_planes, num_blocks, dense_depth, stride):

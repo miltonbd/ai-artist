@@ -6,7 +6,7 @@ class BaseTrainer(object):
     def __init__(self, data_reader, model_params, model):
         self.data_reader = data_reader
         self.model_params = model_params
-        self.num_gpus = model_params.num_gpus
+        self.num_gpus = model_params.gpu_ids
         self.image_height = data_reader.image_height
         self.image_width = data_reader.image_width
         self.num_channels = data_reader.num_channels
