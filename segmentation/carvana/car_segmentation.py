@@ -21,8 +21,8 @@ from segmentation.carvana.data_reader_cardava import CarvanaDataset
 class CarvanaSegmentation(object):
     def __init__(self,logs):
         self.device_ids=[0]
-        self.batch_size_train_per_gpu = 50
-        self.batch_size_test_per_gpu=50
+        self.batch_size_train_per_gpu = 2
+        self.batch_size_test_per_gpu=2
         self.epochs = 200
         self.num_classes = 2
         self.learning_rate = 0.001

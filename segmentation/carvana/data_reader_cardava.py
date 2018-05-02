@@ -14,9 +14,8 @@ class CarvanaDataset(Dataset):
     """
     def __init__(self, mode='train'):
         loader = DataReaderCarvana()
-        loader.loadDataSet()
         self.train=np.asarray(loader.get_train_files())
-        self.test=np.asarray(loader.get_validation_files())
+        self.test=np.asarray(loader.get_test_files())
         self.mode = mode
         self.transforms = transforms.Compose(
             [transforms.ToTensor(),
@@ -25,17 +24,21 @@ class CarvanaDataset(Dataset):
     def __getitem__(self, index):
 
             if self.mode == 'train':
-                train_x, train_y, labels = self.train
+                train_x, train_y = self.train
                 img = imageio.imread(train_x[index])
                 img=img.astype(np.float32)
                 data = self.transforms(img)
-                label = train_y[index]
-                return (data, np.argmax(label))
+
+                mask = imageio.imread(train_y[index])
+                mask_data=torch.from_numpy(mask)
+                #data_mask = self.transforms(mask_img)
+
+                return (data, mask_data)
             elif self.mode == 'validation':
                 valid_x, valid_y, labels = self.validation
                 return valid_x[index], valid_y[index]
             else:
-                test_x, test_y,labels = self.test
+                test_x, test_y = self.test
                 img = imageio.imread(test_x[index])
                 img = img.astype(np.float32)
                 data = self.transforms(img)
@@ -45,13 +48,13 @@ class CarvanaDataset(Dataset):
 
     def __len__(self):
         if self.mode == 'train':
-            train_x, train_y, labels = self.train
+            train_x, train_y = self.train
             return len(train_x)
         elif self.mode == 'validation':
             valid_x, valid_y, labels = self.validation
             return len(valid_x)
         else:
-            test_x, test_y,labels = self.test
+            test_x, test_y= self.test
             return len(test_x)
 
 
@@ -74,19 +77,20 @@ class DataReaderCarvana(object):
        for file_name in os.listdir(self.train_dir):
            file_path = os.path.join(self.train_dir, file_name)
            train_files.append(file_path)
-           mask_file = os.path.join(self.masks_dir, os.path.basename(file_path),".gif")
+           mask_file = os.path.join(self.train_masks_dir, os.path.basename(file_path).split(".")[0]+"_mask.gif")
            train_mask_files.append(mask_file)
+       print("Total train {}".format(len(train_files)))
        return train_files, train_mask_files
 
     def get_test_files(self):
        test_files=[]
        train_mask_files=[]
-       for file_name in os.listdir(self.train_dir):
-           file_path = os.path.join(self.train_dir, file_name)
+       for file_name in os.listdir(self.test_dir):
+           file_path = os.path.join(self.test_dir, file_name)
            test_files.append(file_path)
-           mask_file = os.path.join(self.masks_dir, os.path.basename(file_path),".gif")
-           train_mask_files.append(mask_file)
-       return test_files, train_mask_files
+           #mask_file = os.path.join(self.masks_dir, os.path.basename(file_path),".gif")
+           #train_mask_files.append(mask_file)
+       return test_files, 1
 
 
 

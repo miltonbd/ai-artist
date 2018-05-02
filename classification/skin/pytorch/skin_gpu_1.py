@@ -23,6 +23,7 @@ class Model(object):
     def __init__(self):
         self.model_name = VGG
         self.model_log_name="adam1"
+        self.learning_rate =  0.0005
 
 model=Model()
 

@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/segmentation/carvana/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/carvana/carvana_pytorch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/carvana_gpu_0.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/carvana_pytorch.py" afterDir="false" />
+    <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="two gpu classifiers added for skin.">
+      <change afterPath="$PROJECT_DIR$/segmentation/carvana/model_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/models/pytorch/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/keras1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/test1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code-power.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/models/pytorch/vgg.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/models/pytorch/vgg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/base_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/base_segmentation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/base_segmentation_singe_gpu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf-tutorials/conv1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf-tutorials/conv1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_reader_cardava.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/brain/segment_unet.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/brain/segment_unet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/mitsceneparsing/fcn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/BuildNetVgg16.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/BuildNetVgg16.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/FCN.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/FCN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/deconvnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/deconvnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/myunet.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/myunet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/u_net_tf.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/u_net_tf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/u_net_tf_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/tensorflow/u_net_tf_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/unet/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/pytorch/unet/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/unet/unet_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/models/unet/unet_parts.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_parts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterDir="false" />
@@ -57,7 +60,7 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-736">
+            <state relative-caret-position="23">
               <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -66,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="skin_classifier.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="skin_classifier.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="116" column="65" selection-start-line="116" selection-start-column="65" selection-end-line="116" selection-end-column="65" />
+            <state relative-caret-position="228">
+              <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -78,8 +81,8 @@
       <file leaf-file-name="skin_gpu_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="248">
+              <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -87,8 +90,8 @@
       <file leaf-file-name="carvana_gpu_0.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+            <state relative-caret-position="317">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -99,17 +102,30 @@
       <file leaf-file-name="car_segmentation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segmentation/carvana/car_segmentation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+            <state relative-caret-position="195">
+              <caret line="100" selection-start-line="100" selection-end-line="100" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unet_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="deconvnet.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/segmentation/models/tensorflow/deconvnet.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="data_reader_cardava.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1322">
-              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+            <state relative-caret-position="1173">
+              <caret line="81" column="30" selection-start-line="81" selection-end-line="82" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -117,37 +133,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="carvana_pytorch.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/carvana_pytorch.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="data_reader_isic.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
+      <file leaf-file-name="model_params.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/model_params.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="69">
-              <caret line="3" column="9" selection-end-line="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="skin_gpu_0.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="40" />
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="16" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/README.md">
+      <file leaf-file-name="model_params.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/carvana/model_params.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="253">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -166,7 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>correct_prediction_batch</find>
       <find>tran_dir</find>
       <find>data_dir</find>
       <find>glo</find>
@@ -196,6 +197,7 @@
       <find>102</find>
       <find>model_name_str</find>
       <find>task</find>
+      <find>get_train_files</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -215,7 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classification/cifar10/cifar10_model_params.py" />
         <option value="$PROJECT_DIR$/classification/base_classifier.py" />
         <option value="$PROJECT_DIR$/classification/models/simplenetmultigpu.py" />
         <option value="$PROJECT_DIR$/classification/cifar10/data_reader_cifar10.py" />
@@ -259,19 +260,20 @@
         <option value="$PROJECT_DIR$/classification/models/pytorch/vgg.py" />
         <option value="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py" />
         <option value="$PROJECT_DIR$/segmentation/carvana/carvana_pytorch.py" />
-        <option value="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" />
-        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" />
         <option value="$PROJECT_DIR$/segmentation/carvana/cravana_gpu_1.py" />
         <option value="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_1.py" />
-        <option value="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" />
-        <option value="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" />
+        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" />
         <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" />
+        <option value="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" />
+        <option value="$PROJECT_DIR$/segmentation/carvana/model_params.py" />
+        <option value="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" />
+        <option value="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1922" />
-    <option name="y" value="30" />
+    <option name="x" value="2009" />
+    <option name="y" value="16" />
     <option name="width" value="1717" />
     <option name="height" value="1032" />
   </component>
@@ -300,6 +302,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,30 +313,18 @@
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
+              <item name="segmentation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Pytorch-UNet" type="462c0819:PsiDirectoryNode" />
+              <item name="segmentation" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,19 +333,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
-      <recent name="$PROJECT_DIR$/segmentation/carvana" />
-      <recent name="$PROJECT_DIR$/classification/skin/pytorch" />
-      <recent name="$PROJECT_DIR$/classification/skin/torch" />
-      <recent name="$PROJECT_DIR$/classification/models/pytorch" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/segmentation/models/tensorflow" />
+      <recent name="$PROJECT_DIR$/segmentation/models/pytorch" />
       <recent name="$PROJECT_DIR$/segmentation/carvana" />
       <recent name="$PROJECT_DIR$/classification" />
       <recent name="$PROJECT_DIR$/classification/skin/tensorflow" />
-      <recent name="$PROJECT_DIR$/classification/models/tensorflow" />
-      <recent name="$PROJECT_DIR$/classification/cifar10" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/segmentation/carvana" />
+      <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
+      <recent name="$PROJECT_DIR$/classification/skin/pytorch" />
+      <recent name="$PROJECT_DIR$/classification/skin/torch" />
+      <recent name="$PROJECT_DIR$/classification/models/pytorch" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -603,8 +594,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.skin_gpu_1" />
         <item itemvalue="Python.carvana_gpu_0" />
+        <item itemvalue="Python.skin_gpu_1" />
         <item itemvalue="Python.carvana_pytorch" />
         <item itemvalue="Python.train" />
         <item itemvalue="Python.skin_gpu_0" />
@@ -944,7 +935,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525193708334</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="step train loss aded.">
+      <created>1525253613066</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1525253613066</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -965,7 +963,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1922" y="30" width="1717" height="1032" extended-state="0" />
+    <frame x="2009" y="16" width="1717" height="1032" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.18122786" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -989,29 +987,28 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19708455" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" weight="0.30163935" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" visible="true" weight="0.3978142" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32896176" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="epochs added for training." />
     <MESSAGE value="skin leison classification now uses epochs and iterations and random shuffle." />
     <MESSAGE value="multi gpu cnn training loss can be obtained." />
     <MESSAGE value="multi gpu train sucessful." />
@@ -1036,7 +1033,8 @@
     <MESSAGE value="train works with augmented data." />
     <MESSAGE value="train codes encapsulated in class." />
     <MESSAGE value="two gpu classifiers added for skin." />
-    <option name="LAST_COMMIT_MESSAGE" value="two gpu classifiers added for skin." />
+    <MESSAGE value="step train loss aded." />
+    <option name="LAST_COMMIT_MESSAGE" value="step train loss aded." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1107,12 +1105,12 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/segmentation/models/u_net_tf.py</url>
+          <url>file://$PROJECT_DIR$/segmentation/models/tensorflow/u_net_tf.py</url>
           <line>123</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/segmentation/models/u_net_tf.py</url>
+          <url>file://$PROJECT_DIR$/segmentation/models/tensorflow/u_net_tf.py</url>
           <line>22</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
@@ -1215,34 +1213,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/modules/conv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="253" selection-start-line="253" selection-end-line="253" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/functional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="552" selection-start-line="552" selection-end-line="552" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/resnext.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="42" column="77" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/lib/python3.5/dist-packages/torchvision-0.2.1-py3.5.egg!/torchvision/datasets/cifar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/modules/module.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -1324,24 +1294,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/utils/data/dataloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4922">
-          <caret line="220" selection-start-line="220" selection-end-line="220" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/skin/data_prepare_isic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1380">
           <caret line="64" column="68" selection-start-line="64" selection-start-column="68" selection-end-line="64" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader_isic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3542">
-          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1494,36 +1450,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-736">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="9" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/carvana/cravana_gpu_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/carvana/cravana_gpu_1.py" />
     <entry file="file://$PROJECT_DIR$/segmentation/carvana/carvana_pytorch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6532">
@@ -1534,17 +1464,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/data_loader_isic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/carvana_pytorch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4830">
+          <caret line="233" column="31" selection-start-line="233" selection-start-column="31" selection-end-line="233" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/utils/data/dataloader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4462">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="248">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/model_params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/carvana/model_params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="81" column="30" selection-start-line="81" selection-end-line="82" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="317">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -1553,30 +1555,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/carvana/car_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1322">
-          <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+        <state relative-caret-position="195">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/mitsceneparsing/carvana_pytorch.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="116" column="65" selection-start-line="116" selection-start-column="65" selection-end-line="116" selection-end-column="65" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/segmentation/models/tensorflow/deconvnet.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

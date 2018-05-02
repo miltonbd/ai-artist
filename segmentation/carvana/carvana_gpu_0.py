@@ -1,6 +1,7 @@
 import os
 from segmentation.carvana.car_segmentation import CarvanaSegmentation
 from classification.models.pytorch.vgg import VGG
+from segmentation.carvana.model_params import ModeParams
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -12,11 +13,11 @@ class Model(object):
     def __init__(self):
         self.model_name = VGG
         self.model_log_name="adam1"
+        self.model_params=None
 
 model=Model()
-
+model.model_params=ModeParams()
 trainer=CarvanaSegmentation('logs/adam1')
-print("ok")
 trainer.load_data()
 trainer.load_model(model)
 for epoch in range(trainer.start_epoch, trainer.start_epoch + trainer.epochs):

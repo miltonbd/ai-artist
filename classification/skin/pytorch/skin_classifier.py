@@ -25,7 +25,7 @@ class SkinLeisonClassfication(object):
         self.batch_size_test_per_gpu=50
         self.epochs = 200
         self.num_classes = 2
-        self.learning_rate = 0.005
+        self.learning_rate = 0.001
         self.log_dir=logs
 
         if not os.path.exists(self.log_dir):
@@ -57,6 +57,7 @@ class SkinLeisonClassfication(object):
         print('==> Total examples, train: {}, test:{}'.format(train_count, test_count))
 
     def load_model(self, model):
+        self.learning_rate=model.learning_rate
         model_name = model.model_name
         model_name_str = model_name.class_name()
         print('\n==> using model {}'.format(model_name_str))

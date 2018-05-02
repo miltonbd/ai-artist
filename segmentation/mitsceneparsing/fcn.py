@@ -1,5 +1,5 @@
 from segmentation.base_segmentation_singe_gpu import BaseSegmentation
-from segmentation.models.FCN import FCN
+from segmentation.models.tensorflow.FCN import FCN
 from segmentation.mitsceneparsing.data_reader_mitsceneparsing import DataReaderMitSceneParsing
 from segmentation.mitsceneparsing.model_params import ModeParams
 
