@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" filepath="$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/.idea/Pytorch-UNet.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/.idea/Pytorch-UNet.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/code-power.iml" filepath="$PROJECT_DIR$/.idea/code-power.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/.idea/pytorch-cifar.iml" filepath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/.idea/pytorch-cifar.iml" />
     </modules>

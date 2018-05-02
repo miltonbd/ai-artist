@@ -1,5 +1,5 @@
 import os
-from classification.skin.pytorch.skin import SkinLeisonClassfication
+from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.vgg import VGG
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"

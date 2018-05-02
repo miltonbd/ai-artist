@@ -16,9 +16,9 @@ from classification.models.pytorch.dpn import DPN92
 from classification.models.pytorch.mobilenetv2 import MobileNetV2
 from classification.models.pytorch.densenet import DenseNet201
 from torch.autograd import Variable
-from classification.skin.pytorch.data_reader_isic import ISIC2017Dataset
+from segmentation.carvana.data_reader_cardava import CarvanaDataset
 
-class SkinLeisonClassfication(object):
+class CarvanaSegmentation(object):
     def __init__(self,logs):
         self.device_ids=[0]
         self.batch_size_train_per_gpu = 50
@@ -45,11 +45,11 @@ class SkinLeisonClassfication(object):
         # Data
         print('==> Preparing data..')
 
-        trainset = ISIC2017Dataset(task=1, mode='train')
+        trainset = CarvanaDataset( mode='train')
         self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=self.batch_size_train_per_gpu, shuffle=True,
                                                   num_workers=2)
 
-        testset = ISIC2017Dataset(task=1, mode='test')
+        testset = CarvanaDataset(mode='test')
         self.testloader = torch.utils.data.DataLoader(testset, batch_size=self.batch_size_test_per_gpu, shuffle=False, num_workers=2)
 
         train_count = len(self.trainloader) * self.batch_size_train_per_gpu
@@ -81,7 +81,7 @@ class SkinLeisonClassfication(object):
             cudnn.benchmark = True
         self.net=net
         self.criterion = nn.CrossEntropyLoss()
-        self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=.1)
+        self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=5)
 
     # Training
     def train(self, epoch):
@@ -92,7 +92,6 @@ class SkinLeisonClassfication(object):
         train_loss = 0
         correct = 0
         total = 0
-
         for batch_idx, (inputs, targets) in enumerate(self.trainloader):
             step = epoch * len(self.trainloader) + batch_idx
             if self.use_cuda:

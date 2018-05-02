@@ -1,5 +1,5 @@
 import os
-from classification.skin.pytorch.skin import SkinLeisonClassfication
+from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.vgg import VGG
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -36,5 +36,6 @@ for epoch in range(clasifier.start_epoch, clasifier.start_epoch + clasifier.epoc
     except KeyboardInterrupt:
       clasifier.test(epoch)
       break;
+    #clasifier.load_data()
 
 

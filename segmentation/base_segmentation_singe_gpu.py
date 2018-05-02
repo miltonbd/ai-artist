@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import tensorflow as tf
 import time
-from utils.data_reader_cardava import *
+from segmentation.carvana.data_reader_cardava import *
 from utils.queue_runner_utils_segmentation import QueueRunnerHelper
 
 """

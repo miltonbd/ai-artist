@@ -1,11 +1,10 @@
 from __future__ import print_function
 import tensorflow as tf
-import cv2
 import imageio
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils.data_reader_cardava import get_train_files_carvana_segmentation, image_height, image_width
+from segmentation.carvana.data_reader_cardava import get_train_files_carvana_segmentation, image_height, image_width
 
 class Padding:
     SAME='SAME'

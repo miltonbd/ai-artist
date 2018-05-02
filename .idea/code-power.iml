@@ -6,6 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Augmentor" />
     <orderEntry type="module" module-name="pytorch-cifar" />
+    <orderEntry type="module" module-name="Pytorch-UNet" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />
