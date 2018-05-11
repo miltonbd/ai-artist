@@ -3,6 +3,8 @@ from segmentation.carvana.car_segmentation import CarvanaSegmentation
 from classification.models.pytorch.vgg import VGG
 from segmentation.carvana.model_params import ModeParams
 
+from segmentation.models.pytorch.unet_model import UNet
+
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -11,7 +13,7 @@ class Model(object):
     store all model and optmization related params here.
     """
     def __init__(self):
-        self.model_name = VGG
+        self.model_name =UNet
         self.model_log_name="adam1"
         self.model_params=None
 

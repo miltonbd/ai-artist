@@ -72,7 +72,7 @@ class CarvanaSegmentation(object):
             self.best_acc = checkpoint['acc']
             self.start_epoch = checkpoint['epoch']
         except Exception as e:
-            net = model_name()
+            net = model_name(3,2)
             print('==> Building model..')
 
         if self.use_cuda:
@@ -80,7 +80,7 @@ class CarvanaSegmentation(object):
             net = torch.nn.DataParallel(net)
             cudnn.benchmark = True
         self.net=net
-        self.criterion = nn.CrossEntropyLoss()
+        self.criterion = nn.BCELoss()
         self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=5)
 
     # Training

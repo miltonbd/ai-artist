@@ -7,6 +7,11 @@
     <orderEntry type="module" module-name="Augmentor" />
     <orderEntry type="module" module-name="pytorch-cifar" />
     <orderEntry type="module" module-name="Pytorch-UNet" />
+    <orderEntry type="module" module-name="unet-pytorch" />
+    <orderEntry type="module" module-name="Pytorch-UNet" />
+    <orderEntry type="module" module-name="unet-pytorch" />
+    <orderEntry type="module" module-name="UNet-pytorch" />
+    <orderEntry type="module" module-name="UNet-Zoo" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

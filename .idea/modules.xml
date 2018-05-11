@@ -4,8 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" filepath="$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/.idea/Pytorch-UNet.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/.idea/Pytorch-UNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/.idea/UNet-Zoo.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/.idea/UNet-Zoo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/.idea/UNet-pytorch.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/.idea/UNet-pytorch.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/code-power.iml" filepath="$PROJECT_DIR$/.idea/code-power.iml" />
       <module fileurl="file://$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/.idea/pytorch-cifar.iml" filepath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/.idea/pytorch-cifar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/.idea/unet-pytorch.iml" filepath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/.idea/unet-pytorch.iml" />
     </modules>
   </component>
 </project>

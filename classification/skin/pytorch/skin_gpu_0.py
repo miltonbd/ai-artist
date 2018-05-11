@@ -22,11 +22,13 @@ class Model(object):
     """
     def __init__(self):
         self.model_name = VGG
-        self.model_log_name="adam2"
+        self.model_log_name="rmsprop1"
+        self.learning_rate =  0.0005
+
 
 model=Model()
 
-clasifier=SkinLeisonClassfication('logs/adam2')
+clasifier=SkinLeisonClassfication('logs/rmsprop1')
 clasifier.load_data()
 clasifier.load_model(model)
 for epoch in range(clasifier.start_epoch, clasifier.start_epoch + clasifier.epochs):

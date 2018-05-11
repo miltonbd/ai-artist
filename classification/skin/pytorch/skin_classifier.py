@@ -82,7 +82,7 @@ class SkinLeisonClassfication(object):
             cudnn.benchmark = True
         self.net=net
         self.criterion = nn.CrossEntropyLoss()
-        self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=1,weight_decay=1e-8)
+        self.optimizer = optim.RMSprop(net.parameters(), lr=self.learning_rate, eps=1,weight_decay=1e-8)
 
     # Training
     def train(self, epoch):
