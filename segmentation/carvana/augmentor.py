@@ -69,10 +69,6 @@ def resize(pipeline, n):
     pipeline.random_erasing(probability=1, rectangle_area=.2)
     pipeline.sample(n)
 
-
-
-
-
 root_directory = "/home/milton/dataset/segmentation/carvana/train/*"
 mask_dir="/home/milton/dataset/segmentation/carvana/masks/"
 gif_mask_dir="/home/milton/dataset/segmentation/carvana/train_masks/*"
@@ -91,26 +87,34 @@ def convert_gif_jpg():
 
 #convert_gif_jpg()
 
-def resize_mask():
-    pipeline = (Augmentor.Pipeline("/home/milton/dataset/segmentation/carvana/train/"))
-    pipeline.ground_truth("/home/milton/dataset/segmentation/carvana/masks")
-    n=len(pipeline.augmentor_images)
-    pipeline.resize(1,572,572)
-    pipeline.sample(n)
+def resize_train_masks():
+
+    # for f in glob.glob(root_directory):
+    #     img = np.asarray(Image.open(f))
+    #     img_resized=Image.fromarray(img)
+    #     img_resized=img_resized.resize((320,320),Image.NORMAL)
+    #     #assert np.unique(img_resized).all()==np.unique(img).all()
+    #     name = f.split('_mask.gif')[0].split('/')[-1]
+    #     neW_mask_file = os.path.join("/home/milton/dataset/segmentation/carvana/train_372", name)
+    #     img_resized.save(neW_mask_file)
+    # print("resizing masks")
+    for f in glob.glob(gif_mask_dir):
+        img = np.asarray(Image.open(f))*255
+        img_resized=Image.fromarray(img)
+        img_resized=img_resized.resize((320,320),Image.NORMAL)
+        assert np.unique(img_resized).all()==np.unique(img).all()
+        name = f.split('_mask.gif')[0].split('/')[-1]
+        neW_mask_file = os.path.join("/home/milton/dataset/segmentation/carvana/train_masks_372", name + ".jpg")
+
+        img_resized.save(neW_mask_file)
 
 
-for f in glob.glob('/home/milton/dataset/segmentation/carvana/masks_372/*'):
-    print(f)
-    img=np.asarray(Image.open("/home/milton/dataset/segmentation/carvana/masks_372/_groundtruth_(1)_train_0cdf5b5d0ce1_01.jpg_cdc5d4f4-6e29-44b2-ba58-c0a0c9c3a375.jpg"))
-    #print(img.shape)
 
-    for i in img:
-        print(i)
-    # img_out = Image.fromarray(img)
-    # img_out=img_out.resize((372,372),Image.BICUBIC)
-    # #print(np.asarray(img_out).shape)
-    # assert np.unique(img).sum() == np.unique(img_out).sum()
-    break
+
+
+
+
+resize_train_masks()
 exit(1)
 
 folders = []

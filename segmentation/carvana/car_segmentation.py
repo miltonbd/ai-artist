@@ -17,6 +17,9 @@ from classification.models.pytorch.mobilenetv2 import MobileNetV2
 from classification.models.pytorch.densenet import DenseNet201
 from torch.autograd import Variable
 from segmentation.carvana.data_reader_cardava import CarvanaDataset
+from segmentation.models.pytorch.unet.unet_model import UNet
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 class CarvanaSegmentation(object):
     def __init__(self,logs):
@@ -56,39 +59,44 @@ class CarvanaSegmentation(object):
         test_count = len(self.testloader) * self.batch_size_test_per_gpu
         print('==> Total examples, train: {}, test:{}'.format(train_count, test_count))
 
-    def load_model(self, model):
-        model_name = model.model_name
-        model_name_str = model_name.class_name()
-        print('\n==> using model {}'.format(model_name_str))
-        self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
-
-        # Model
-        try:
-            # Load checkpoint.
-            print('==> Resuming from checkpoint..')
-            assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
-            checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
-            net = checkpoint['net']
-            self.best_acc = checkpoint['acc']
-            self.start_epoch = checkpoint['epoch']
-        except Exception as e:
-            net = model_name(3,2)
-            print('==> Building model..')
-
+    def load_model(self):
+        # model_name_str = model.model.class_name()
+        # print('\n==> using model {}'.format(model_name_str))
+        # self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
+        #
+        # # Model
+        # try:
+        #     # Load checkpoint.
+        #     print('==> Resuming from checkpoint..')
+        #     assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
+        #     checkpoint = torch.load('segmentation/carvana/checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
+        #     if not os.path.exists(checkpoint):
+        #         raise Exception('ok')
+        #
+        #     net = checkpoint['net']
+        #     self.best_acc = checkpoint['acc']
+        #     self.start_epoch = checkpoint['epoch']
+        # except FileNotFoundError as e:
+        #     net = UNet(3, depth=5, merge_mode='concat')
+        #     print('==> Building model..')
+        # except Exception as e:
+        #     net  = UNet(3, depth=5, merge_mode='concat')
+        #     print('==> Building model..')
+        model=UNet(3, 1)
         if self.use_cuda:
-            net.cuda()
-            net = torch.nn.DataParallel(net)
+            model.cuda()
+            model = torch.nn.DataParallel(model)
             cudnn.benchmark = True
-        self.net=net
+        self.model = model
         self.criterion = nn.BCELoss()
-        self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=5)
+        self.optimizer = optim.Adam(self.model.parameters(), lr=self.learning_rate, eps=5)
 
     # Training
     def train(self, epoch):
         print('\n Training Epoch:{} '.format(epoch))
-        net = self.net
+        model = self.model
         optimizer=self.optimizer
-        net.train()
+        model.train()
         train_loss = 0
         correct = 0
         total = 0
@@ -98,7 +106,7 @@ class CarvanaSegmentation(object):
                 inputs, targets = inputs.cuda(), targets.cuda()
             optimizer.zero_grad()
             inputs, targets = Variable(inputs), Variable(targets)
-            outputs = net(inputs)
+            outputs = model.forward(inputs)
             loss = self.criterion(outputs, targets)
             loss.backward()
             optimizer.step()
@@ -116,7 +124,7 @@ class CarvanaSegmentation(object):
     def save_model(self, acc, epoch):
         print('\n Saving new model with accuracy {}'.format(acc))
         state = {
-            'net': self.net.module if self.use_cuda else self.net,
+            'net': self.model.module if self.use_cuda else self.net,
             'acc': acc,
             'epoch': epoch,
         }
@@ -215,3 +223,15 @@ class CarvanaSegmentation(object):
         ACC = (TP + TN) / (TP + FP + FN + TN)
         # print(ACC.mean())
 
+if __name__ == '__main__':
+    trainer=CarvanaSegmentation('logs/adam1')
+    trainer.load_data()
+    trainer.load_model()
+    for epoch in range(trainer.start_epoch, trainer.start_epoch + trainer.epochs):
+        try:
+            trainer.train(epoch)
+            trainer.test(epoch)
+        except KeyboardInterrupt:
+            trainer.test(epoch)
+            break;
+        # clasifier.load_data()

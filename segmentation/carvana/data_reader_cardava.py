@@ -18,18 +18,18 @@ class CarvanaDataset(Dataset):
         self.test=np.asarray(loader.get_test_files())
         self.mode = mode
         self.transforms = transforms.Compose(
-            [transforms.ToTensor(),
-             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+            [transforms.ToTensor()])
 
     def __getitem__(self, index):
 
             if self.mode == 'train':
                 train_x, train_y = self.train
                 img = imageio.imread(train_x[index])
-                img=img.astype(np.float32)
+                img=img.astype(np.float32)/255
                 data = self.transforms(img)
 
                 mask = imageio.imread(train_y[index])
+                mask=mask.astype(np.float32)/255
                 mask_data=torch.from_numpy(mask)
                 #data_mask = self.transforms(mask_img)
 
@@ -62,9 +62,9 @@ class DataReaderCarvana(object):
 
     def __init__(self):
         self.data_dir = "/home/milton/dataset/segmentation/carvana"
-        self.train_dir = os.path.join(self.data_dir, "train")
+        self.train_dir = os.path.join(self.data_dir, "train_372")
         self.test_dir = os.path.join(self.data_dir, "test")
-        self.train_masks_dir = os.path.join(self.data_dir, "train_masks")
+        self.train_masks_dir = os.path.join(self.data_dir, "train_masks_372")
         self.num_channels = 3
         self.image_height = 1280
         self.image_width = 1918
@@ -77,7 +77,7 @@ class DataReaderCarvana(object):
        for file_name in os.listdir(self.train_dir):
            file_path = os.path.join(self.train_dir, file_name)
            train_files.append(file_path)
-           mask_file = os.path.join(self.train_masks_dir, os.path.basename(file_path).split(".")[0]+"_mask.gif")
+           mask_file = os.path.join(self.train_masks_dir, file_name)
            train_mask_files.append(mask_file)
        print("Total train {}".format(len(train_files)))
        return train_files, train_mask_files
