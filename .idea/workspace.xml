@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="two gpu classifiers added for skin.">
+      <change afterPath="$PROJECT_DIR$/segmentation/brain/augmentor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/segmentation/brain/brain_segmentation.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/keras1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/test1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/carvana/augmentor.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/augmentor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterDir="false" />
@@ -49,7 +48,7 @@
             <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/train.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="696">
+                  <state relative-caret-position="651">
                     <caret line="126" column="30" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="32" />
                     <folding>
                       <element signature="e#30#48#0" expanded="true" />
@@ -69,29 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="unet_model2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_model2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/utils/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-69">
-              <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="car_segmentation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="car_segmentation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segmentation/carvana/car_segmentation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="160" column="39" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
+            <state relative-caret-position="3696">
+              <caret line="163" column="68" selection-start-line="163" selection-start-column="68" selection-end-line="163" selection-end-column="68" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -99,54 +80,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/models.py">
+      <file leaf-file-name="brain_segmentation.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/segmentation/brain/brain_segmentation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2904">
-              <caret line="6" column="50" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dice.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/dice.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UNet - Pytorch.ipynb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/UNet - Pytorch.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1269">
-              <caret line="13" column="18" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unet_model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+            <state relative-caret-position="120">
+              <caret line="149" column="57" lean-forward="true" selection-start-line="149" selection-start-column="57" selection-end-line="149" selection-end-column="57" />
               <folding>
-                <element signature="e#77#89#0" expanded="true" />
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unet_models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6240">
+              <caret line="261" selection-start-line="261" selection-end-line="261" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_reader_brats.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1536">
+              <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -215,9 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_classification.py" />
-        <option value="$PROJECT_DIR$/classification/models/pytorch/resnext.py" />
-        <option value="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" />
         <option value="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" />
         <option value="$PROJECT_DIR$/classification/models/pytorch/lenet.py" />
         <option value="$PROJECT_DIR$/classification/skin/data_prepare_isic.py" />
@@ -266,6 +224,9 @@
         <option value="$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py" />
         <option value="$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py" />
         <option value="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" />
+        <option value="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" />
+        <option value="$PROJECT_DIR$/segmentation/brain/augmentor.py" />
+        <option value="$PROJECT_DIR$/segmentation/brain/brain_segmentation.py" />
       </list>
     </option>
   </component>
@@ -300,6 +261,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -311,7 +273,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -328,11 +289,11 @@
       <recent name="$PROJECT_DIR$/classification/skin/tensorflow" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/segmentation/brain" />
       <recent name="$PROJECT_DIR$/segmentation/models/pytorch" />
       <recent name="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet" />
       <recent name="$PROJECT_DIR$/segmentation/carvana" />
       <recent name="$PROJECT_DIR$/segmentation/mitsceneparsing" />
-      <recent name="$PROJECT_DIR$/classification/skin/pytorch" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -347,7 +308,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.car_segmentation">
+  <component name="RunManager" selected="Python.brain_segmentation">
     <configuration name="pytorch-cifar" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="pytorch-cifar" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -400,6 +361,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="augmentor (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code-power" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/segmentation/brain" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/segmentation/brain/augmentor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="augmentor" type="PythonConfigurationType" factoryName="Python">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -418,6 +397,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="brain_segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code-power" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/segmentation/brain" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/segmentation/brain/brain_segmentation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="car_segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -431,24 +428,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/segmentation/carvana/car_segmentation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="carvana_gpu_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="code-power" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/segmentation/carvana" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/segmentation/carvana/carvana_gpu_0.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -485,24 +464,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="train1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Pytorch-UNet" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -609,19 +570,19 @@
       <item itemvalue="Python.augmentor" />
       <item itemvalue="Python.train" />
       <item itemvalue="Jupyter Notebook.pytorch-cifar" />
-      <item itemvalue="Python.carvana_gpu_0" />
       <item itemvalue="Python.augmentor (1)" />
       <item itemvalue="Python.car_segmentation" />
-      <item itemvalue="Python.train1" />
       <item itemvalue="Python.carvana_segmentation" />
+      <item itemvalue="Python.augmentor (2)" />
+      <item itemvalue="Python.brain_segmentation" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.brain_segmentation" />
         <item itemvalue="Python.car_segmentation" />
+        <item itemvalue="Python.augmentor (2)" />
         <item itemvalue="Python.augmentor (1)" />
         <item itemvalue="Python.carvana_segmentation" />
-        <item itemvalue="Python.carvana_gpu_0" />
-        <item itemvalue="Python.train1" />
       </list>
     </recent_temporary>
   </component>
@@ -635,13 +596,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1521259196890</updated>
-    </task>
-    <task id="LOCAL-00001" summary="added aspycharm project.">
-      <created>1521259720577</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1521259720577</updated>
     </task>
     <task id="LOCAL-00002" summary="brain tumour project added.">
       <created>1521260679292</created>
@@ -979,7 +933,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526124862536</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="une carvana segmentation works.">
+      <created>1526186530308</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1526186530309</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1010,16 +971,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1973" y="27" width="1838" height="1019" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.25774336" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.27654868" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.3295063" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.1948956" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.28074247" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.328" />
       <window_info id="Structure" order="0" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32376578" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" weight="0.46613088" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" weight="0.4651972" />
       <window_info id="Favorites" order="1" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1028,34 +990,33 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3257143" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32482597" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.16594361" />
       <window_info id="Structure" order="0" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.25942856" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3263506" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" weight="0.39581037" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32560706" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4916979" weight="0.32991803" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="1" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3263506" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32896176" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="multi gpu train sucessful." />
     <MESSAGE value="multigpu mnist and cifar10 added." />
     <MESSAGE value="queue runner works for pipeline_pascal_2012.py" />
     <MESSAGE value="cifar10 loader added." />
@@ -1080,7 +1041,8 @@
     <MESSAGE value="step train loss aded." />
     <MESSAGE value="segmentation models added." />
     <MESSAGE value="segmentation training works." />
-    <option name="LAST_COMMIT_MESSAGE" value="segmentation training works." />
+    <MESSAGE value="une carvana segmentation works." />
+    <option name="LAST_COMMIT_MESSAGE" value="une carvana segmentation works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1210,6 +1172,11 @@
           <line>4</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/segmentation/brain/brain_segmentation.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1221,7 +1188,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="104" />
+      <option name="time" value="105" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -1274,24 +1241,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/modules/container.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/augmentor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/unet-pytorch/carvana_dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-728">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+        <state relative-caret-position="3888">
+          <caret line="174" column="42" lean-forward="true" selection-start-line="174" selection-start-column="42" selection-end-line="174" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1356,16 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/brain/make_gif.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -1401,13 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/Pillow-5.1.0-py3.5-linux-x86_64.egg/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="1702" column="8" selection-start-line="1702" selection-start-column="8" selection-end-line="1702" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -1419,13 +1355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
           <caret line="247" column="19" lean-forward="true" selection-start-line="247" selection-start-column="19" selection-end-line="247" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="261" selection-start-line="261" selection-end-line="261" />
         </state>
       </provider>
     </entry>
@@ -1562,16 +1491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/myloss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-597" />
@@ -1581,32 +1500,98 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="38" column="11" lean-forward="true" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_model2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet/unet_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
+        <state relative-caret-position="672">
           <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/Pillow-5.1.0-py3.5-linux-x86_64.egg/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-177">
+          <caret line="1855" column="8" selection-start-line="1855" selection-start-column="8" selection-end-line="1855" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6240">
+          <caret line="261" selection-start-line="261" selection-end-line="261" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/carvana/data_reader_cardava.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="10" column="30" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/models/pytorch/unet_model2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/make_gif.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="12" column="45" selection-end-line="24" selection-end-column="35" />
           <folding>
-            <element signature="e#77#89#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/augmentor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2112">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segmentation/carvana/car_segmentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3696">
+          <caret line="163" column="68" selection-start-line="163" selection-start-column="68" selection-end-line="163" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
+        <state relative-caret-position="651">
           <caret line="126" column="30" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="32" />
           <folding>
             <element signature="e#30#48#0" expanded="true" />
@@ -1615,27 +1600,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/main.py">
+    <entry file="file://$PROJECT_DIR$/segmentation/brain/brain_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2904">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/brain tumour/UNet-Zoo/dice.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/segmentation/carvana/car_segmentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="160" column="39" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
+        <state relative-caret-position="120">
+          <caret line="149" column="57" lean-forward="true" selection-start-line="149" selection-start-column="57" selection-end-line="149" selection-end-column="57" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
