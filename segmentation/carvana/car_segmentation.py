@@ -19,16 +19,16 @@ from torch.autograd import Variable
 from segmentation.carvana.data_reader_cardava import CarvanaDataset
 from segmentation.models.pytorch.unet.unet_model import UNet
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+import imageio
 
 class CarvanaSegmentation(object):
     def __init__(self,logs):
         self.device_ids=[0]
-        self.batch_size_train_per_gpu = 2
-        self.batch_size_test_per_gpu=2
+        self.batch_size_train_per_gpu = 10
+        self.batch_size_test_per_gpu=1
         self.epochs = 200
-        self.num_classes = 2
-        self.learning_rate = 0.001
+        self.learning_rate = 0.01
         self.log_dir=logs
 
         if not os.path.exists(self.log_dir):
@@ -39,7 +39,7 @@ class CarvanaSegmentation(object):
         self.use_cuda = torch.cuda.is_available()
         self.best_acc = 0  # best test accuracy
         self.start_epoch = 0  # start from epoch 0 or last checkpoint epoch
-        self.net = None
+        self.model = None
         self.criterion = None
         self.optimizer = None
         self.model_name_str = None
@@ -60,29 +60,33 @@ class CarvanaSegmentation(object):
         print('==> Total examples, train: {}, test:{}'.format(train_count, test_count))
 
     def load_model(self):
-        # model_name_str = model.model.class_name()
-        # print('\n==> using model {}'.format(model_name_str))
-        # self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
-        #
-        # # Model
-        # try:
-        #     # Load checkpoint.
-        #     print('==> Resuming from checkpoint..')
-        #     assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
-        #     checkpoint = torch.load('segmentation/carvana/checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
-        #     if not os.path.exists(checkpoint):
-        #         raise Exception('ok')
-        #
-        #     net = checkpoint['net']
-        #     self.best_acc = checkpoint['acc']
-        #     self.start_epoch = checkpoint['epoch']
+        model_name_str = "unet2"
+        model_log_name='adam1'
+        print('\n==> using model {}'.format(model_name_str))
+        self.model_name_str="{}_{}".format(model_name_str,model_log_name)
+        self.model_path='./checkpoint/{}_ckpt.t7'.format(self.model_name_str )
+
+        # Model
+        try:
+            # Load checkpoint.
+            print('==> Resuming from checkpoint..')
+            assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
+            checkpoint = torch.load(self.model_path)
+            if not os.path.exists(checkpoint):
+                raise Exception('ok')
+
+            model = checkpoint['model']
+            self.best_acc = checkpoint['acc']
+            self.start_epoch = checkpoint['epoch']
         # except FileNotFoundError as e:
         #     net = UNet(3, depth=5, merge_mode='concat')
         #     print('==> Building model..')
-        # except Exception as e:
-        #     net  = UNet(3, depth=5, merge_mode='concat')
-        #     print('==> Building model..')
-        model=UNet(3, 1)
+        except Exception as e:
+            print(e)
+            print(e.__traceback__)
+            model = UNet(3, 1)
+            print('==> Building model..')
+
         if self.use_cuda:
             model.cuda()
             model = torch.nn.DataParallel(model)
@@ -115,7 +119,7 @@ class CarvanaSegmentation(object):
             _, predicted = torch.max(outputs.data, 1)
             self.writer.add_scalar('train loss',train_loss,step)
             total += targets.size(0)
-            correct += predicted.eq(targets.data).cpu().sum()
+            #correct += predicted.eq(targets.data).cpu().sum()
 
             progress_bar(batch_idx, len(self.trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                 % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
@@ -124,18 +128,19 @@ class CarvanaSegmentation(object):
     def save_model(self, acc, epoch):
         print('\n Saving new model with accuracy {}'.format(acc))
         state = {
-            'net': self.model.module if self.use_cuda else self.net,
+            'model': self.model.module if self.use_cuda else self.model,
             'acc': acc,
             'epoch': epoch,
         }
-        if not os.path.isdir('checkpoint'):
+        if not os.path.isdir('./checkpoint'):
             os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
+        print(self.model_path)
+        torch.save(state, self.model_path)
 
     def test(self, epoch):
         writer=self.writer
-        net=self.net
-        net.eval()
+        model=self.model
+        model.eval()
         test_loss = 0
         correct = 0
         total = 0
@@ -146,23 +151,29 @@ class CarvanaSegmentation(object):
             if self.use_cuda:
                 inputs, targets = inputs.cuda(), targets.cuda()
             inputs, targets = Variable(inputs, volatile=True), Variable(targets)
-            outputs = net(inputs)
-            loss = self.criterion(outputs, targets)
-
-            test_loss += loss.data[0]
-            _, predicted = torch.max(outputs.data, 1)
-            predicted_batch=predicted.eq(targets.data).cpu()
-            predicted_reshaped=predicted_batch.numpy().reshape(-1)
-            predicted_all=np.concatenate((predicted_all,predicted_reshaped),axis=0)
-
-            targets_reshaped = targets.data.cpu().numpy().reshape(-1)
-            target_all = np.concatenate((target_all, targets_reshaped), axis=0)
-            total += targets.size(0)
-            correct += predicted_batch.sum()
-
-            progress_bar(batch_idx, len(self.testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
-
+            outputs = model(inputs)
+            output_mask=outputs.cpu()[0,:,:].data.numpy()
+            output_mask = (output_mask > .9)*1.0
+            imageio.imwrite("/home/milton/dataset/segmentation/carvana/contour_masks/out_{}.jpg".format(batch_idx), output_mask)
+            print("loaded")
+            # loss = self.criterion(outputs, targets)
+            #
+            # test_loss += loss.data[0]
+            # _, predicted = torch.max(outputs.data, 1)
+            # predicted_batch=predicted.eq(targets.data).cpu()
+            # predicted_reshaped=predicted_batch.numpy().reshape(-1)
+            # predicted_all=np.concatenate((predicted_all,predicted_reshaped),axis=0)
+            #
+            # targets_reshaped = targets.data.cpu().numpy().reshape(-1)
+            # target_all = np.concatenate((target_all, targets_reshaped), axis=0)
+            # total += targets.size(0)
+            # correct += predicted_batch.sum()
+            #
+            # progress_bar(batch_idx, len(self.testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+            #     % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+        self.save_model(1, epoch)
+        return
+        exit(1)
         # Save checkpoint.
         acc = 100.*correct/total
         writer.add_scalar('test accuracy', acc, epoch)

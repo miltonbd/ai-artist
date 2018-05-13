@@ -109,12 +109,19 @@ def resize_train_masks():
         img_resized.save(neW_mask_file)
 
 
+def resize_test_mask():
+    for f in glob.glob("/home/milton/dataset/segmentation/carvana/test/*"):
+        img = np.asarray(Image.open(f))
+        img_resized=Image.fromarray(img)
+        img_resized=img_resized.resize((320,320),Image.NORMAL)
+        assert np.unique(img_resized).all()==np.unique(img).all()
 
+        neW_mask_file = os.path.join("/home/milton/dataset/segmentation/carvana/test_372", f)
 
+        img_resized.save(neW_mask_file)
 
-
-
-resize_train_masks()
+#resize_train_masks()
+resize_test_mask()
 exit(1)
 
 folders = []

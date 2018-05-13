@@ -35,6 +35,6 @@ class UNet(nn.Module):
         x = self.up4(x, x1)
         x = self.outc(x)
         x=torch.squeeze(x,1)
-        return x
+        return F.sigmoid(x)
     def class_name(self):
         return "unet_"

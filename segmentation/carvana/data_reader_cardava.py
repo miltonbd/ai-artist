@@ -40,10 +40,10 @@ class CarvanaDataset(Dataset):
             else:
                 test_x, test_y = self.test
                 img = imageio.imread(test_x[index])
-                img = img.astype(np.float32)
+                img = img.astype(np.float32)/255
                 data = self.transforms(img)
-                label = test_y[index]
-                return (data, np.argmax(label))
+
+                return (data, 1)
 
 
     def __len__(self):
@@ -63,7 +63,7 @@ class DataReaderCarvana(object):
     def __init__(self):
         self.data_dir = "/home/milton/dataset/segmentation/carvana"
         self.train_dir = os.path.join(self.data_dir, "train_372")
-        self.test_dir = os.path.join(self.data_dir, "test")
+        self.test_dir = os.path.join(self.data_dir, "test_372")
         self.train_masks_dir = os.path.join(self.data_dir, "train_masks_372")
         self.num_channels = 3
         self.image_height = 1280
@@ -90,6 +90,7 @@ class DataReaderCarvana(object):
            test_files.append(file_path)
            #mask_file = os.path.join(self.masks_dir, os.path.basename(file_path),".gif")
            #train_mask_files.append(mask_file)
+       print(len(test_files))
        return test_files, 1
 
 
