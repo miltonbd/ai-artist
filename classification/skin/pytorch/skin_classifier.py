@@ -22,10 +22,9 @@ class SkinLeisonClassfication(object):
     def __init__(self,logs):
         self.device_ids=[0]
         self.batch_size_train_per_gpu = 50
-        self.batch_size_test_per_gpu=50
+        self.batch_size_test_per_gpu=2
         self.epochs = 200
         self.num_classes = 2
-        self.learning_rate = 0.001
         self.log_dir=logs
 
         if not os.path.exists(self.log_dir):
@@ -82,7 +81,9 @@ class SkinLeisonClassfication(object):
             cudnn.benchmark = True
         self.net=net
         self.criterion = nn.CrossEntropyLoss()
-        self.optimizer = optim.RMSprop(net.parameters(), lr=self.learning_rate, eps=1,weight_decay=1e-8)
+
+        if model.optimizer=="adam":
+            self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=1e-8)
 
     # Training
     def train(self, epoch):
@@ -168,9 +169,9 @@ class SkinLeisonClassfication(object):
         self.save_model(acc, epoch)
         self.best_acc = acc
 
-        accuracy = metrics.accuracy_score(target_all, predicted_all)
-
-        print('\n Accuracy: {}'.format(accuracy))
+        # accuracy = metrics.accuracy_score(target_all, predicted_all)
+        #
+        # print('\n Accuracy: {}'.format(accuracy))
 
         """
         total sum of confusion matrix value is same as total number items in test set.

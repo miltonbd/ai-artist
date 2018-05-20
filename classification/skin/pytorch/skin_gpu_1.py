@@ -1,4 +1,5 @@
 import os
+from torch import optim
 from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.vgg import VGG
 
@@ -23,7 +24,8 @@ class Model(object):
     def __init__(self):
         self.model_name = VGG
         self.model_log_name="adam1"
-        self.learning_rate =  0.0005
+        self.learning_rate =  0.001
+        self.optimizer="adam"
 
 model=Model()
 

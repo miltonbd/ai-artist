@@ -96,7 +96,6 @@ for folder in folders:
     rotate180(pipeline, n)
     rotate90(pipeline, n)
     flip_random(pipeline,n)
-    histo_gram_equa(pipeline, n)
     random_erasing(pipeline, n)
     print("\n----------------------------\n")
 

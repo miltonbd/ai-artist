@@ -2,6 +2,8 @@ import os
 import PIL
 from PIL import Image
 import csv
+import glob
+import threading
 from concurrent.futures import ThreadPoolExecutor
 data_dir = "/home/milton/dataset/skin/"
 
@@ -11,12 +13,12 @@ test = os.path.join(data_dir,"ISIC-2017_Test_v2_Part3_GroundTruth.csv")
 
 def resizeAll(csv_file,size,save_dir_prefix, source_dir):
     with open(csv_file, newline='\n') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',')
+        csvreader = csv.reader(csvfile, delimiter=',')
         i=0
         melanomas=[]
         seborrheic_keratosis=[]
         nevus=[]
-        for line in spamreader:
+        for line in csvreader:
             if i > 0 :
                 image_path = os.path.join(data_dir,source_dir, line[0]+'.jpg')
                 if line[1]=='1.0':
@@ -29,6 +31,18 @@ def resizeAll(csv_file,size,save_dir_prefix, source_dir):
             else:
                 print(line)
             i+=1
+        if 'train' in save_dir_prefix:
+            for train_isic_add in glob.glob("/home/milton/dataset/skin/ISIC-images_melanoma/images/**"):
+                melanomas.append(train_isic_add)
+
+            for train_isic_add in glob.glob("/home/milton/dataset/skin/ISIC-images_sk/images/**"):
+                seborrheic_keratosis.append(train_isic_add)
+
+            for train_isic_add in glob.glob("/home/milton/dataset/skin/ISIC-images_nevus/images/**"):
+                nevus.append(train_isic_add)
+                #print(train_isic_add)
+
+
         print("total images {}".format(i-1))
         print("melanomas {}".format(len(melanomas)))
         print("seborrheic_keratosis {}".format(len(seborrheic_keratosis)))
@@ -51,11 +65,12 @@ def doResize(size,path,class_folder, save_dir_prefix):
 
 def resize(size,paths,class_folder, save_dir_prefix):
     for path in paths:
-        doResize(size,path,class_folder, save_dir_prefix)
+        #doResize(size,path,class_folder, save_dir_prefix)
+
         #executor = ThreadPoolExecutor(max_workers=5)
         #a = executor.submit(doResize,size,path,class_folder, save_dir_prefix)
-        #t = threading.Thread(target=doResize, args=(size,path,class_folder, save_dir_prefix))
-        #t.start()
+        t = threading.Thread(target=doResize, args=(size,path,class_folder, save_dir_prefix))
+        t.start()
 
 
 class Augment:
@@ -63,6 +78,6 @@ class Augment:
 
 if __name__ == '__main__':
     resizeAll(train, 224, "classification_train","ISIC-2017_Training_Data")
-    resizeAll(valid, 224, "classification_valid", "ISIC-2017_Validation_Data")
-    resizeAll(test, 224, "classification_test", "ISIC-2017_Test_v2_Data")
+    #resizeAll(valid, 224, "classification_valid", "ISIC-2017_Validation_Data")
+    #resizeAll(test, 224, "classification_test", "ISIC-2017_Test_v2_Data")
 
