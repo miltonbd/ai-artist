@@ -1,6 +1,7 @@
 import os
 from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
-from classification.models.pytorch.vgg import VGG
+from classification.models.pytorch.pretrainedmodels.models.vggm import vggm
+
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -21,10 +22,11 @@ class Model(object):
     store all model and optmization related params here.
     """
     def __init__(self):
-        self.model_name = VGG
+
+        self.model_name = vggm
         self.model_log_name="adam2"
         self.learning_rate =  0.01
-
+        self.model_name_str="vgg_gpu0"
 
 model=Model()
 

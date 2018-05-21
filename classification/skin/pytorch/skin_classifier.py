@@ -11,17 +11,13 @@ import torchvision.transforms as transforms
 from utils.functions import progress_bar
 import os
 from tensorboardX import SummaryWriter
-from classification.models.pytorch.vgg import VGG
-from classification.models.pytorch.dpn import DPN92
-from classification.models.pytorch.mobilenetv2 import MobileNetV2
-from classification.models.pytorch.densenet import DenseNet201
 from torch.autograd import Variable
 from classification.skin.pytorch.data_reader_isic import ISIC2017Dataset
 
 class SkinLeisonClassfication(object):
     def __init__(self,logs):
         self.device_ids=[0]
-        self.batch_size_train_per_gpu = 50
+        self.batch_size_train_per_gpu = 40
         self.batch_size_test_per_gpu=2
         self.epochs = 200
         self.num_classes = 2
@@ -58,22 +54,22 @@ class SkinLeisonClassfication(object):
     def load_model(self, model):
         self.learning_rate=model.learning_rate
         model_name = model.model_name
-        model_name_str = model_name.class_name()
+        model_name_str = model.model_name_str
         print('\n==> using model {}'.format(model_name_str))
         self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
 
         # Model
-        try:
-            # Load checkpoint.
-            print('==> Resuming from checkpoint..')
-            assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
-            checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
-            net = checkpoint['net']
-            self.best_acc = checkpoint['acc']
-            self.start_epoch = checkpoint['epoch']
-        except Exception as e:
-            net = model_name()
-            print('==> Building model..')
+        # try:
+        #     # Load checkpoint.
+        #     print('==> Resuming from checkpoint..')
+        #     assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
+        #     checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
+        #     net = checkpoint['net']
+        #     self.best_acc = checkpoint['acc']
+        #     self.start_epoch = checkpoint['epoch']
+        # except Exception as e:
+        net = model_name
+        print('==> Building model..')
 
         if self.use_cuda:
             net.cuda()
@@ -83,7 +79,7 @@ class SkinLeisonClassfication(object):
         self.criterion = nn.CrossEntropyLoss()
 
         if model.optimizer=="adam":
-            self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=1e-8)
+            self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=1.5)
 
     # Training
     def train(self, epoch):
@@ -105,7 +101,7 @@ class SkinLeisonClassfication(object):
             loss.backward()
             optimizer.step()
 
-            train_loss += loss.data[0]
+            train_loss += loss.item()
             _, predicted = torch.max(outputs.data, 1)
 
             batch_loss=train_loss / (batch_idx + 1)
@@ -185,7 +181,7 @@ class SkinLeisonClassfication(object):
 
         f1_score = metrics.f1_score(target_all, predicted_all)
 
-        print("F1 Score: {}".format(f1_score))
+        #print("F1 Score: {}".format(f1_score))
         writer.add_scalar('F1 Score', f1_score, epoch)
 
 
@@ -202,7 +198,7 @@ class SkinLeisonClassfication(object):
         # Sensitivity, hit rate, recall, or true positive rate
         TPR = TP / (TP + FN)
         sensitivity=np.mean(TPR)
-        print("Senstivity: {} ".format(sensitivity))
+        #print("Senstivity: {} ".format(sensitivity))
         writer.add_scalar('Sensitivity',sensitivity,epoch)
         #Specificity or true negative rate
         TNR = TN / (TN + FP)

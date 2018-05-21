@@ -10,7 +10,7 @@ class DataReaderISIC2017(object):
     data_dir = "/home/milton/dataset/cifar/cifar10" # contains data_batch_{1..5}
     """
     def __init__(self, batch_size, epochs, gpu_nums):
-        self.data_dir =  "/home/milton/dataset/skin/"
+        self.data_dir =  "/media/milton/ssd1/dataset/skin/"
 
         self.batch_size = batch_size
         self.epoch = 0
@@ -57,10 +57,20 @@ class DataReaderISIC2017(object):
         nonmelanomas = self.get_all_images(seborrheic_keratosis_dir)
         nonmelanomas.extend(self.get_all_images(nevus_dir))
 
+        nevus_aug_dir = os.path.join(nevus_dir, 'output')
 
+        if os.path.exists(nevus_aug_dir):
+            melanomas_aug= self.get_all_images(nevus_aug_dir)
+            nonmelanomas.extend(melanomas_aug)
 
-        #print("{} melanomas {}".format(images_dir, len(melanomas)))
-        #print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
+        nevus_aug_dir = os.path.join(seborrheic_keratosis_dir, 'output')
+
+        if os.path.exists(nevus_aug_dir):
+            melanomas_aug = self.get_all_images(nevus_aug_dir)
+            nonmelanomas.extend(melanomas_aug)
+
+        # print("{} melanomas {}".format(images_dir, len(melanomas)))
+        # print("{} nonmelanomas {}".format(images_dir, len(nonmelanomas)))
 
         return (melanomas, nonmelanomas)
 
@@ -135,7 +145,7 @@ class DataReaderISIC2017(object):
         train_y[0:len(melanomas_train),0]=1
         train_y[len(melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
-        #print("Total train items for melanona {}".format(len(train_x)))
+        print("Total train items for melanona {}, non melanoma:{}".format(len(melanomas_train),len(nonmelanomas_train)))
         train_x = np.asarray(train_x)
         #print(train_x.shape)
         self.total_train_count = len(train_x)

@@ -101,14 +101,14 @@ class VGGM(nn.Module):
         x = self.classif(x)
         return x
 
-def vggm(num_classes=1000, pretrained='imagenet'):
+def vggm(num_classes=2, pretrained='imagenet'):
     if pretrained:
         settings = pretrained_settings['vggm'][pretrained]
-        assert num_classes == settings['num_classes'], \
-            "num_classes should be {}, but is {}".format(settings['num_classes'], num_classes)
+        # assert num_classes == settings['num_classes'], \
+        #     "num_classes should be {}, but is {}".format(settings['num_classes'], num_classes)
 
         model = VGGM(num_classes=1000)
-        model.load_state_dict(model_zoo.load_url(settings['url']))
+        model.load_state_dict(torch.load('/media/milton/ssd1/dataset/pretrained_models/pytorch/vggm-786f2434.pth'))
 
         model.input_space = settings['input_space']
         model.input_size = settings['input_size']
@@ -120,4 +120,7 @@ def vggm(num_classes=1000, pretrained='imagenet'):
     else:
         model = VGGM(num_classes=num_classes)
         print("vggM froms cratch")
+
+    def class_name():
+        return "vggm"
     return model
