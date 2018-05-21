@@ -23,6 +23,26 @@ class Model(object):
     """
     def __init__(self):
         model_conv=vgg19_bn()
+
+        # Let's freeze the same as above. Same code as above without the print statements
+        child_counter = 0
+        for child in model_conv.children():
+            if child_counter < 4:
+                for param in child.parameters():
+                    param.requires_grad = False
+            elif child_counter == 4:
+                children_of_child_counter = 0
+                for children_of_child in child.children():
+                    if children_of_child_counter < 1:
+                        for param in children_of_child.parameters():
+                            param.requires_grad = False
+                    else:
+                        children_of_child_counter += 1
+
+            else:
+                print("child ", child_counter, " was not frozen")
+            child_counter += 1
+
         num_ftrs = model_conv.classifier[6].in_features
 
         # convert all the layers to list and remove the last one
@@ -35,22 +55,27 @@ class Model(object):
         model_conv.classifier = nn.Sequential(*features)
         self.model_name = model_conv
         self.model_log_name="adam1"
-        self.learning_rate =  0.005
+        self.learning_rate =  0.0005
         self.optimizer="adam"
         self.model_name_str="vgg_gpu1"
+        self.batch_size_train_per_gpu = 80
+        self.batch_size_test_per_gpu = 2
+        self.epochs = 200
+        self.num_classes = 2
+        self.logs_dir="logs/adam1"
 
 model=Model()
 
-clasifier=SkinLeisonClassfication('logs/adam1')
+clasifier=SkinLeisonClassfication(model)
 clasifier.load_data()
-clasifier.load_model(model)
-for epoch in range(clasifier.start_epoch, clasifier.start_epoch + clasifier.epochs):
+clasifier.load_model()
+for epoch in range(clasifier.start_epoch, clasifier.start_epoch + model.epochs):
     try:
       clasifier.train(epoch)
       clasifier.test(epoch)
     except KeyboardInterrupt:
       clasifier.test(epoch)
       break;
-    #clasifier.load_data()
+    clasifier.load_data()
 
 

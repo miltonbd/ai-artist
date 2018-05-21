@@ -15,14 +15,10 @@ from torch.autograd import Variable
 from classification.skin.pytorch.data_reader_isic import ISIC2017Dataset
 
 class SkinLeisonClassfication(object):
-    def __init__(self,logs):
+    def __init__(self,model):
         self.device_ids=[0]
-        self.batch_size_train_per_gpu = 40
-        self.batch_size_test_per_gpu=2
-        self.epochs = 200
-        self.num_classes = 2
-        self.log_dir=logs
-
+        self.model=model
+        self.log_dir=self.model.logs_dir
         if not os.path.exists(self.log_dir):
             os.makedirs(self.log_dir)
 
@@ -41,17 +37,18 @@ class SkinLeisonClassfication(object):
         print('==> Preparing data..')
 
         trainset = ISIC2017Dataset(task=1, mode='train')
-        self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=self.batch_size_train_per_gpu, shuffle=True,
+        self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=self.model.batch_size_train_per_gpu, shuffle=True,
                                                   num_workers=2)
 
         testset = ISIC2017Dataset(task=1, mode='test')
-        self.testloader = torch.utils.data.DataLoader(testset, batch_size=self.batch_size_test_per_gpu, shuffle=False, num_workers=2)
+        self.testloader = torch.utils.data.DataLoader(testset, batch_size=self.model.batch_size_test_per_gpu, shuffle=False, num_workers=2)
 
-        train_count = len(self.trainloader) * self.batch_size_train_per_gpu
-        test_count = len(self.testloader) * self.batch_size_test_per_gpu
+        train_count = len(self.trainloader) * self.model.batch_size_train_per_gpu
+        test_count = len(self.testloader) * self.model.batch_size_test_per_gpu
         print('==> Total examples, train: {}, test:{}'.format(train_count, test_count))
 
-    def load_model(self, model):
+    def load_model(self):
+        model=self.model
         self.learning_rate=model.learning_rate
         model_name = model.model_name
         model_name_str = model.model_name_str
@@ -79,7 +76,7 @@ class SkinLeisonClassfication(object):
         self.criterion = nn.CrossEntropyLoss()
 
         if model.optimizer=="adam":
-            self.optimizer = optim.Adam(net.parameters(), lr=self.learning_rate, eps=1.5)
+            self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=2)
 
     # Training
     def train(self, epoch):
@@ -173,7 +170,7 @@ class SkinLeisonClassfication(object):
         total sum of confusion matrix value is same as total number items in test set.
         """
         cm = metrics.confusion_matrix(target_all, predicted_all)
-        print("Confsusion metrics: {}".format(cm))
+        print("Confsusion metrics: \n {}".format(cm))
 
         auc = metrics.roc_auc_score(target_all, predicted_all)
         print("Auc {}".format(auc))

@@ -25,7 +25,7 @@ class ISIC2017Dataset(Dataset):
         self.mode = mode
         self.transforms = transforms.Compose(
             [transforms.ToTensor(),
-             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+             transforms.Normalize((123.68, 116.779, 103.939), (1,1,1))])
 
     def __getitem__(self, index):
 
