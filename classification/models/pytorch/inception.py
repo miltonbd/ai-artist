@@ -13,7 +13,7 @@ model_urls = {
 }
 
 
-def inception_v3(pretrained=False, **kwargs):
+def inception_v3(pretrained=True, **kwargs):
     r"""Inception v3 model architecture from
     `"Rethinking the Inception Architecture for Computer Vision" <http://arxiv.org/abs/1512.00567>`_.
 

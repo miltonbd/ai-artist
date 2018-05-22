@@ -4,7 +4,8 @@ from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.vgg import vgg19_bn
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 
 # net = VGG('VGG19',num_classes)
 # net = ResNet18()
@@ -27,10 +28,10 @@ class Model(object):
         # Let's freeze the same as above. Same code as above without the print statements
         child_counter = 0
         for child in model_conv.children():
-            if child_counter < 4:
+            if child_counter < 3:
                 for param in child.parameters():
                     param.requires_grad = False
-            elif child_counter == 4:
+            elif child_counter == 3:
                 children_of_child_counter = 0
                 for children_of_child in child.children():
                     if children_of_child_counter < 1:
@@ -54,15 +55,14 @@ class Model(object):
         ## convert it into container and add it to our model class.
         model_conv.classifier = nn.Sequential(*features)
         self.model_name = model_conv
-        self.model_log_name="adam1"
-        self.learning_rate =  0.0005
+        self.learning_rate =  0.001
         self.optimizer="adam"
-        self.model_name_str="vgg_gpu1"
-        self.batch_size_train_per_gpu = 80
+        self.model_name_str="vgg_19bn"
+        self.batch_size_train_per_gpu = 200
         self.batch_size_test_per_gpu = 2
         self.epochs = 200
         self.num_classes = 2
-        self.logs_dir="logs/adam1"
+        self.logs_dir="logs/vgg19_bn"
 
 model=Model()
 

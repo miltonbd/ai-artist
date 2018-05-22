@@ -2,13 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="two gpu classifiers added for skin.">
+      <change afterPath="$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pytorch-tutorials/multigpu/multigpu1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/pytorch_utils.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/keras1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/test1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/models/pytorch/densenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/models/pytorch/densenet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/models/pytorch/inception.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/models/pytorch/inception.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/models/simplenet.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" afterDir="false" />
@@ -40,39 +47,82 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-            <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/UNet-pytorch/train.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="120">
-                    <caret line="125" column="23" lean-forward="true" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
-                    <folding>
-                      <element signature="e#30#48#0" expanded="true" />
-                      <element signature="e#2746#4114#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="code-power" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="skin_gpu_1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="skin_gpu_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+            <state relative-caret-position="220">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inception.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/models/pytorch/inception.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="read_dataset.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="read_dataset.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_reader_isic.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="640">
+              <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_prepare_isic.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification/skin/data_prepare_isic.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="skin_gpu_0.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -83,11 +133,20 @@
       <file leaf-file-name="skin_classifier.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+            <state relative-caret-position="212">
+              <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multigpu1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pytorch-tutorials/multigpu/multigpu1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -156,12 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classification/models/pytorch/dpn.py" />
-        <option value="$PROJECT_DIR$/classification/models/pytorch/densenet.py" />
-        <option value="$PROJECT_DIR$/classification/models/pytorch/mobilenetv2.py" />
-        <option value="$PROJECT_DIR$/base/base_trainer.py" />
-        <option value="$PROJECT_DIR$/base/base_model.py" />
-        <option value="$PROJECT_DIR$/base/base_data_reader.py" />
         <option value="$PROJECT_DIR$/base/base_model_params.py" />
         <option value="$PROJECT_DIR$/classification/skin/pytorch/gpu1.py" />
         <option value="$PROJECT_DIR$/classification/skin/pytorch/gpu_0.py" />
@@ -202,18 +255,24 @@
         <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_pre_trained.py" />
         <option value="$PROJECT_DIR$/classification/skin/data_loader_isic.py" />
         <option value="$PROJECT_DIR$/classification/models/pytorch/pretrainedmodels/models/vggm.py" />
-        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" />
         <option value="$PROJECT_DIR$/classification/models/pytorch/vgg.py" />
         <option value="$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py" />
-        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" />
+        <option value="$PROJECT_DIR$/pytorch-tutorials/multigpu/multigpu1.py" />
+        <option value="$PROJECT_DIR$/classification/models/pytorch/densenet.py" />
         <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" />
+        <option value="$PROJECT_DIR$/classification/models/pytorch/inception.py" />
+        <option value="$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py" />
+        <option value="$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py" />
+        <option value="$PROJECT_DIR$/utils/pytorch_utils.py" />
+        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" />
+        <option value="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1987" />
     <option name="y" value="27" />
-    <option name="width" value="1851" />
+    <option name="width" value="1824" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -241,6 +300,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,36 +317,6 @@
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
               <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-              <item name="pretrainedmodels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-              <item name="pretrainedmodels" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
               <item name="skin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -294,36 +324,34 @@
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
               <item name="classification" type="462c0819:PsiDirectoryNode" />
               <item name="skin" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
               <item name="pytorch" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-              <item name="checkpoint" type="462c0819:PsiDirectoryNode" />
+              <item name="competitions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
               <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="classification" type="462c0819:PsiDirectoryNode" />
-              <item name="skin" type="462c0819:PsiDirectoryNode" />
-              <item name="pytorch" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
+              <item name="competitions" type="462c0819:PsiDirectoryNode" />
+              <item name="imaterialist_fashion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="competitions" type="462c0819:PsiDirectoryNode" />
+              <item name="imaterialist_furniture" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code-power" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,19 +360,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/competitions/imaterialist_furniture" />
+      <recent name="$PROJECT_DIR$/classification/models/pytorch" />
+      <recent name="$PROJECT_DIR$/segmentation/brain" />
+      <recent name="$PROJECT_DIR$/segmentation/models/pytorch" />
+      <recent name="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/classification/models/pytorch" />
       <recent name="$PROJECT_DIR$/segmentation/carvana" />
       <recent name="$PROJECT_DIR$/segmentation/models/pytorch" />
       <recent name="$PROJECT_DIR$/segmentation/models/tensorflow" />
       <recent name="$PROJECT_DIR$/classification" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/classification/models/pytorch" />
-      <recent name="$PROJECT_DIR$/segmentation/brain" />
-      <recent name="$PROJECT_DIR$/segmentation/models/pytorch" />
-      <recent name="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet" />
-      <recent name="$PROJECT_DIR$/segmentation/carvana" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -359,7 +387,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.skin_gpu_1">
+  <component name="RunManager" selected="Python.skin_gpu_0">
     <configuration name="pytorch-cifar" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="pytorch-cifar" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -412,7 +440,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="data_prepare_isic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="multigpu1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -420,17 +448,17 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification/skin" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pytorch-tutorials/multigpu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/data_prepare_isic.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pytorch-tutorials/multigpu/multigpu1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="skin_classifier" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="read_dataset (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -438,11 +466,29 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification/skin/pytorch" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/competitions/imaterialist_furniture" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="read_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code-power" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/competitions/imaterialist_fashion" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -479,24 +525,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="skin_pre_trained" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="code-power" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classification/skin/pytorch" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification/skin/pytorch/skin_pre_trained.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -621,19 +649,19 @@
       <item itemvalue="Python.augmentor" />
       <item itemvalue="Python.train" />
       <item itemvalue="Jupyter Notebook.pytorch-cifar" />
-      <item itemvalue="Python.data_prepare_isic" />
-      <item itemvalue="Python.skin_pre_trained" />
       <item itemvalue="Python.skin_gpu_0" />
-      <item itemvalue="Python.skin_classifier" />
       <item itemvalue="Python.skin_gpu_1" />
+      <item itemvalue="Python.multigpu1" />
+      <item itemvalue="Python.read_dataset" />
+      <item itemvalue="Python.read_dataset (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.skin_gpu_1" />
-        <item itemvalue="Python.skin_pre_trained" />
         <item itemvalue="Python.skin_gpu_0" />
-        <item itemvalue="Python.data_prepare_isic" />
-        <item itemvalue="Python.skin_classifier" />
+        <item itemvalue="Python.skin_gpu_1" />
+        <item itemvalue="Python.read_dataset (1)" />
+        <item itemvalue="Python.read_dataset" />
+        <item itemvalue="Python.multigpu1" />
       </list>
     </recent_temporary>
   </component>
@@ -1027,7 +1055,6 @@
       <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.22654964" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.3295063" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32482597" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.47241563" visible="true" weight="0.42122906" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.328" />
@@ -1042,6 +1069,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32482597" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1277,21 +1305,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/modules/loss.py" />
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1269">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/UNet - Pytorch.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/utils/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-69">
@@ -1421,9 +1434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1436,15 +1446,6 @@
     </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/nn/modules/pooling.py" />
     <entry file="file:///usr/local/lib/python3.5/dist-packages/torch/optim/adam.py" />
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/pretrainedmodels/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/torch/utils/model_zoo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -1452,24 +1453,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/lenet.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/mobilenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/mobilenet.py" />
     <entry file="file://$PROJECT_DIR$/classification/models/pytorch/resnet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1761" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/resnext.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/models/pytorch/alexnet.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1487,26 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" lean-forward="true" selection-start-line="2" selection-start-column="75" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/torch/nn/modules/module.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="490" selection-start-line="490" selection-end-line="490" />
         </state>
       </provider>
     </entry>
@@ -1524,21 +1492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/densenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4062" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/pretrainedmodels/models/senet.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/classification/skin/data_loader_isic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3300">
@@ -1550,9 +1503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="15" column="39" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1560,16 +1510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="250" selection-start-line="250" selection-end-line="250" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/data_prepare_isic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-642">
-          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1591,20 +1531,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/torch/nn/modules/module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+        <state relative-caret-position="146">
+          <caret line="234" column="8" selection-start-line="234" selection-start-column="8" selection-end-line="234" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/pretrainedmodels/models/inceptionv4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6742" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/densenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1340">
+          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pytorch-tutorials/multigpu/multigpu1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/models/pytorch/inception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.6/multiprocessing/pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-438">
+          <caret line="143" column="6" selection-start-line="143" selection-start-column="6" selection-end-line="143" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/data_reader_isic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.6/urllib/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="139" column="4" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/data_prepare_isic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+        <state relative-caret-position="220">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/pytorch_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

@@ -13,10 +13,11 @@ import os
 from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 from classification.skin.pytorch.data_reader_isic import ISIC2017Dataset
+from torchsummary import summary
 
 class SkinLeisonClassfication(object):
     def __init__(self,model):
-        self.device_ids=[0]
+        self.device_ids=[0,1]
         self.model=model
         self.log_dir=self.model.logs_dir
         if not os.path.exists(self.log_dir):
@@ -53,20 +54,20 @@ class SkinLeisonClassfication(object):
         model_name = model.model_name
         model_name_str = model.model_name_str
         print('\n==> using model {}'.format(model_name_str))
-        self.model_name_str="{}_{}".format(model_name_str,model.model_log_name)
+        self.model_name_str="{}_{}".format(model_name_str,model.model_name_str)
 
         # Model
-        # try:
-        #     # Load checkpoint.
-        #     print('==> Resuming from checkpoint..')
-        #     assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
-        #     checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
-        #     net = checkpoint['net']
-        #     self.best_acc = checkpoint['acc']
-        #     self.start_epoch = checkpoint['epoch']
-        # except Exception as e:
-        net = model_name
-        print('==> Building model..')
+        try:
+            # Load checkpoint.
+            print('==> Resuming from checkpoint..')
+            assert (os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!')
+            checkpoint = torch.load('./checkpoint/{}_ckpt.t7'.format(self.model_name_str ))
+            net = checkpoint['net']
+            self.best_acc = checkpoint['acc']
+            self.start_epoch = checkpoint['epoch']
+        except Exception as e:
+            net = model_name
+            print('==> Building model..')
 
         if self.use_cuda:
             net.cuda()
@@ -77,6 +78,9 @@ class SkinLeisonClassfication(object):
 
         if model.optimizer=="adam":
             self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=2)
+
+        summary(model_name,(3,224,224))
+
 
     # Training
     def train(self, epoch):
@@ -179,7 +183,7 @@ class SkinLeisonClassfication(object):
         f1_score = metrics.f1_score(target_all, predicted_all)
 
         #print("F1 Score: {}".format(f1_score))
-        writer.add_scalar('F1 Score', f1_score, epoch)
+        #writer.add_scalar('F1 Score', f1_score, epoch)
 
 
         # average_precision = metrics.average_precision_score(y_true, y_pred)
@@ -196,7 +200,7 @@ class SkinLeisonClassfication(object):
         TPR = TP / (TP + FN)
         sensitivity=np.mean(TPR)
         #print("Senstivity: {} ".format(sensitivity))
-        writer.add_scalar('Sensitivity',sensitivity,epoch)
+        #writer.add_scalar('Sensitivity',sensitivity,epoch)
         #Specificity or true negative rate
         TNR = TN / (TN + FP)
         # # Precision or positive predictive value
