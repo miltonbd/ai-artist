@@ -2,6 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Augmentor" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../research-projects/classification/isbi2017-part3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar" vcs="Git" />

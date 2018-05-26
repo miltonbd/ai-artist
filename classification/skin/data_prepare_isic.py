@@ -73,11 +73,84 @@ def resize(size,paths,class_folder, save_dir_prefix):
         t.start()
 
 
-class Augment:
-    pass
+import pandas as pd
+import os
+
+def move_ph2_images():
+    excel=pd.read_excel('/media/milton/ssd1/dataset/skin/PH2Dataset/PH2_dataset.xlsx')
+    nevus=list(excel.iloc[11:91, 0])
+    nevus.extend(list(excel.iloc[92:171, 0]))
+    melnomas=excel.iloc[172:211, 0]
+
+    for id in melnomas:
+        read_file=os.path.join("/media/milton/ssd1/dataset/skin/PH2Dataset/PH2 Dataset images/", id,"{}_Dermoscopic_Image".format(id),id+".bmp")
+
+        save_file=os.path.join("/media/milton/ssd1/dataset/skin/classification_train_224/melanomas",id+".jpg")
+        img=PIL.Image.open(read_file)
+        img = img.resize((224, 224), PIL.Image.ANTIALIAS)
+        img.save(save_file)
+    for id in nevus:
+        read_file = os.path.join("/media/milton/ssd1/dataset/skin/PH2Dataset/PH2 Dataset images/", id,
+                                 "{}_Dermoscopic_Image".format(id), id + ".bmp")
+
+        save_file = os.path.join("/media/milton/ssd1/dataset/skin/classification_train_224/nevus", id + ".jpg")
+        img = PIL.Image.open(read_file)
+        img = img.resize((224, 224), PIL.Image.ANTIALIAS)
+        img.save(save_file)
+
+
+def move_isic_2018_data():
+    images_dir="/media/milton/ssd1/dataset/skin/ISIC2018_Task3_Training_Input"
+    gt=os.path.join("/media/milton/ssd1/dataset/skin/ISIC2018_Task3_Training_GroundTruth","ISIC2018_Task3_Training_GroundTruth.csv")
+    with open(gt, newline='\n') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',')
+        i = 0
+        melanomas = []
+        seborrheic_keratosis = []
+        nevus = []
+        for line in csvreader:
+            if i > 0:
+                image_path = os.path.join(data_dir, images_dir, line[0] + '.jpg')
+
+                if line[1] == '1.0':
+                    melanomas.append(image_path)
+                else:
+                    if line[2] == '1.0':
+                        nevus.append(image_path)
+                    else:
+                        if line[5] == '1.0':
+                            seborrheic_keratosis.append(image_path)
+            else:
+                print(line)
+            i += 1
+        print("melanomas: {}".format(len(melanomas)))
+        print("nevus: {}".format(len(nevus)))
+        print("sk: {}".format(len(seborrheic_keratosis)))
+
+        for path in melanomas:
+            save_file = os.path.join("/media/milton/ssd1/dataset/skin/classification_train_224/melanomas", path.split("/")[-1])
+            img = PIL.Image.open(path)
+            img = img.resize((224, 224), PIL.Image.ANTIALIAS)
+            img.save(save_file)
+
+        for path in nevus:
+            save_file = os.path.join("/media/milton/ssd1/dataset/skin/classification_train_224/nevus",  path.split("/")[-1])
+            img = PIL.Image.open(path)
+            img = img.resize((224, 224), PIL.Image.ANTIALIAS)
+            img.save(save_file)
+
+        for path in seborrheic_keratosis:
+            save_file = os.path.join("/media/milton/ssd1/dataset/skin/classification_train_224/seborrheic_keratosis",  path.split("/")[-1])
+            img = PIL.Image.open(path)
+            img = img.resize((224, 224), PIL.Image.ANTIALIAS)
+            img.save(save_file)
+
+
 
 if __name__ == '__main__':
-    resizeAll(train, 224, "classification_train","ISIC-2017_Training_Data")
+    move_isic_2018_data()
+    #move_ph2_images()
+    #resizeAll(train, 224, "classification_train","ISIC-2017_Training_Data")
     #resizeAll(valid, 224, "classification_valid", "ISIC-2017_Validation_Data")
     #resizeAll(test, 224, "classification_test", "ISIC-2017_Test_v2_Data")
 

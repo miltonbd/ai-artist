@@ -6,6 +6,9 @@ import torch
 from torchvision import transforms
 import os
 
+"""
+https://www.cbica.upenn.edu/sbia/Spyridon.Bakas/MICCAI_BraTS/2018/MICCAI_BraTS_2018_Data_Training.zip 
+"""
 
 class BratsDataset(Dataset):
     """

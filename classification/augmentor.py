@@ -64,6 +64,19 @@ def random_erasing(pipeline, n):
     pipeline.random_erasing(probability=1, rectangle_area=.2)
     pipeline.sample(n)
 
+def random_crop(pipeline, n):
+    pipeline.crop_random(probability=1, percentage_area=.5)
+    pipeline.sample(n)
+
+def random_crop_center(pipeline, n):
+    pipeline.crop_centre(probability=1, percentage_area=.5)
+    pipeline.sample(n)
+
+def random_zoom(pipeline, n):
+    pipeline.zoom_random(probability=1, percentage_area=.5)
+    pipeline.sample(n)
+
+
 root_directory = "/home/milton/dataset/skin/classification_train_224/*"
 folders = []
 for f in glob.glob(root_directory):
@@ -83,19 +96,18 @@ for folder in folders:
     print("Folder %s:" % (folder))
     pipeline = (Augmentor.Pipeline(folder))
     n=len(pipeline.augmentor_images)
-    skew_corner(pipeline, n)
-    skew_left_right(pipeline, n)
-    flip_left_right(pipeline, n)
-    skew_top_bottom(pipeline, n)
-    shear(pipeline, n)
-    rotate270(pipeline, n)
-    skew_tilt(pipeline, n)
-    rotate(pipeline, n)
-    random_distortion(pipeline, n)
-    flip_top_bottom(pipeline, n)
-    rotate180(pipeline, n)
-    rotate90(pipeline, n)
-    flip_random(pipeline,n)
+    skew_corner(pipeline, n/2)
+    skew_left_right(pipeline, n/2)
+    flip_left_right(pipeline, n/2)
+    skew_top_bottom(pipeline, n/2)
+    shear(pipeline, n/2)
+    rotate270(pipeline, n/2)
+    skew_tilt(pipeline, n/2)
+    rotate(pipeline, n/)
+    random_distortion(pipeline, n/2)
+    flip_top_bottom(pipeline, n/2)
+    rotate90(pipeline, n/2)
+    flip_random(pipeline,n/2)
     random_erasing(pipeline, n)
     print("\n----------------------------\n")
 

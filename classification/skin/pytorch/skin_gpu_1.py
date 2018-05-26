@@ -4,7 +4,7 @@ from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.vgg import vgg19_bn
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 
 # net = VGG('VGG19',num_classes)
@@ -26,24 +26,6 @@ class Model(object):
         model_conv=vgg19_bn()
 
         # Let's freeze the same as above. Same code as above without the print statements
-        child_counter = 0
-        for child in model_conv.children():
-            if child_counter < 3:
-                for param in child.parameters():
-                    param.requires_grad = False
-            elif child_counter == 3:
-                children_of_child_counter = 0
-                for children_of_child in child.children():
-                    if children_of_child_counter < 1:
-                        for param in children_of_child.parameters():
-                            param.requires_grad = False
-                    else:
-                        children_of_child_counter += 1
-
-            else:
-                print("child ", child_counter, " was not frozen")
-            child_counter += 1
-
         num_ftrs = model_conv.classifier[6].in_features
 
         # convert all the layers to list and remove the last one
@@ -55,12 +37,13 @@ class Model(object):
         ## convert it into container and add it to our model class.
         model_conv.classifier = nn.Sequential(*features)
         self.model_name = model_conv
-        self.learning_rate =  0.001
+        self.learning_rate =  0.0001
+        self.eps=1
         self.optimizer="adam"
         self.model_name_str="vgg_19bn"
-        self.batch_size_train_per_gpu = 200
+        self.batch_size_train_per_gpu = 100
         self.batch_size_test_per_gpu = 2
-        self.epochs = 200
+        self.epochs = 100
         self.num_classes = 2
         self.logs_dir="logs/vgg19_bn"
 
@@ -70,6 +53,10 @@ clasifier=SkinLeisonClassfication(model)
 clasifier.load_data()
 clasifier.load_model()
 for epoch in range(clasifier.start_epoch, clasifier.start_epoch + model.epochs):
+    if epoch<10:
+        clasifier.model.model_name.freeze_features_layers()
+    else:
+        clasifier.model.model_name.freeze_features_n_layers(30)
     try:
       clasifier.train(epoch)
       clasifier.test(epoch)

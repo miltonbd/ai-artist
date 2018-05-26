@@ -145,7 +145,7 @@ class DataReaderISIC2017(object):
         train_y[0:len(melanomas_train),0]=1
         train_y[len(melanomas_train):,1]=1
         labels=['Melanoma','Non Melanoma']
-        print("Total train items for melanona {}, non melanoma:{}".format(len(melanomas_train),len(nonmelanomas_train)))
+        #print("Total train items for melanona {}, non melanoma:{}".format(len(melanomas_train),len(nonmelanomas_train)))
         train_x = np.asarray(train_x)
         #print(train_x.shape)
         self.total_train_count = len(train_x)

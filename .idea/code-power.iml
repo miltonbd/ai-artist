@@ -4,12 +4,11 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="CNNbasedMedicalSegmentation" />
+    <orderEntry type="module" module-name="brats17" />
     <orderEntry type="module" module-name="Augmentor" />
-    <orderEntry type="module" module-name="pytorch-cifar" />
-    <orderEntry type="module" module-name="Pytorch-UNet" />
-    <orderEntry type="module" module-name="unet-pytorch" />
-    <orderEntry type="module" module-name="UNet-pytorch" />
-    <orderEntry type="module" module-name="UNet-Zoo" />
+    <orderEntry type="module" module-name="semantic_segmentation" />
+    <orderEntry type="module" module-name="3DUnetCNN" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="py.test" />

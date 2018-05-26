@@ -54,7 +54,7 @@ class SkinLeisonClassfication(object):
         model_name = model.model_name
         model_name_str = model.model_name_str
         print('\n==> using model {}'.format(model_name_str))
-        self.model_name_str="{}_{}".format(model_name_str,model.model_name_str)
+        self.model_name_str="{}".format(model_name_str)
 
         # Model
         try:
@@ -70,16 +70,19 @@ class SkinLeisonClassfication(object):
             print('==> Building model..')
 
         if self.use_cuda:
-            net.cuda()
+            net=net.cuda()
             net = torch.nn.DataParallel(net)
             cudnn.benchmark = True
         self.net=net
         self.criterion = nn.CrossEntropyLoss()
+        summary(net,(3,224,224))
 
         if model.optimizer=="adam":
-            self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=2)
+            self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=model.eps)
 
-        summary(model_name,(3,224,224))
+        self.writer.add_scalar("leanring rate", self.learning_rate)
+        self.writer.add_scalar("eps", model.eps)
+
 
 
     # Training
@@ -114,6 +117,7 @@ class SkinLeisonClassfication(object):
 
             progress_bar(batch_idx, len(self.trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                 % (batch_loss, 100.*correct/total, correct, total))
+        self.writer.add_scalar('train loss',train_loss, epoch)
 
 
     def save_model(self, acc, epoch):
@@ -158,6 +162,7 @@ class SkinLeisonClassfication(object):
             progress_bar(batch_idx, len(self.testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                 % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
+        self.writer.add_scalar('test loss',test_loss, epoch)
         # Save checkpoint.
         acc = 100.*correct/total
         writer.add_scalar('test accuracy', acc, epoch)

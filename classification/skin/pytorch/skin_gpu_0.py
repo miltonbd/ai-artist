@@ -25,7 +25,6 @@ class Model(object):
 
         model_conv = densenet201()
 
-
         # ct = 0
         # for child in model_conv.children():
         #     ct += 1
@@ -47,10 +46,11 @@ class Model(object):
         num_ftrs = model_conv.classifier.in_features
         model_conv.classifier = nn.Linear(num_ftrs, 2)
         self.model_name = model_conv
-        self.learning_rate = 0.001
+        self.learning_rate = 0.0005
+        self.eps=2
         self.optimizer = "adam"
         self.model_name_str = "dense_201"
-        self.batch_size_train_per_gpu = 40
+        self.batch_size_train_per_gpu =45
         self.batch_size_test_per_gpu = 2
         self.epochs = 200
         self.num_classes = 2
@@ -69,5 +69,7 @@ for epoch in range(clasifier.start_epoch, clasifier.start_epoch + model.epochs):
     except KeyboardInterrupt:
       clasifier.test(epoch)
       break;
+    clasifier.load_data()
+
 
 

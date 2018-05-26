@@ -44,6 +44,18 @@ class VGG(nn.Module):
         x = self.classifier(x)
         return x
 
+    def freeze_features_layers(self):
+        for layer in self.features.parameters():
+            layer.requires_grad = False
+
+    def freeze_features_n_layers(self,n):
+        i=0
+        for layer in self.features.parameters():
+            if i > n:
+                break
+            layer.requires_grad = False
+            i = i + 1
+
     def _initialize_weights(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
