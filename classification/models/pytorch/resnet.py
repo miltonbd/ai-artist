@@ -95,7 +95,7 @@ class Bottleneck(nn.Module):
 
 class ResNet(nn.Module):
 
-    def __init__(self, block, layers, num_classes=1000):
+    def __init__(self, block, layers, num_classes=512):
         self.inplanes = 64
         super(ResNet, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3,
@@ -107,15 +107,15 @@ class ResNet(nn.Module):
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2)
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
-        self.avgpool = nn.AvgPool2d(7, stride=1)
+        self.avgpool = nn.AvgPool2d(4, stride=1)
         self.fc = nn.Linear(512 * block.expansion, num_classes)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                nn.init.kaiming_normal(m.weight, mode='fan_out')
             elif isinstance(m, nn.BatchNorm2d):
-                nn.init.constant_(m.weight, 1)
-                nn.init.constant_(m.bias, 0)
+                nn.init.constant(m.weight, 1)
+                nn.init.constant(m.bias, 0)
 
     def _make_layer(self, block, planes, blocks, stride=1):
         downsample = None
@@ -154,7 +154,6 @@ class ResNet(nn.Module):
 
 def resnet18(pretrained=False, **kwargs):
     """Constructs a ResNet-18 model.
-
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
@@ -166,7 +165,6 @@ def resnet18(pretrained=False, **kwargs):
 
 def resnet34(pretrained=False, **kwargs):
     """Constructs a ResNet-34 model.
-
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
@@ -178,7 +176,6 @@ def resnet34(pretrained=False, **kwargs):
 
 def resnet50(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
-
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
@@ -190,7 +187,6 @@ def resnet50(pretrained=False, **kwargs):
 
 def resnet101(pretrained=False, **kwargs):
     """Constructs a ResNet-101 model.
-
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
@@ -202,11 +198,26 @@ def resnet101(pretrained=False, **kwargs):
 
 def resnet152(pretrained=False, **kwargs):
     """Constructs a ResNet-152 model.
-
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = ResNet(Bottleneck, [3, 8, 36, 3], **kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['resnet152']))
+        updated_params=torch.load('/home/milton/.torch/models/resnet152-b121ed2d.pth')
+        updated_params.pop('fc.weight', None)
+        updated_params.pop('fc.bias', None)
+        new_params = model.state_dict()
+        new_params.update(updated_params)
+        model.load_state_dict(new_params)
     return model
+
+from torch.autograd import Variable
+import torch
+
+def test():
+    net = resnet152(pretrained=True)
+    net.cuda()
+    y = net(Variable(torch.randn(32,3,112,112)).cuda())
+    print(y.size())
+
+test()

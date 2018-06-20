@@ -78,7 +78,7 @@ class SkinLeisonClassfication(object):
         summary(net,(3,224,224))
 
         if model.optimizer=="adam":
-            self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=model.eps)
+            self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=self.learning_rate, eps=model.epsilon)
 
         self.writer.add_scalar("leanring rate", self.learning_rate)
         self.writer.add_scalar("eps", model.eps)
@@ -98,6 +98,8 @@ class SkinLeisonClassfication(object):
             step = epoch * len(self.trainloader) + batch_idx
             if self.use_cuda:
                 inputs, targets = inputs.cuda(), targets.cuda()
+                inputs1, targets1 = inputs.cuda(1), targets.cuda(1)
+
             optimizer.zero_grad()
             inputs, targets = Variable(inputs), Variable(targets)
             outputs = net(inputs)

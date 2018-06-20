@@ -3,8 +3,8 @@ from torch import nn,optim
 from classification.skin.pytorch.skin_classifier import SkinLeisonClassfication
 from classification.models.pytorch.densenet import densenet201
 
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+# os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # net = VGG('VGG19',num_classes)
 # net = ResNet18()

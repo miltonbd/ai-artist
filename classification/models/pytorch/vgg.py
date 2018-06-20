@@ -38,11 +38,19 @@ class VGG(nn.Module):
         if init_weights:
             self._initialize_weights()
 
+    def bounds(self):
+        return 0, 255
+
     def forward(self, x):
         x = self.features(x)
+        from torch.autograd import Variable
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
+
         return x
+    def predictions(self,x):
+        return self.classifier(x)
+
 
     def freeze_features_layers(self):
         for layer in self.features.parameters():
@@ -178,7 +186,7 @@ def vgg16_bn(pretrained=False, **kwargs):
     return model
 
 
-def vgg19(pretrained=False, **kwargs):
+def vgg19(pretrained=True, **kwargs):
     """VGG 19-layer model (configuration "E")
 
     Args:
