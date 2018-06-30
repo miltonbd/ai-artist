@@ -151,7 +151,7 @@ def im_show(img_list):
 # define a class to log values during training
 class AverageMeter(object):
     """
-    https://github.com/pytorch/examples/blob/master/imagenet/main.py
+    https://github.com/pytorch/examples/blob/master/imagenet/classifier.py
     Computes and stores the average and current value
     """
 
@@ -174,7 +174,7 @@ class AverageMeter(object):
 # define a function to help us saving model checkpoints
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     """
-    https://github.com/pytorch/examples/blob/master/imagenet/main.py
+    https://github.com/pytorch/examples/blob/master/imagenet/classifier.py
     :param state:
     :param is_best:
     :param filename:
@@ -290,7 +290,7 @@ class BCELoss2d(nn.Module):
 # Create a function to change a tensor to numpy
 def to_np(x):
     """
-    https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04-utils/tensorboard/main.py#L20
+    https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/04-utils/tensorboard/classifier.py#L20
     :param x:
     :return:
     """
@@ -350,7 +350,7 @@ def train(train_loader, model, criterion, epoch, num_epochs):
 # Create a function to save the model state
 def save_checkpoint(state, is_best, filename='./checkpoints/checkpoint.pth.tar'):
     """
-    https://github.com/pytorch/examples/blob/master/imagenet/main.py
+    https://github.com/pytorch/examples/blob/master/imagenet/classifier.py
     :param state:
     :param is_best:
     :param filename:
