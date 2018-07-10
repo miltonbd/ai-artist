@@ -5,8 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/.idea/3DUnetCNN.iml" filepath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/.idea/3DUnetCNN.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" filepath="$PROJECT_DIR$/../Augmentor/.idea/Augmentor.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/.idea/CNNbasedMedicalSegmentation.iml" filepath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/.idea/CNNbasedMedicalSegmentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../competitions/ISIC_2018_classification/.idea/ISIC_2018_classification.iml" filepath="$PROJECT_DIR$/../competitions/ISIC_2018_classification/.idea/ISIC_2018_classification.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/.idea/brats17.iml" filepath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/.idea/brats17.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/code-power.iml" filepath="$PROJECT_DIR$/.idea/code-power.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pretrained-models.pytorch/.idea/pretrained-models.pytorch.iml" filepath="$PROJECT_DIR$/../pretrained-models.pytorch/.idea/pretrained-models.pytorch.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/.idea/semantic_segmentation.iml" filepath="$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/.idea/semantic_segmentation.iml" />
     </modules>
   </component>

@@ -2,71 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73cd50e5-c7af-4495-8d08-3fb0a95b095a" name="Default" comment="two gpu classifiers added for skin.">
-      <change afterPath="$PROJECT_DIR$/augmentation/augmentor_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/Welcome_notebook.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/attacker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/downloader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/evaluate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/prepare_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/densenet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/resnet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/vgg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/MCS2018/student_net_learning/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/monuseg2018/data_reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/wider_face_2018/data_reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/competitions/wider_pedestrian_2018/data_reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/segmentation/kitti_road/road_segmentation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/keras1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/test1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/data_isic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/brain_data_scripts/read_images.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/brain_data_scripts/read_images.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/code-power.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code-power.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/augmentor.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/augmentor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/models/pytorch/vgg.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/models/pytorch/vgg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/data_loader_isic.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/data_loader_isic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/data_prepare_isic.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/data_prepare_isic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification/skin/pytorch/skin_gpu_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/competitions/imaterialist_fashion/read_dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/competitions/imaterialist_furniture/read_dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentation/brain/data_reader_brats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/pytorch-cifar/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/include/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/classification/tensorflow-cifar-10/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/BatchDatsetReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/BatchDatsetReader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/FCN.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/FCN.tensorflow/FCN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/CheckVGG16Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/CheckVGG16Model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Figure1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/Inference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-Tensorflow-implementation/TRAIN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/eval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/utils/crf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/Pytorch-UNet/utils/crf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/UNet - Pytorch.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/UNet - Pytorch.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/data_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/segmentation/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/skin/isic-2017-segmentation/segment.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/skin/isic-2017-segmentation/segment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/unet-pytorch/carvana_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/unet-pytorch/carvana_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/model/u_net_tf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/model/u_net_tf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research-projects/segmentation/unet-tensorflow/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/competitions/monuseg2018/data_reader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/competitions/wider_face_2018/data_reader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/competitions/wider_pedestrian_2018/data_reader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py" beforeDir="false" afterPath="$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pretrained-models.pytorch/pretrainedmodels/models/vggm.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,56 +19,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-            <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/competitions/MCS2018/README.md">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="460">
-                    <caret line="29" column="6" selection-start-line="29" selection-end-line="30" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="code-power" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py">
+      <file leaf-file-name="main_isic.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3020">
-              <caret line="160" column="89" selection-start-line="160" selection-start-column="89" selection-end-line="160" selection-end-column="89" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="114" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="274">
+              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prepare_data.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/competitions/MCS2018/prepare_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1100">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -190,12 +97,11 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../competitions/ISIC_2018_classification" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../research-projects/segmentation/pytorch/unet-pytorch/UNet - Pytorch.ipynb" />
         <option value="$PROJECT_DIR$/tutorials/matplotlib/animation.py" />
         <option value="$PROJECT_DIR$/tutorials/making_gif.py" />
         <option value="$PROJECT_DIR$/segmentation/brain/make_gif.py" />
@@ -246,6 +152,7 @@
         <option value="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py" />
         <option value="$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py" />
         <option value="$PROJECT_DIR$/competitions/MCS2018/prepare_data.py" />
+        <option value="$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py" />
       </list>
     </option>
   </component>
@@ -284,19 +191,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="competitions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="code-power" type="b2602c69:ProjectViewProjectNode" />
-              <item name="code-power" type="462c0819:PsiDirectoryNode" />
-              <item name="competitions" type="462c0819:PsiDirectoryNode" />
-              <item name="MCS2018" type="462c0819:PsiDirectoryNode" />
+              <item name="ai-artist" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ISIC_2018_classification" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -338,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train">
+  <component name="RunManager" selected="Python.main_isic">
     <configuration name="code-power" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="code-power" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -386,6 +282,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="main_isic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ISIC_2018_classification" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.5" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../competitions/ISIC_2018_classification" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -529,9 +443,11 @@
       <item itemvalue="Python.main" />
       <item itemvalue="Python.preprocess" />
       <item itemvalue="Python.train" />
+      <item itemvalue="Python.main_isic" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_isic" />
         <item itemvalue="Python.train" />
         <item itemvalue="Python.preprocess" />
         <item itemvalue="Python.main" />
@@ -924,14 +840,14 @@
   <component name="ToolWindowManager">
     <frame x="2035" y="24" width="1742" height="955" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.24154025" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49851632" visible="true" weight="0.24154025" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.3295063" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.31226566" side_tool="true" weight="0.39959016" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" weight="0.42" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47241563" weight="0.4188352" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4916979" weight="0.32991803" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.328" />
       <window_info id="Structure" order="0" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3325" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33209416" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6877343" weight="0.46480447" />
       <window_info id="Favorites" order="1" sideWeight="0.5014837" side_tool="true" weight="0.24262102" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1182,23 +1098,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.6/urllib/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="139" column="4" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/lib/python3.6/urllib/request.py" />
     <entry file="file://$PROJECT_DIR$/utils/pytorch_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1278,105 +1178,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/monuseg2018/data_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/wider_pedestrian_2018/data_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/wider_face_2018/data_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/resnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1440" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/vgg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/Welcome_notebook.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/config15/train_wt_ax.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-274" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-980">
-          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/brain_data_scripts/read_images.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="221" selection-start-line="221" selection-end-line="221" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/densenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1325" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/tensorflow/python/saved_model/loader_impl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="181" column="4" selection-start-line="181" selection-start-column="4" selection-end-line="181" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-580">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="46" column="89" selection-start-line="46" selection-start-column="63" selection-end-line="46" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/competitions/monuseg2018/data_reader.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/wider_pedestrian_2018/data_reader.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/wider_face_2018/data_reader.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/resnet.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/vgg.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/Welcome_notebook.ipynb" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/config15/train_wt_ax.txt" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/train.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/brats17/README.md" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/brain_data_scripts/read_images.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/README.md" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/models/densenet.py" />
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/tensorflow/python/saved_model/loader_impl.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/CNNbasedMedicalSegmentation/train.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/segmentation/kitti/semantic_segmentation/main.py" />
     <entry file="file://$PROJECT_DIR$/segmentation/brain/make_gif.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1409,30 +1225,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/attacker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
-          <folding>
-            <element signature="e#37#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/attacker.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/main.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/student_net_learning/dataset.py" />
     <entry file="file://$PROJECT_DIR$/segmentation/brain/data_reader_brats.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1440,91 +1235,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3.6/threading.py">
+    <entry file="file:///usr/lib/python3.6/threading.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/data.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/training.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/generator.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/README.md" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/model/unet.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/augment.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/downloader.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/evaluate.py" />
+    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/prepare_data.py" />
+    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/README.md" />
+    <entry file="file://$PROJECT_DIR$/../competitions/ISIC_2018_classification/main_isic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="756" column="8" selection-start-line="756" selection-start-column="8" selection-end-line="756" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/preprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3020">
-          <caret line="160" column="89" selection-start-line="160" selection-start-column="89" selection-end-line="160" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/model/unet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/unet3d/augment.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/downloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-486">
-          <caret line="12" column="73" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/evaluate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2935">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../dataset/competitions/brats_2018/3DUnetCNN/brats/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="274">
+          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/prepare_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1100">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/competitions/MCS2018/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="29" column="6" selection-start-line="29" selection-end-line="30" />
         </state>
       </provider>
     </entry>
