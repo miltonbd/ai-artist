@@ -108,9 +108,14 @@ class ResNet(nn.Module):
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2)
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
-        self.avgpool = nn.AvgPool2d(1, stride=1) # is done to make the [4,2048,7,7] to [4, 2048,1,1]
+        # self.avgpool = nn.AvgPool2d(1, stride=1) # is done to make the [4,2048,7,7] to [4, 2048,1,1]
         # output_shape = self.features(torch.randn(batch_size, 3, height, height)).shape
-        self.fc = nn.Linear(512 * block.expansion, num_classes)
+        # self.fc = nn.Linear(512 * block.expansion, num_classes)
+        self.gap=nn.AdaptiveAvgPool2d((1,1))
+        self.classifier=nn.Conv2d(512 * block.expansion, num_classes, kernel_size=3, padding=1, bias=False)
+        # https://discuss.pytorch.org/t/global-average-pooling-in-pytorch/6721/10
+        # x = F.adaptive_avg_pool2d(x, (1, 1)) GAP
+
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -152,9 +157,9 @@ class ResNet(nn.Module):
     def forward(self, x):
 
         x=self.features(x)
-        x = self.avgpool(x)
+        x = self.gap(x)
+        x = self.classifier(x)
         x = x.view(x.size(0), -1)
-        x = self.fc(x)
 
         return x
 
@@ -215,5 +220,8 @@ def resnet152(pretrained=False, **kwargs):
     """
     model = ResNet(Bottleneck, [3, 8, 36, 3], **kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['resnet152']))
+        from utils.pytorch_utils import load_pretrained_dict_only_matched
+        pretrained_weight_dict=model_zoo.load_url(model_urls['resnet152'])
+        model=load_pretrained_dict_only_matched(model, pretrained_weight_dict)
+
     return model

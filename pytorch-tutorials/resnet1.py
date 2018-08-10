@@ -29,6 +29,9 @@ testset = torchvision.datasets.CIFAR10(root='/media/milton/ssd1/dataset/cifar/ci
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
                                          shuffle=False, num_workers=2)
 model=models.resnet152(True, avg_pool_kernel=2)
+"""
+for 32 image size avg pool is 2, for 224 = 32*7, is 7
+"""
 # output_shape=model.features(torch.randn(batch_size,3,height,width)).shape
 
 # model.classifier=nn.Sequential(
